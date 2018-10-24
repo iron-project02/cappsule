@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="robots" content="none, noarchive, nosnippet, noimageindex"><!--change once ready-->
+  <meta http-equiv="cache-control" content="no-store"><!--change once ready-->
+  {{!-- <link rel="canonical" href="https://cappsule-app.herokuapp.com/"><!-- once deployed --> --}}
+  {{!-- <link rel="alternate" href="https://cappsule-app.herokuapp.com/es" hreflang="es-MX"><!-- once created --> --}}
+  {{!-- <base href="https://cappsule-app.herokuapp.com/"><!-- once deployed --> --}}
+  <meta name="author" content="Cappsule Team: Vermont García Serrano & Mauricio González Robles">
+  <link href="mailto:cappsule.team@gmail.com" rel="creators">
+  <meta name="subject" content="Medicament metasearch engine">
+  <meta name="description" content="Best price medicament metasearch engine, and medicine kit manager. Health Social Media, to manage family members, friends, colleagues, and more.">
+  <!--OG meta-->
+  <meta property="og:url" content="https://cappsule-app.herokuapp.com/">
+  <meta property="og:type" content="web_application">
+  <meta property="og:title" content="{{data.title}}">
+  {{!-- <meta property="og:image" content="https://"><!-- once created --> --}}
+  <meta property="og:description" content="Best price medicament metasearch engine, and medicine kit manager. Health Social Media, to manage family members, friends, colleagues, and more.">
+  <meta property="og:site_name" content="Cappsule: Medicine cabinet on the go">
+  <meta property="og:locale" content="en_MX">
+  <meta property="article:author" content="Cappsule Team: Vermont García Serrano & Mauricio González Robles">
+  {{!-- <meta property="og:see_also" content="{{homepageUrl}}"> --}}
+  <!--/OG meta-->
+  <meta name="twitter:card" content="summary" /><!--Twitter meta-->
+  <meta name="pinterest" content="nopin"><!--Pinterest meta-->
+  <title>{{data.title}}{{appTitle}}</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  {{#if data.css}}
+    <link rel="stylesheet" href="/css/{{data.css}}.css">  
+  {{/if}}
+</head>
+
+<body>
+
+  {{{body}}}
+
+</body>
+
+<script src="/js/main.js"></script>
+{{#if data.js}}
+  <script src="/js/{{data.js}}.js"></script>  
+{{/if}}
+</html>
