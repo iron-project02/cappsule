@@ -6,6 +6,19 @@ const productSchema = new Schema({
         type: String,
         required: 'Product name most be defined'
     },
+    image: {
+        type: String,
+        required: 'Product name most be defined',
+        default: ''
+    },
+    code: {
+        type: String
+    },
+    labId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Lab',
+        required: 'There is no related laboratory to this product'
+    },
     ingredient: {
         type: String,
         required: 'Product active ingrediente most be defined'
@@ -14,8 +27,46 @@ const productSchema = new Schema({
         type: String,
         required: 'Product active substance most be defined'
     },
-
-
+    presentation: {
+        type: String
+    },
+    quantity: {
+        type: Number
+    },
+    unity: {
+        type: String,
+        enum: ['Capsule', 'Tablet']
+    },
+    applicationVia: {
+        type: String,
+        enum: ['Oral', 'Topic', 'Otic', 'Oftalmic', 'Intramuscular', 'intravenous']
+    },
+    lot: {
+        type: String
+    },
+    expitationDate: {
+        type: Date
+    },
+    patent: {
+        type: Boolean
+    },
+    controlled: {
+        type: Boolean,
+        required: 'Controlled status most be defined',
+        default: true
+    },
+    formula: {
+        type: Array
+    },
+    concentration: {
+        type: Array
+    },
+    excipientCbp: {
+        type: String
+    },
+    price: {
+        type: Number
+    },
 },{
     timestamps: {
         createdAt: 'created_at',
