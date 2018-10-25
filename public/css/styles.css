@@ -13,3 +13,7 @@
 body {
   height: 200vh;
 }
+.errorMessage {
+  font-style: italic;
+  text-align: center;
+}

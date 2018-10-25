@@ -1,0 +1,49 @@
+<form id="authForm"
+  {{#if data.register}}
+    action="/auth/register"
+    {{else}}
+      action="/auth/login"
+  {{/if}}
+  method="post" enctype="application/x-www-form-urlencoded">
+  {{#if data.register}}
+    <div class="auth-field">
+      <label for="name">Name</label>
+      <input name="name" type="text" placeholder="What is your name?" autofocus required>
+    </div>
+    <div class="auth-field">
+      <label for="email">Email</label>
+      <input name="email" type="email" placeholder="user@cappsule.com" required>
+    </div>  
+  {{/if}}
+  <div class="auth-field">
+    <label for="username">Phone number</label>
+    <input name="username" type="tel" placeholder="10 digits number" minlength="10" maxlength="10" size="10" autofocus required>
+  </div>
+  <div class="auth-field">
+    <label for="password">Password</label>
+    <input name="password" type="password" placeholder="Enter your password" size="10" autocomplete="current-password" required>
+  </div>
+  {{#if data.register}}
+  <div class="auth-field">
+    <label for="confirm-password">Confirm password</label>
+    <input name="confirm-password" type="password" placeholder="Enter the same password" size="10" autocomplete="off" required>
+  </div>
+  {{/if}}
+  {{#if errorMessage}}
+    <p class="errorMessage uk-margin uk-text-danger">** {{errorMessage}} **</p>
+  {{/if}}
+  <div class="auth-submit uk-text-center">
+    {{#if data.register}}
+      <button type="submit">Register</button>
+      {{else}}
+        <button type="submit">Log in</button>
+    {{/if}}
+  </div>
+  
+</form>
+
+{{#if data.register}}
+  <p>Already have an account? <a href="/auth/login">Log in</a></p>
+  {{else}}
+    <p>Don't have an account yet? <a href="/auth/register">Register</a></p>
+{{/if}}
