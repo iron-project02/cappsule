@@ -1,5 +1,6 @@
 const express = require('express'),
-      router  = express.Router();
+      router  = express.Router(),
+      User    = require(`../models/User`);
 
 function isLogged(req,res,next) {
   if (req.isAuthenticated()) return next();
@@ -8,10 +9,8 @@ function isLogged(req,res,next) {
 
 /* GET home page */
 router.get('/', isLogged, (req, res, next) => {
-  let data = {
-    title: `Home`
-  };
-  res.render('index', {data});
+  res.redirect(`/user/${req.user._id}`);
 });
+
 
 module.exports = router;

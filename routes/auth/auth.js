@@ -31,7 +31,7 @@ authSites.post(`/auth/register`, (req,res) => {
         // mail.send(options);
         res.redirect(`/auth/login`);
       })
-      .catch( err => res.status(500).render(`register`, {err, errorMessage: `There was an error, please try again`}) );
+      .catch( err => res.status(500).render(`auth/auth`, {err, errorMessage: `There was an error, please try again`}) );
 });
 
 authSites.get(`/auth/login`, (req,res) => {
