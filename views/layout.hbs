@@ -24,10 +24,11 @@
   <meta property="article:author" content="Cappsule Team: Vermont García Serrano & Mauricio González Robles">
   {{!-- <meta property="og:see_also" content="{{homepageUrl}}"> --}}
   <!--/OG meta-->
-  <meta name="twitter:card" content="summary" /><!--Twitter meta-->
+  <meta name="twitter:card" content="summary"><!--Twitter meta-->
   <meta name="pinterest" content="nopin"><!--Pinterest meta-->
   <title>{{data.title}}{{appTitle}}</title>
-  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/css/uikit.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
   {{#if data.css}}
     <link rel="stylesheet" href="/css/{{data.css}}.css">  
   {{/if}}
@@ -35,10 +36,51 @@
 
 <body>
 
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar;">
+    <nav class="uk-navbar-container" uk-navbar>
+      <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#main-menu" uk-toggle></a>
+            <div id="main-menu" uk-offcanvas="overlay: true; mode: reveal;">
+              <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+                <ul class="uk-nav uk-nav-primary">
+                  <button class="uk-offcanvas-close" type="button" uk-close></button>
+                  <li><a href="/search"><span class="uk-margin-small-right" uk-icon="icon: search"></span> Search</a></li>
+                  <li><a href="/offers"><span class="uk-margin-small-right" uk-icon="icon: tag"></span> Offers</a></li>
+                  <li class="uk-nav-divider"></li>
+                  <li><a href="/kit"><span class="uk-margin-small-right" uk-icon="icon: lifesaver"></span> Cabinet</a></li>
+                  <li><a href="/treatments"><span class="uk-margin-small-right" uk-icon="icon: file-edit"></span> Treatments</a></li>
+                  <li><a href="/reminders"><span class="uk-margin-small-right" uk-icon="icon: clock"></span> Reminders</a></li>
+                  <li><a href="/groups"><span class="uk-margin-small-right" uk-icon="icon: users"></span> Groups</a></li>
+                  <li><a href="/history"><span class="uk-margin-small-right" uk-icon="icon: history"></span> History</a></li>
+                  <li class="uk-nav-divider"></li>
+                  <li><a href="/"><span class="uk-margin-small-right" uk-icon="icon: user"></span> Profile</a></li>
+                  <li><a href="/settings"><span class="uk-margin-small-right" uk-icon="icon: settings"></span> Settings</a></li>
+                  <li><a href="/logout"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Log out</a></li>
+                </ul>
+                <ul class="uk-nav uk-nav-default uk-margin-auto-top">
+                  <li><a href="/terms">Legals</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-center">
+        <a href="/" class="uk-navbar-item uk-logo">
+          <img src="https://lh3.googleusercontent.com/kroer1kpwSe3j-lIfPnE7Q3MVaCoJVF8atjdh0VtGDWCz2ulLejVsDh2k6a6VUgpUFQ8qRMHMEX7bsr2jTrLXhZR_ETbqILDf-qfkk0=h128" alt="Cappsule logo" height="50" width="50">
+        </a>
+      </div>
+    </nav>
+  </div>
+
   {{{body}}}
 
 </body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit-icons.min.js"></script>
 <script src="/js/main.js"></script>
 {{#if data.js}}
   <script src="/js/{{data.js}}.js"></script>  
