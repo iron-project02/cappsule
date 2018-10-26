@@ -7,9 +7,9 @@ const mailer    = require(`nodemailer`),
         }
       });
 
-transport.verify(function(error, success) {
-  if (error) console.log(error);
-  else console.log('Server is ready to take our messages');
+transport.verify(function(err, succ) {
+  if (err) console.log(err);
+  else console.log('SendGrid is ready to send mail');
 });
 
 exports.send = (options) => {
