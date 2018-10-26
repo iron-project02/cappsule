@@ -1,0 +1,11 @@
+<div class="auth-container uk-flex uk-flex uk-flex-column uk-height-large">
+  <div class="uk-margin-auto uk-margin-auto-vertical">
+    {{#if data.register}}
+      <h1 class="uk-margin-large-bottom uk-text-center">Register</h1>
+      {{else}}
+        <h1 class="uk-margin-large-bottom uk-text-center">Login</h1>
+    {{/if}}
+    
+    {{> authForm}}
+  </div>
+</div>

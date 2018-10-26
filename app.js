@@ -7,7 +7,9 @@ const bodyParser   = require('body-parser'),
       hbs          = require('hbs'),
       mongoose     = require('mongoose'),
       logger       = require('morgan'),
-      path         = require('path');
+      path         = require('path'),
+      passport     = require(`./helpers/passport`),
+      session      = require(`express-session`);
 
 
 mongoose.connect(process.env.Db, {useNewUrlParser: true})
@@ -18,6 +20,14 @@ const app_name = require('./package.json').name;
 const debug    = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+app .use(session({
+			secret: process.env.SECRET,
+			resave: true,
+			saveUninitialized: true
+		}))
+		.use(passport.initialize())
+		.use(passport.session());
 
 // Middleware Setup
 app.use(logger('dev'))
@@ -38,8 +48,11 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
 
-const index = require('./routes/index');
-app.use('/', index);
+const index 		= require('./routes/index'),
+			authSites = require(`./routes/auth/auth`);
+
+app .use('/', index)
+		.use(`/`, authSites);
 
 
 module.exports = app;

@@ -1,12 +1,16 @@
 const express = require('express'),
-      router  = express.Router();
+      router  = express.Router(),
+      User    = require(`../models/User`);
+
+function isLogged(req,res,next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect(`/auth/login`);
+}
 
 /* GET home page */
-router.get('/', (req, res, next) => {
-  let data = {
-    title: `Home`
-  };
-  res.render('index', {data});
+router.get('/', isLogged, (req, res, next) => {
+  res.redirect(`/user/${req.user._id}`);
 });
+
 
 module.exports = router;
