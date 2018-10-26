@@ -49,10 +49,12 @@ app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
 
 const index 		= require('./routes/index'),
-			authSites = require(`./routes/auth/auth`);
+			authSites = require(`./routes/auth/auth`),
+			userSites = require(`./routes/user/profile`);
 
 app .use('/', index)
-		.use(`/`, authSites);
+		.use(`/`, authSites)
+		.use(`/`, userSites);
 
 
 module.exports = app;

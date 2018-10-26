@@ -3,10 +3,10 @@ const express   = require(`express`),
       User      = require(`../../models/User`);
 
 userSites.get(`/user/:id`, (req,res) => {
-  
-  console.log(req.user);
-  
-  res.send(`ok`);
+  User.findById(req.params.id)
+      .then(user => {
+        res.send(`ok`);
+      });
 });
 
 
