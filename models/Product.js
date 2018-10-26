@@ -39,7 +39,7 @@ const productSchema = new Schema({
     },
     applicationVia: {
         type: String,
-        enum: ['Oral', 'Topic', 'Otic', 'Oftalmic', 'Intramuscular', 'intravenous']
+        enum: ['Oral', 'Topic', 'Otic', 'Oftalmic', 'Intramuscular', 'Intravenous']
     },
     lot: {
         type: String

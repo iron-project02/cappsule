@@ -54,14 +54,16 @@ const index 		= require('./routes/index'),
 			authSites = require(`./routes/auth/auth`),
 			search 		= require('./routes/search/search'),
 			reminder 	= require('./routes/reminder/reminder'),
-			userSites = require(`./routes/user/profile`);
+			userSites = require(`./routes/user/profile`),
+			treaSites = require(`./routes/treatment/treatment`);
 
 			
 app .use('/', index)
 		.use(`/`, authSites)
 		.use('/', search)
 		.use('/', reminder)
-		.use(`/`, userSites);
+		.use(`/`, userSites)
+		.use(`/`, treaSites);
 
 
 module.exports = app;
