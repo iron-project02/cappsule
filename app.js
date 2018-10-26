@@ -50,10 +50,15 @@ app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
 const index 		= require('./routes/index'),
 			authSites = require(`./routes/auth/auth`),
+			search 		= require('./routes/search/search'),
+			reminder 	= require('./routes/reminder/reminder'),
 			userSites = require(`./routes/user/profile`);
 
+			
 app .use('/', index)
 		.use(`/`, authSites)
+		.use('/', search)
+		.use('/', reminder)
 		.use(`/`, userSites);
 
 
