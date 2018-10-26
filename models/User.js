@@ -7,7 +7,8 @@ userSchema = new Schema({
     type:      String,
     required:  [true, `A phone number must be provided`],
     unique:    [true, `Phone number already registered`],
-    min:       8
+    min:       10,
+    max:       10
   },
   email: {
     type:      String,
