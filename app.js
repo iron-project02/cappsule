@@ -48,20 +48,17 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
 
-<<<<<<< 44cb4aab668f54986e14465707bcb842c231c52b
 const index 		= require('./routes/index'),
 			authSites = require(`./routes/auth/auth`);
 
 app .use('/', index)
 		.use(`/`, authSites);
-=======
 const index = require('./routes/index');
 app.use('/', index);
 const search = require('./routes/search/search');
 app.use('/', index);
 const index = require('./routes/reminder/reminder');
 app.use('/', index);
->>>>>>> Added basic files for route
 
 
 module.exports = app;
