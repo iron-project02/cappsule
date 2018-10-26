@@ -1,0 +1,13 @@
+.uk-offcanvas-bar .uk-nav-primary > li.li-home > a {
+  color: #fff;
+}
+.profile-pic-wrapper {
+
+}
+.profile-pic {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  height: auto;
+  width: 100px;
+}

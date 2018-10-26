@@ -1,0 +1,9 @@
+<h1 class="uk-margin-large-top uk-text-center">Welcome, {{user.name}}</h1>
+
+<div class="profile-pic-wrapper">
+  {{#if user.profile_pix}}
+    <img data-src="{{user.profile_pic}}" alt="{{user.name}}'s profile pic" data-height="100" data-width="100" class="profile-pic uk-margin" uk-img>
+    {{else}}
+      <img data-src="https://res.cloudinary.com/cappsule/image/upload/v1540575763/public/avatar.png" alt="Upload a new profile pic" data-height="100" data-width="100" class="profile-pic uk-margin" uk-img>
+  {{/if}}
+</div>
