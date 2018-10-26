@@ -1,7 +1,6 @@
 const express = require('express'),
       router  = express.Router(),
-      check   = require(`../helpers/checker`),
-      User    = require(`../models/User`);
+      check   = require(`../helpers/checker`);
 
 
 /* GET home page */
