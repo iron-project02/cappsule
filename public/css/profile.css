@@ -2,12 +2,12 @@
   color: #fff;
 }
 .profile-pic-wrapper {
-
+  text-align: center;
 }
 .profile-pic {
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 100%;
   height: auto;
+  margin: auto;
   width: 100px;
 }
