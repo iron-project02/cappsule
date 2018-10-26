@@ -1,0 +1,54 @@
+<h1 class="uk-text-center">Edit my profile</h1>
+
+<h2>Account information</h2>
+<form action="/user/{{user._id}}/edit" method="post" enctype="multipart/form-data" class="uk-flex uk-flex-column uk-margin uk-margin-large-top">
+  <div class="uk-margin-auto uk-text-center">
+    <div class="user-edit-field">
+      <label for="profile_pic">Profile pic</label>
+      <input name="profile_pic" type="file" value="{{user.profile_pic}}">
+    </div>
+    <div class="user-edit-field">
+      <label for="name">Name</label>
+      <input name="name" type="text" placeholder="Your name" value="{{user.name}}" required>
+    </div>
+    <div class="user-edit-field">
+      <label for="username">Phone number</label>
+      <input name="username" type="tel" placeholder="10 digits number" minlength="10" maxlength="10" size="10" value="{{user.username}}" required>
+    </div>
+    <div class="user-edit-field">
+      <label for="email">Email</label>
+      <input name="email" type="email" placeholder="user@cappsule.com" value="{{user.email}}" required>
+    </div>
+    <div class="user-edit-field">
+      <label for="age">Age</label>
+      <input name="age" type="number" placeholder="age" value="{{user.age}}">
+    </div>
+    <div class="user-edit-field">
+      <label for="gender">Gender</label>
+      <select name="gender">
+        {{#if user.gender}}
+          <option value="{{user.gender}}" selected disabled>{{user.gender}}</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          {{else}}
+            <option selected disabled>Select one</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        {{/if}}
+      </select>
+    </div>
+    <div class="user-edit-field">
+      <label for="address">Address</label>
+      <input name="address" type="text" placeholder="Street, location, country" value="{{user.address}}">
+    </div>
+    {{#if errorMessage}}
+      <div class="errorCard uk-card uk-card-body uk-card-default uk-card-small uk-margin">
+        <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
+      </div>
+    {{/if}}
+    <button type="submit">Save</button>
+  </div>
+</form>
+
+<h3>Delete account</h3>
+<a href="/user/{{user._id}}/delete" type="button">Delete forever</a>
