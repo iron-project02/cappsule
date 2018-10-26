@@ -8,7 +8,8 @@ const bodyParser   = require('body-parser'),
       mongoose     = require('mongoose'),
       logger       = require('morgan'),
       path         = require('path'),
-      passport     = require(`./helpers/passport`),
+			passport     = require(`./helpers/passport`),
+			flash				 = require(`connect-flash`),
       session      = require(`express-session`);
 
 
@@ -27,7 +28,8 @@ app .use(session({
 			saveUninitialized: true
 		}))
 		.use(passport.initialize())
-		.use(passport.session());
+		.use(passport.session())
+		.use(flash());
 
 // Middleware Setup
 app.use(logger('dev'))

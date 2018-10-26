@@ -30,7 +30,9 @@
   </div>
   {{/if}}
   {{#if errorMessage}}
-    <p class="errorMessage uk-margin uk-text-danger">** {{errorMessage}} **</p>
+    <div class="errorCard uk-card uk-card-body uk-card-default uk-card-small uk-margin">
+      <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
+    </div>
   {{/if}}
   <div class="auth-submit uk-text-center">
     {{#if data.register}}
