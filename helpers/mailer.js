@@ -21,4 +21,4 @@ exports.send = (options) => {
     hmtl:    `<h1>${options.subject}</h1>`
   };
   return transport.sendMail(mailOptions);
-}
+};
