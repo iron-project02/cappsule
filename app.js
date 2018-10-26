@@ -11,7 +11,7 @@ const bodyParser   = require('body-parser'),
       passport     = require(`./helpers/passport`),
       session      = require(`express-session`);
 
-// conection
+
 mongoose.connect(process.env.Db, {useNewUrlParser: true})
         .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
         .catch(err => console.error('Error connecting to mongo', err));
