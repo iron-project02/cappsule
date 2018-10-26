@@ -46,18 +46,47 @@
               <div class="uk-offcanvas-bar uk-flex uk-flex-column">
                 <ul class="uk-nav uk-nav-primary">
                   <button class="uk-offcanvas-close" type="button" uk-close></button>
-                  <li><a href="/search"><span class="uk-margin-small-right" uk-icon="icon: search"></span> Search</a></li>
-                  <li><a href="/offers"><span class="uk-margin-small-right" uk-icon="icon: tag"></span> Offers</a></li>
-                  <li class="uk-nav-divider"></li>
-                  <li><a href="/kit"><span class="uk-margin-small-right" uk-icon="icon: lifesaver"></span> Cabinet</a></li>
-                  <li><a href="/treatments"><span class="uk-margin-small-right" uk-icon="icon: file-edit"></span> Treatments</a></li>
-                  <li><a href="/reminders"><span class="uk-margin-small-right" uk-icon="icon: clock"></span> Reminders</a></li>
-                  <li><a href="/groups"><span class="uk-margin-small-right" uk-icon="icon: users"></span> Groups</a></li>
-                  <li><a href="/history"><span class="uk-margin-small-right" uk-icon="icon: history"></span> History</a></li>
-                  <li class="uk-nav-divider"></li>
-                  <li><a href="/"><span class="uk-margin-small-right" uk-icon="icon: user"></span> Profile</a></li>
-                  <li><a href="/settings"><span class="uk-margin-small-right" uk-icon="icon: settings"></span> Settings</a></li>
-                  <li><a href="/auth/logout"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Log out</a></li>
+                  {{#if user}}
+                    <li class="li-home">
+                      <a href="/user{{user._id}}"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Home</a>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="li-search">
+                      <a href="/search"><span class="uk-margin-small-right" uk-icon="icon: search"></span> Search</a>
+                    </li>
+                    <li class="li-offers">
+                      <a href="/offers"><span class="uk-margin-small-right" uk-icon="icon: tag"></span> Offers</a>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="li-cabinet">
+                      <a href="/user/{{user._id}}/kit"><span class="uk-margin-small-right" uk-icon="icon: lifesaver"></span> Cabinet</a>
+                    </li>
+                    <li class="li-treatments">
+                      <a href="/user/{{user._id}}/treatments"><span class="uk-margin-small-right" uk-icon="icon: file-edit"></span> Treatments</a>
+                    </li>
+                    <li class="li-reminders">
+                      <a href="/user/{{user._id}}/reminders"><span class="uk-margin-small-right" uk-icon="icon: clock"></span> Reminders</a>
+                    </li>
+                    <li class="li-groups">
+                      <a href="/user/{{user._id}}/groups"><span class="uk-margin-small-right" uk-icon="icon: users"></span> Groups</a>
+                    </li>
+                    <li class="li-history">
+                      <a href="/user/{{user._id}}/history"><span class="uk-margin-small-right" uk-icon="icon: history"></span> History</a>
+                    </li>
+                    <li class="uk-nav-divider"></li>
+                    <li class="li-edit">
+                      <a href="/user/{{user._id}}/edit"><span class="uk-margin-small-right" uk-icon="icon: user"></span> Profile</a>
+                    </li>
+                    <li class="li-settings">
+                      <a href="/user/{{user._id}}/settings"><span class="uk-margin-small-right" uk-icon="icon: settings"></span> Settings</a>
+                    </li>
+                    <li class="li-logout">
+                      <a href="/auth/logout"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Log out</a></li>
+                    {{else}}
+                      <li class="li-login uk-active">
+                        <a href="/auth/login"><span class="uk-margin-small-right" uk-icon="icon: sign-in"></span> Login</a>
+                      </li>
+                  {{/if}}
                 </ul>
                 <ul class="uk-nav uk-nav-default uk-margin-auto-top">
                   <li><a href="/terms">Legals</a></li>
