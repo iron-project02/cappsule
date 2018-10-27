@@ -8,8 +8,8 @@ const bodyParser   = require('body-parser'),
       mongoose     = require('mongoose'),
       logger       = require('morgan'),
       path         = require('path'),
-			passport     = require(`./helpers/passport`),
-			flash				 = require(`connect-flash`),
+	  passport     = require(`./helpers/passport`),
+	  flash        = require(`connect-flash`),
       session      = require(`express-session`);
 
 
@@ -50,18 +50,18 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
 
-const index 		= require('./routes/index'),
-			authSites = require(`./routes/auth/auth`),
-			search 		= require('./routes/search/search'),
-			reminder 	= require('./routes/reminder/reminder'),
-			userSites = require(`./routes/user/profile`),
-			treaSites = require(`./routes/treatment/treatment`);
+const index   = require('./routes/index'),
+	  authSites = require(`./routes/auth/auth`),
+	  search    = require('./routes/search/search'),
+	  remiSites = require('./routes/reminder/reminder'),
+	  userSites = require(`./routes/user/profile`),
+	  treaSites = require(`./routes/treatment/treatment`);
 
 			
 app .use('/', index)
 		.use(`/`, authSites)
 		.use('/', search)
-		.use('/', reminder)
+		.use('/', remiSites)
 		.use(`/`, userSites)
 		.use(`/`, treaSites);
 
