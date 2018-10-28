@@ -36,5 +36,15 @@ userSites.get(`/user/:id/delete`, check.isLogged, check.isUser, (req,res) => {
       .then( () => res.redirect(`/`) );
 });
 
+userSites.get(`/admin/:id`, check.isLogged, check.isAdmin, (req,res) => {
+  const {user} = req;
+  let data = {
+    title: `Admin - ${req.user.name}`,
+    css:   `admin`,
+    js:    `admin`
+  };
+  res.render(`private/admin`, {data, user});
+});
+
 
 module.exports = userSites;

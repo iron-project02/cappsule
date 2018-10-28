@@ -1,0 +1,18 @@
+<div class="auth-container uk-flex uk-flex uk-flex-column uk-height-large">
+  <div class="uk-margin-auto uk-margin-auto-vertical">
+    <h1 class="uk-margin-large-bottom uk-text-center">Admin login</h1>
+    <form id="authForm" action="/admin" method="post" enctype="application/x-www-form-urlencoded">
+      <div class="auth-field">
+        <label for="username">Phone number</label>
+        <input name="username" type="tel" placeholder="10 digits number" minlength="10" maxlength="10" size="10" autofocus required>
+      </div>
+      <div class="auth-field">
+        <label for="password">Password</label>
+        <input name="password" type="password" placeholder="Enter your password" size="10" autocomplete="current-password" required>
+      </div>
+      <div class="auth-submit uk-text-center">
+        <button type="submit">Log in</button>
+      </div>
+    </form>
+  </div>
+</div>

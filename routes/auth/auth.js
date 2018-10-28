@@ -1,8 +1,9 @@
 const express   = require(`express`),
       authSites = express.Router(),
       passport  = require(`passport`),
-      User      = require(`../../models/User`),
-      mail      = require(`../../helpers/mailer`);
+      check     = require(`../../helpers/checker`),
+      mail      = require(`../../helpers/mailer`),
+      User      = require(`../../models/User`);
 
 authSites.get(`/auth/register`, (req,res) => {
   let data = {
@@ -56,6 +57,21 @@ authSites.get(`/auth/logout`, (req,res) => {
   req.logout();
   res.redirect(`/auth/login`);
 });
+
+authSites.get(`/admin`, (req,res) => {
+  let data = {
+    title: `Admin Log`,
+    css:   `admin`
+  }
+  res.render(`auth/admin`, {data});
+});
+
+authSites.post(`/admin`, passport.authenticate(`local`, {
+  successRedirect: `/admin/user`,
+  failureRedirect: `/admin`
+}));
+
+authSites.get(`/admin/user`, check.isLogged, (req,res) => res.redirect(`/admin/${req.user._id}`));
 
 
 module.exports = authSites;

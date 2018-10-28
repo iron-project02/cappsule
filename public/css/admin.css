@@ -1,0 +1,14 @@
+.auth-field label {
+  display: block;
+}
+.auth-field input {
+  width: 100%;
+}
+main {
+  width: 100vw;
+}
+.search-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}

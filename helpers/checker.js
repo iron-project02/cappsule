@@ -13,3 +13,8 @@ exports.isUser = async function checkUser(req,res,next) {
   }
   res.redirect(`/auth/login`);
 };
+
+exports.isAdmin = (req,res,next) => {
+  if (req.user.role === `admin`) return next();
+  res.redirect(`/`);
+};
