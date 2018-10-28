@@ -1,0 +1,4 @@
+
+
+exports.welcome = ['Welcome', 'Bienvenido']
+

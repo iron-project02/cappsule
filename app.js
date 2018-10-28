@@ -56,6 +56,7 @@ const index   = require('./routes/index'),
 	  remiSites = require('./routes/reminder/reminder'),
 	  userSites = require(`./routes/user/profile`),
 	  treaSites = require(`./routes/treatment/treatment`);
+	  prodSites = require(`./routes/product/product`);
 
 			
 app .use('/', index)
@@ -63,7 +64,8 @@ app .use('/', index)
 		.use('/', search)
 		.use('/', remiSites)
 		.use(`/`, userSites)
-		.use(`/`, treaSites);
+		.use(`/`, treaSites)
+		.use(`/`, prodSites);
 
 
 module.exports = app;

@@ -23,4 +23,4 @@ const reminderSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Offer', reminderSchema);
+module.exports = mongoose.model('Reminder', reminderSchema);

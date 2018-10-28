@@ -2,14 +2,16 @@ const express   = require(`express`),
       userSites = express.Router(),
       check     = require(`../../helpers/checker`),
       multer    = require(`../../helpers/multer`),
-      User      = require(`../../models/User`);
+      User      = require(`../../models/User`),
+      language  = require(`../../helpers/language`);
 
 userSites.get(`/user/:id`, check.isLogged, check.isUser, (req,res) => {
   User.findById(req.params.id)
       .then(user => {
         let data = {
           title: user.name,
-          css:   `profile`
+          css:   `profile`,
+          language
         };
         res.render(`private/profile`, {data, user});
       });

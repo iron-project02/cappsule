@@ -8,7 +8,6 @@ const productSchema = new Schema({
     },
     image: {
         type: String,
-        required: 'Product name most be defined',
         default: ''
     },
     code: {
@@ -23,10 +22,6 @@ const productSchema = new Schema({
         type: String,
         required: 'Product active ingrediente most be defined'
     },
-    administration: {
-        type: String,
-        required: 'Product active substance most be defined'
-    },
     presentation: {
         type: String
     },
@@ -37,7 +32,7 @@ const productSchema = new Schema({
         type: String,
         enum: ['Capsule', 'Tablet']
     },
-    applicationVia: {
+    route: {
         type: String,
         enum: ['Oral', 'Topic', 'Otic', 'Oftalmic', 'Intramuscular', 'Intravenous']
     },
@@ -74,4 +69,4 @@ const productSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Offer', productSchema);
+module.exports = mongoose.model('Product', productSchema);

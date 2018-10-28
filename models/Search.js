@@ -19,4 +19,4 @@ const searchSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Offer', searchSchema);
+module.exports = mongoose.model('Search', searchSchema);
