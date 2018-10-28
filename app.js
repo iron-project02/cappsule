@@ -55,7 +55,7 @@ const index   	 = require('./routes/index'),
 	  	search     = require('./routes/search/search'),
 	  	remiSites  = require('./routes/reminder/reminder'),
 	  	userSites  = require(`./routes/user/profile`),
-	  	treaSites  = require(`./routes/treatment/treatment`);
+	  	treaSites  = require(`./routes/treatment/treatment`),
 	  	prodSites  = require(`./routes/product/product`),
 	  	adminSites = require(`./routes/user/admin`);
 
