@@ -3,6 +3,14 @@
   --warm: red;
   --neutral: gray;
 }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
 .errorCard {
   background: #f0506e;
   border-radius: 5px;
