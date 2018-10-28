@@ -14,9 +14,10 @@ window.onload = () => {
       axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
             .then(search => {
               console.log(search);
-              const container = document.querySelector(`#users-crud .search-results`),
+              const container = document.querySelector(`#users-crud .search-results-wrapper`),
                     list      = document.createElement(`ul`);
               container.innerHTML = ``;
+              list.className = `search-results`;
               container.appendChild(list);
               search.data.forEach(user => {
                 let li = document.createElement(`li`);
