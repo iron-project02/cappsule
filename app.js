@@ -1,16 +1,16 @@
 require(`dotenv`).config();
 
-const bodyParser = require(`body-parser`),
+const bodyParser   = require(`body-parser`),
       cookieParser = require(`cookie-parser`),
-      express = require(`express`),
-      favicon = require(`serve-favicon`),
-      hbs = require(`hbs`),
-      mongoose = require(`mongoose`),
-      logger = require(`morgan`),
-      path = require(`path`),
-      passport = require(`./helpers/passport`),
-      session = require(`express-session`),
-      flash = require(`connect-flash`);
+      express      = require(`express`),
+      favicon      = require(`serve-favicon`),
+      hbs          = require(`hbs`),
+      mongoose     = require(`mongoose`),
+      logger       = require(`morgan`),
+      path         = require(`path`),
+      passport     = require(`./helpers/passport`),
+      session      = require(`express-session`),
+      flash        = require(`connect-flash`);
 
 
 mongoose.connect(process.env.Db, {useNewUrlParser: true})
@@ -48,13 +48,13 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 // Default value for title local
 app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
-const index = require(`./routes/index`),
-      authSites = require(`./routes/auth/auth`),
-      userSites = require(`./routes/user/profile`),
-      prodSites = require(`./routes/product/product`),
-      search = require(`./routes/search/search`),
-      remiSites = require(`./routes/reminder/reminder`),
-      treaSites = require(`./routes/treatment/treatment`),
+const index      = require(`./routes/index`),
+      authSites  = require(`./routes/auth/auth`),
+      userSites  = require(`./routes/user/profile`),
+      prodSites  = require(`./routes/product/product`),
+      search     = require(`./routes/search/search`),
+      remiSites  = require(`./routes/reminder/reminder`),
+      treaSites  = require(`./routes/treatment/treatment`),
       adminSites = require(`./routes/user/admin`);
 
 app .use(`/`, index)
