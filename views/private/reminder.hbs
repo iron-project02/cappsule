@@ -1,17 +1,42 @@
 <h1>Reminders</h1>
-<a href="">add</a>
-
 <div class="reminder-add-wrapper">
-    <form action="/user/{{user._id}}/reminders/add" method="post">
-    
-    </form>
-
+	<div class="uk-inline">
+		<form action="/user/{{user._id}}/reminders/add" method="post">
+			<button class="uk-button uk-button-default" type="button">Add</button>
+			<div uk-drop="mode: click">
+				<div class="uk-card uk-card-body uk-card-default">
+					<div class="uk-margin">
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select" name="productId">
+								<option value="">Please select...</option>
+								<option>Option 01</option>
+								<option>5bd4e5202e1bcc07c6a7965c</option>
+							</select>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<div class="uk-form-controls">
+							<input class="uk-input" type="datetime-local" placeholder="Select Date/Hour" name="date">
+						</div>
+					</div>
+					<p class="uk-margin">
+						<button type="submit" class="uk-button uk-button-default">Create Reminder</button>
+					</p>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 
 <div class="reminders-wrapper">
-    <ul>
-        {{#each reminders as |reminder|}}
-            <li>{{reminder.productId.name}} {{reminder.date}}</li>
-        {{/each}}
-    </ul>
+	<ul>
+		{{#each reminders as |reminder|}}
+
+			<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+        <h3 class="uk-card-title">{{reminder.productId.name}}</h3>
+					<li>{{reminder.date}}</li>
+      </div>
+
+		{{/each}}
+	</ul>
 </div>

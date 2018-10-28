@@ -16,7 +16,7 @@ remSites.get(`/user/:id/reminders`, check.isLogged, check.isUser, (req, res) => 
                     let data = {
                         title: 'Reminders'
                     }
-                    console.log('Reminders ====>',reminders)
+                    //console.log('Reminders ====>',reminders)
                     res.render(`private/reminder`, {user, reminders, data})
                 });
         });
@@ -25,10 +25,12 @@ remSites.get(`/user/:id/reminders`, check.isLogged, check.isUser, (req, res) => 
 remSites.post(`/user/:id/reminders/add`, check.isLogged, check.isUser, (req, res) => {
     req.body.userId = req.params.id;
     Reminder.create(req.body)
-        .then(reminder => {
-            res.json(reminder);
-            console.log('Reminders ====>',reminders)
-            //res.render(`private/reminder`, {user, reminders})
+        .then(() => {
+            res.redirect(`/user/${req.body.userId}/reminders`)
+            //console.log('Reminder ====>',reminder)
+        })
+        .catch(err => {
+            console.log ('====> Error creating the reminder', err)
         });
 });
 
