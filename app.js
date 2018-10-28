@@ -56,16 +56,18 @@ const index   = require('./routes/index'),
 	  remiSites = require('./routes/reminder/reminder'),
 	  userSites = require(`./routes/user/profile`),
 	  treaSites = require(`./routes/treatment/treatment`);
-	  prodSites = require(`./routes/product/product`);
+	  prodSites = require(`./routes/product/product`),
+	  adminSites = require(`./routes/user/admin`);
 
-			
 app .use('/', index)
 		.use(`/`, authSites)
 		.use('/', search)
 		.use('/', remiSites)
 		.use(`/`, userSites)
 		.use(`/`, treaSites)
-		.use(`/`, prodSites);
+		.use(`/`, prodSites)
+		.use(`/`, userSites)
+		.use(`/`, adminSites);
 
 
 module.exports = app;

@@ -1,0 +1,55 @@
+<div class="admin-container">
+  <h1 class="uk-margin-large-top uk-text-center">{{user.name}}</h1>
+  <h2 class="uk-margin-small-top uk-text-meta uk-text-center uk-text-uppercase">{{user.role}}</h2>
+  
+  <div class="update-wrapper">
+    <h3>Update Offers</h3>
+    <hr>
+    <form action="/admin/{{user._id}}" method="get" enctype="application/x-www-form-urlencoded" id="search-offer" class="search-form">
+      {{!-- .search-field>label+input --}}
+      <div class="search-field">
+        <label for="name">Name:</label>
+        <input name="offer" type="text" placeholder="Offer name">
+      </div>
+      <button type="submit">Search</button>
+    </form>
+    <div class="search-results"></div>
+  </div>
+  <div class="update-wrapper">
+    <h3>Update Products</h3>
+    <hr>
+    <form action="/admin/{{user._id}}" method="get" enctype="application/x-www-form-urlencoded" id="search-product" class="search-form">
+      {{!-- .search-field>label+input --}}
+      <div class="search-field">
+        <label for="name">Name:</label>
+        <input name="product" type="text" placeholder="Product name">
+      </div>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <div class="update-wrapper">
+    <h3>Update Pharmacies</h3>
+    <hr>
+    <form action="/admin/{{user._id}}" method="get" enctype="application/x-www-form-urlencoded" id="search-pharma" class="search-form">
+      {{!-- .search-field>label+input --}}
+      <div class="search-field">
+        <label for="name">Name:</label>
+        <input name="pharma" type="text" placeholder="Pharmacie name">
+      </div>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <div id="users-crud" class="update-wrapper">
+    <h3>Update Users</h3>
+    <hr>
+    <form action="/admin/{{user._id}}" method="get" enctype="application/x-www-form-urlencoded" id="search-user" class="search-form">
+      {{!-- .search-field>label+input --}}
+      <div class="search-field">
+        <label for="name">Email:</label>
+        <input name="email" type="email" placeholder="Email name">
+      </div>
+      <button type="submit">Search</button>
+    </form>
+    <div class="search-results"></div>
+  </div>
+</div>
