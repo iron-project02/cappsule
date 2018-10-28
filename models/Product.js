@@ -47,7 +47,7 @@ const productSchema = new Schema({
     },
     controlled: {
         type: Boolean,
-        required: 'Controlled status most be defined',
+        //required: 'Controlled status most be defined',
         default: true
     },
     formula: {

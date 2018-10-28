@@ -2,7 +2,7 @@
 <div class="reminder-add-wrapper">
 	<div class="uk-inline">
 		<form action="/user/{{user._id}}/reminders/add" method="post">
-			<button class="uk-button uk-button-default" type="button">Add</button>
+			<button class="uk-button uk-button-default uk-align-center" type="button">Add</button>
 			<div uk-drop="mode: click">
 				<div class="uk-card uk-card-body uk-card-default">
 					<div class="uk-margin">
@@ -32,10 +32,13 @@
 	<ul>
 		{{#each reminders as |reminder|}}
 
-			<div class="uk-card uk-card-default uk-card-hover uk-card-body">
-        <h3 class="uk-card-title">{{reminder.productId.name}}</h3>
+			<div class="uk-margin">
+				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+					<div class="uk-card-badge"><button>Delete</button></div>
+					<h3 class="uk-card-title">{{reminder.productId.name}}</h3>
 					<li>{{reminder.date}}</li>
-      </div>
+				</div>
+			</div>
 
 		{{/each}}
 	</ul>
