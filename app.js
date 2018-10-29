@@ -1,16 +1,16 @@
-require('dotenv').config();
+require(`dotenv`).config();
 
-const bodyParser   = require('body-parser'),
-      cookieParser = require('cookie-parser'),
-      express      = require('express'),
-      favicon      = require('serve-favicon'),
-      hbs          = require('hbs'),
-      mongoose     = require('mongoose'),
-      logger       = require('morgan'),
-      path         = require('path'),
-	    passport     = require(`./helpers/passport`),
-	    flash        = require(`connect-flash`),
-      session      = require(`express-session`);
+const bodyParser   = require(`body-parser`),
+      cookieParser = require(`cookie-parser`),
+      express      = require(`express`),
+      favicon      = require(`serve-favicon`),
+      hbs          = require(`hbs`),
+      mongoose     = require(`mongoose`),
+      logger       = require(`morgan`),
+      path         = require(`path`),
+      passport     = require(`./helpers/passport`),
+      session      = require(`express-session`),
+      flash        = require(`connect-flash`);
 
 
 mongoose.connect(process.env.Db, {useNewUrlParser: true})
@@ -23,13 +23,13 @@ const debug    = require('debug')(`${app_name}:${path.basename(__filename).split
 const app = express();
 
 app .use(session({
-			secret: process.env.SECRET,
-			resave: true,
-			saveUninitialized: true
-		}))
-		.use(passport.initialize())
-		.use(passport.session())
-		.use(flash());
+      secret: process.env.SECRET,
+      resave: true,
+      saveUninitialized: true
+    }))
+    .use(passport.initialize())
+    .use(passport.session())
+    .use(flash());
 
 // Middleware Setup
 app.use(logger('dev'))
@@ -45,8 +45,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 hbs.registerPartials(`${__dirname}/views/partials`);
 
-
-// default value for title local
+// Default value for title local
 app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 
 
