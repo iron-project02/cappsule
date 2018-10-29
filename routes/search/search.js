@@ -1,4 +1,4 @@
-const express = require('express'),
-      searchSites = express.Router();
+const express   = require('express'),
+      searSites = express.Router();
 
-module.exports = searchSites;
+module.exports = searSites;

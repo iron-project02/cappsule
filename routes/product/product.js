@@ -6,15 +6,15 @@ const express   = require('express'),
       Product   = require(`../../models/Product`);
 
 prodSites.post(`/products`, (req,res) => {
-    Product.create(req.body)
-        .then(product =>{
-            console.log(`====> Registrado correctamente`)
-            res.json(product)
-        })
-        .catch(err => {
-            console.log(`====> Error al registrar ${err}`)
-            res.json(err)
-        });
+	Product.create(req.body)
+		.then(product =>{
+			console.log(`====> Registrado correctamente`)
+			res.json(product)
+		})
+		.catch(err => {
+			console.log(`====> Error al registrar ${err}`)
+			res.json(err)
+		});
 });
 
 module.exports = prodSites;
