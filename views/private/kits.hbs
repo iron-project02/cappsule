@@ -1,0 +1,21 @@
+<h1>Kit</h1>
+
+<div class="kits-wrapper">
+	<ul>
+		{{#if kits}}
+			{{#each kits as |kit|}}
+
+				<div class="uk-margin">
+					<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+						<h3 class="uk-card-title">{{kit.name}}</h3>
+					</div>
+				</div>
+
+			{{/each}}
+		{{else}}
+
+			<h3>Nothing to show here yet</h3>
+
+		{{/if}}
+	</ul>
+</div>

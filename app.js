@@ -56,6 +56,7 @@ const index     = require('./routes/index'),
 	  userSites   = require(`./routes/user/profile`),
 	  treaSites   = require(`./routes/treatment/treatment`);
 	  prodSites   = require(`./routes/product/product`),
+	  kitSites    = require(`./routes/inventory/inventory`),
 	  adminSites  = require(`./routes/user/admin`);
 
 app .use('/', index)
@@ -65,7 +66,8 @@ app .use('/', index)
 		.use(`/`, userSites)
 		.use(`/`, treaSites)
 		.use(`/`, prodSites)
-		.use(`/`, userSites)
+		.use(`/`, prodSites)
+		.use(`/`, kitSites)
 		.use(`/`, adminSites);
 
 

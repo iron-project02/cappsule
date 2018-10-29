@@ -2,12 +2,15 @@ const mongoose = require(`mongoose`),
       Schema   = mongoose.Schema,
 
 kitSchema = new Schema({
-  owner: {
+  userId: {
     type:      Schema.Types.ObjectId,
     ref:       `User`,
     required:  [true, `Owner is required`]
   },
-  name:        String,
+  name: {
+    type: String,
+    default: 'Home'
+  }
 },{
   timestamps: {
     createdAt: `created_at`,
