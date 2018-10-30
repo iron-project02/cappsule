@@ -10,7 +10,13 @@ adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => 
   }
   if (req.query.email !== undefined) {
     let query = new RegExp(`.*${req.query.email}.*`);
-    return User.find({email: { $in: [query] } }).then(search => res.json(search));
+
+    return User.find({email: { $in: [query] } }).then(search => {
+      let html = require(`../../helpers/adminHTML`);
+      search.push(html.noResults());
+      search.push(html.userEditForm());
+      res.json(search);
+    });
   }
 });
 
