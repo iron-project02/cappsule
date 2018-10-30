@@ -2,13 +2,17 @@
 
 <div class="kits-wrapper">
 	<ul>
+		{{user._id}}
 		{{#if kits}}
 			{{#each kits as |kit|}}
 
 				<div class="uk-margin">
-					<div class="uk-card uk-card-default uk-card-hover uk-card-body">
-						<h3 class="uk-card-title">{{kit.name}}</h3>
-					</div>
+					<a href="/user/{{kit.userId}}/kit/{{kit._id}}">
+						<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+							<h3 class="uk-card-title">{{kit.name}}</h3>
+							<li>{{kit._id}}</li>
+						</div>
+					</a>
 				</div>
 
 			{{/each}}

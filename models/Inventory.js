@@ -10,7 +10,7 @@ const inventorySchema = new Schema({
 		productId: {
 			type: Schema.Types.ObjectId,
 			ref: 'Product',
-			required: 'There is no related productid to this product'
+			required: 'There is no related productId to this product'
 		},
 		quantity: {
 			type: Number,
