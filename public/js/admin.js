@@ -43,19 +43,19 @@ function getUsers(e) {
                     </div>
                     <div class="result-field">
                       <label>Phone: </label>
-                      <input name="username" value="${user.username}" required>
+                      <input name="username" value="${user.username}" placeholder="${user.username}" required>
                     </div>
                     <div class="result-field">
                       <label>Email: </label>
-                      <input name="email" value="${user.email}" required>
+                      <input name="email" value="${user.email}" placeholder="${user.email}" required>
                     </div>
                     <div class="result-field">
                       <label>Name: </label>
-                      <input name="name" value="${user.name}" required>
+                      <input name="name" value="${user.name}" placeholder="${user.name}" required>
                     </div>
                     <div class="result-field">
                       <label>Age: </label>
-                      <input name="age" value="${user.age}" type="number">
+                      <input name="age" value="${user.age}" placeholder="${user.age}" type="number">
                     </div>
                     <div class="result-field">
                       <label>Gender: </label>
@@ -67,7 +67,7 @@ function getUsers(e) {
                     </div>
                     <div class="result-field">
                       <label>Address: </label>
-                      <input name="address" value="${user.address}">
+                      <input name="address" value="${user.address}" placeholder="${user.address}">
                     </div>
                     <input type="hidden" name="userID" value="${user._id}">
                     <div class="submit-form">
