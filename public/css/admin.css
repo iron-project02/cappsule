@@ -36,20 +36,34 @@ main {
 .submit-form button {
   position: relative;
 }
-@keyframes tick {
-  to {
-    transform: translate(0,-5px) scale(1);
-  }
-}
 @keyframes updated {
-  to {
+  11% {
     background: green;
     color: #fff;
+  }
+  70% {
+    background: green;
+    color: #fff;
+  }
+  100% {
+    background: #eee;
+    color: initial;
+  }
+}
+@keyframes tick {
+  11% {
+    transform: translate(0,-5px) scale(1);
+  }
+  70% {
+    transform: translate(0,-5px) scale(1);
+  }
+  100% {
+    transform: translate(0,0) scale(0);
   }
 }
 .submit-form button.updated {
   background: #eee;
-  animation: updated 200ms forwards;
+  animation: updated 1.7s forwards;
 }
 .submit-form button.updated::before {
   content: '✓';
@@ -58,7 +72,7 @@ main {
   position: absolute;
   left: -20px;
   transform: translate(0,0) scale(0);
-  animation: tick 200ms forwards;
+  animation: tick 1.7s forwards;
 }
 .submit-form button.error {
   background: red;
