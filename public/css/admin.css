@@ -13,6 +13,9 @@ main {
   justify-content: space-evenly;
   margin-bottom: 4vh;
 }
+.search-results-wrapper {
+  min-height: 166px;
+}
 .result-card {
   border-radius: 0.5vw;
 }
@@ -65,29 +68,39 @@ main {
   background: #eee;
   animation: updated 1.7s forwards;
 }
+.submit-form button.updated::before, .submit-form button.error-update::before, .submit-form button.error-delete::before {
+  font-size: 1.5em;
+  position: absolute;
+}
 .submit-form button.updated::before {
   content: '✓';
   color: green;
-  font-size: 1.5em;
-  position: absolute;
   left: -20px;
   transform: translate(0,0) scale(0);
   animation: tick 1.7s forwards;
 }
-.submit-form button.error {
+.submit-form button.error-update, .submit-form button.error-delete {
   background: red;
   color: #fff;
 }
-.submit-form button.error::before {
+.submit-form button.error-update::before, .submit-form button.error-delete::before {
   content: '✖';
   color: red;
-  font-size: 1.5em;
-  position: absolute;
+  transform: translate(0,-2px);
+}
+.submit-form button.error-update::before {
   left: -20px;
-  transform: translate(0,-5px);
+}
+.submit-form button.error-delete::before {
+  right: -20px;
 }
 .submit-form button[data-click] {
   background: tomato;
   border-radius: 5px;
   color: #fff;
+}
+.no-results {
+  color: tomato;
+  font-weight: bold;
+  padding: 3vh 4vh;
 }
