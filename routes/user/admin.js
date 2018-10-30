@@ -2,11 +2,30 @@ const express    = require(`express`)
       adminSites = express.Router(),
       check      = require(`../../helpers/checker`),
       User       = require(`../../models/User`),
-      Offer      = require(`../../models/Offer`);
+      Offer      = require(`../../models/Offer`),
+      Product    = require(`../../models/Product`),
+      Pharmacy   = require(`../../models/Pharmacy`);
+
+adminSites.post(`/admin/:id/create`, check.isLogged, check.isAdmin, (req,res) => {
+  if (req.query.alias !== undefined) {
+    Product.find({name: req.body.productId}).then(product => {
+      Pharmacy.find({name: req.body.pharmacyId}).then(pharmacy => {
+        req.body.productId  = product[0]._id;
+        req.body.pharmacyId = pharmacy[0]._id;
+        Offer.create(req.body).then(offer => res.json(offer)).catch(err => res.json(err))
+      });
+    });
+  }
+});
 
 adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => {
-  if (req.query.product !== undefined) {
-    return User.find({email: `mao@mao.com`}).then(users => res.json(users));
+  if (req.query.alias !== undefined) {
+    let query = new RegExp(`.*${req.query.alias}.*`);
+    return Offer.find({alias: { $in: [query] } }).then(search => {
+      console.log(search);
+      
+      res.send(`ok`);
+    })
   }
   if (req.query.email !== undefined) {
     let query = new RegExp(`.*${req.query.email}.*`);

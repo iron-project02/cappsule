@@ -5,14 +5,20 @@
   <div class="update-wrapper">
     <h3>Update Offers</h3>
     <hr>
+    <div class="add-new add-offer">
+      <button type="button">Create new Offer</button>
+      <div uk-drop="mode: click; pos: bottom-center; offset: 0; animation: uk-animation-slide-top-medium">
+        {{> admin/createOfferForm}}
+      </div>
+    </div>
     <form action="/admin/{{user._id}}" method="get" enctype="application/x-www-form-urlencoded" id="search-offer" class="search-form">
       <div class="search-field">
-        <label for="name">Name:</label>
-        <input name="offer" type="text" placeholder="Offer name">
+        <label for="alias">Alias:</label>
+        <input name="alias" type="text" placeholder="Offer's alias">
       </div>
       <button type="submit">Search</button>
     </form>
-    <div class="search-results-wrapper"></div>
+    <div id="offers-results" class="search-results-wrapper uk-grid-match uk-grid-medium uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid></div>
   </div>
   <div class="update-wrapper">
     <h3>Update Products</h3>
@@ -24,6 +30,7 @@
       </div>
       <button type="submit">Search</button>
     </form>
+    <div id="product-results" class="search-results-wrapper uk-grid-match uk-grid-medium uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid></div>
   </div>
   <div class="update-wrapper">
     <h3>Update Pharmacies</h3>
@@ -35,6 +42,7 @@
       </div>
       <button type="submit">Search</button>
     </form>
+    <div id="pharma-results" class="search-results-wrapper uk-grid-match uk-grid-medium uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid></div>
   </div>
   <div id="users-crud" class="update-wrapper">
     <h3>Update Users</h3>

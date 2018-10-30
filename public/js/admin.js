@@ -11,15 +11,35 @@ window.onload = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    getUsers(e);
-    updateUser(e);
+    createNew(e);
+    getResults(e);
+    updateResults(e);
   }
   function onDelete(e) {
-    deleteUser(e);
+    deleteResult(e);
   }
 };
 
-function getUsers(e) {
+function createNew(e) {
+  if (e.target.id === `create-offer`) {
+    let inputs = e.target,
+        obj    = {};
+    
+    for (let i = 0; i < inputs.length - 1; i++) obj[inputs[i].name] = inputs[i].value; // To place the keys and values in obj
+    
+    axios .post(`${window.location.href}/create?${e.target[1].name}=${e.target[1].value}`, obj)
+          .then(() => {
+            for (let i = 0; i < inputs.length - 1; i++) inputs[i].value = ``;
+            e.target.parentNode.previousElementSibling.click();
+          });
+  }
+}
+
+function getResults(e) {
+  if (e.target.id === `search-offer`) {
+    axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
+          .then(search => console.log(search))
+  }
   if (e.target.id === `search-user`) {
     axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
           .then(search => {
@@ -39,7 +59,7 @@ function getUsers(e) {
   }
 }
 
-function updateUser(e) {
+function updateResults(e) {
   if (e.target.id === `update-user`) {
     let inputs = e.target,
         obj    = {};
@@ -55,9 +75,8 @@ function updateUser(e) {
                 user   = result.data;
 
             (async function resetValues(form) {
-              for (let i = 0; i < 7; i++) {
-                form[i].value = ``;
-              }
+              for (let i = 0; i < 7; i++) form[i].value = ``;
+
               await setTimeout(() => {
                 for (let i = 0; i < 7; i++) {
                   form[i].value       = user[form[i].name];
@@ -83,7 +102,7 @@ function updateUser(e) {
   }
 }
 
-function deleteUser(e) {
+function deleteResult(e) {
   if (e.target.dataset.event === `delete`) {
     let btn   = e.target,
         cards = e.target.parentNode.parentNode.parentNode.parentNode.parentNode,
