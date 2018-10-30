@@ -28,9 +28,9 @@ kitSites.get(`/user/:id/kit/`, (req, res) => {
 
 kitSites.post(`/user/:id/kit/add`, (req,res) => {
 	Product.create(req.body)
-		.then(product =>{
+		.then(kit =>{
 			console.log(`====> Registrado correctamente`)
-			res.json(product)
+			res.json(kit)
 		})
 		.catch(err => {
 			console.log(`====> Error al registrar ${err}`)
