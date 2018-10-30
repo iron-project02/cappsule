@@ -94,19 +94,28 @@ function updateUser(e) {
           .then(result => {
             let form   = e.target,
                 user   = result.data;
-            form[0].value     = user.role;
-            form[1].value     = user.username;
-            form[2].value     = user.email;
-            form[3].value     = user.name;
-            form[4].value     = user.age;
-            form[5].value     = user.gender;
-            form[6].value     = user.address;
-            form[8].classList = `updated`;
-            form[8].innerText = `Updated`;
-            setTimeout(()=> {
-              form[8].classList = ``;
-              form[8].innerText = `Update`;
-            }, 1500)
+            (async function resetValues(form) {
+              for (let i = 0; i < 7; i++) {
+                form[i].value = ``;
+              }
+              await setTimeout(() => {
+                form[0].value = user.role;
+                form[1].value = user.username;
+                form[2].value = user.email;
+                form[3].value = user.name;
+                form[4].value = user.age;
+                form[5].value = user.gender;
+                form[6].value = user.address;
+              },50);
+            })(form);
+            (async function updateOK(form) {
+              form[8].classList = `updated`;
+              form[8].innerText = `Updated`;
+              await setTimeout(()=> {
+                form[8].classList = ``;
+                form[8].innerText = `Update`;
+              }, 1701);
+            })(form);
           })
           .catch(err => {
             let form = e.target;
