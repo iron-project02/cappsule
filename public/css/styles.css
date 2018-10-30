@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 :root {
   --primary: blue;
   --warm: red;
@@ -22,4 +25,35 @@ main {
 }
 .errorCard .errorMessage.uk-text-meta {
   color: #fff; 
+}
+
+@keyframes errorH2 {
+  to {
+    opacity: 1;
+    transform: translate(0,0) scale(1);
+    z-index: 0;
+  }
+}
+.not-found-wrapper {
+  padding: 10vh;
+}
+img.pill {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 50vw;
+}
+.not-found-wrapper h2 {
+  margin-top: 20px;
+  opacity: 0;
+  text-align: center;
+  transform: translate(0,-100%) scale(0);
+  z-index: -1;
+  animation: errorH2 800ms ease-in 0s forwards;
+}
+.not-found-wrapper p {
+  text-align: center;
+}
+.not-found-wrapper p span {
+  cursor: pointer;
 }

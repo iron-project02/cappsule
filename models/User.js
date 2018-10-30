@@ -15,14 +15,24 @@ userSchema = new Schema({
     required:  [true, `Email must be provided`],
     unique:    [true, `Email already registered`]
   },
-  name:        String,
+  name: {
+    type:      String,
+    required:  [true, `Name must be provided`],
+  },
   profile_pic: String,
-  age:         Number,
+  age:         {
+    type:      Number,
+    default:   0
+  },
   gender: {
     type:      String,
-    enum:      [`male`, `female`]
+    enum:      [`male`, `female`, `undefined`],
+    default:   `undefined`
   },
-  address:     String,
+  address: {
+    type:      String,
+    default:   ``
+  },
   role: {
     type:      String,
     enum:      [`admin`, `user`],
