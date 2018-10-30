@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const pharmacySchema = new Schema({
 	name: {
 		type: String,
-		required: 'Pharmacy name most be defined'
+		required: 'Pharmacy name most be defined',
+		unique: true
 	}
 },{
 	timestamps: {
