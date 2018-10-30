@@ -13,4 +13,4 @@ const labSchema = new Schema({
 	}
 });
 
-module.exports = mongoose.model('Lab', pharmacySchema);
+module.exports = mongoose.model('Lab', labSchema);
