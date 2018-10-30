@@ -7,6 +7,13 @@
 main {
   width: 100vw;
 }
+.add-new > button {
+  display: block;
+  margin: 0 auto;
+}
+.create-field input {
+  width: 100%;
+}
 .search-form {
   display: flex;
   flex-flow: row wrap;
@@ -23,8 +30,11 @@ main {
   text-align: center;
 }
 .result-card form label {
-  display: inline-block;
+  display: block;
   padding-top: 5px;
+}
+.result-card form select {
+  width: 50%;
 }
 .result-card form input {
   width: 100%;
