@@ -2,31 +2,38 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const offerSchema = new Schema({
+	name: {
+		type:			String,
+		required:	[true, `Offer name is needed`]
+	},
+	alias: {
+		type:			String,
+		required: [true, `Alias is needed`],
+		unique:		true
+	},
 	productId: {
-		type: Schema.Types.ObjectId,
-		ref: 'Product',
+		type: 		Schema.Types.ObjectId,
+		ref: 			`Product`,
 		required: 'There is no related product to this offer'
 	},
 	pharmacyId: {
-		type: Schema.Types.ObjectId,
-		ref: 'Pharmacy',
+		type: 		Schema.Types.ObjectId,
+		ref: 			`Pharmacy`,
 		required: 'There is no related pharmacy to this offer'
 	},
 	price: {
-		type: Number,
+		type: 		Number,
 		required: 'The product price is missing'
 	},
 	discount: {
-		type: Number,
+		type: 		Number,
+		required: [true, `Offer discount is needed`]
 	},
 	validity: {
-		type: Date,
+		type: 		Date,
 		required: 'Validity date is missing'
 	},
-	terms: {
-		type: String,
-		required: 'Most have the offer terms'
-	}
+	terms: 			String
 },{
 	timestamps: {
 		createdAt: 'created_at',
