@@ -16,7 +16,17 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 					let data = {
 						title: 'Kit'
 					}
-					res.render(`private/kits`, {user, kits, data})
+					console.log('Kits =====> ', kits);
+					let p = []
+					for (let i = 0; i < kits.length; i++){
+						console.log('i =====>',i)
+						console.log('Kit =====> ', kits[i]);
+						p.push(Promise.resolve(Inventory.find({kitId: kits[i]._id})));
+					}
+					Promise.all(p).then(inventories => {
+						console.log('inventories =====>', inventories )
+						res.render(`private/kits`, {user, kits, inventories, data})
+					});
 				});
 		});
 });
