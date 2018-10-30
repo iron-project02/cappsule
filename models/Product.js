@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
 	name: {
 		type: String,
-		required: 'Product name most be defined'
+		required: 'Product name most be defined',
+		unique: true
 	},
 	image: {
 		type: String,
