@@ -21,11 +21,15 @@ adminSites.post(`/admin/:id/create`, check.isLogged, check.isAdmin, (req,res) =>
 adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => {
   if (req.query.alias !== undefined) {
     let query = new RegExp(`.*${req.query.alias}.*`);
-    return Offer.find({alias: { $in: [query] } }).then(search => {
-      console.log(search);
-      
-      res.send(`ok`);
-    })
+    return Offer.find({alias: { $in: [query] } })
+                .populate(`productId`)
+                .populate(`pharmacyId`)
+                .then(search => {
+                  let html = require(`../../helpers/adminHTML`);
+                  search.push(html.noResults());
+                  search.push(html.offerEditForm());
+                  res.json(search);
+                });
   }
   if (req.query.email !== undefined) {
     let query = new RegExp(`.*${req.query.email}.*`);

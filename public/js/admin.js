@@ -38,7 +38,34 @@ function createNew(e) {
 function getResults(e) {
   if (e.target.id === `search-offer`) {
     axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
-          .then(search => console.log(search))
+          .then(search => {
+            const container = document.getElementById(`offer-results`);
+            container.innerHTML = ``;
+            let onlyOffers = search.data.filter(item => typeof item === `object`),
+                html       = search.data.filter(item => typeof item === `string`);
+
+            if (typeof search.data[0] === `object`) {
+              onlyOffers.forEach(offer => {
+
+                function formatDate(date) {
+                  let d = new Date(date),
+                      month = '' + (d.getMonth() + 1),
+                      day = '' + d.getDate(),
+                      year = d.getFullYear();
+              
+                  if (month.length < 2) month = '0' + month;
+                  if (day.length < 2) day = '0' + day;
+              
+                  return [year, month, day].join('-');
+                }
+
+                offer.validity = formatDate(offer.validity);
+                container.insertAdjacentHTML(`beforeend`, eval('`'+html[1]+'`'));
+              });
+            } else {
+              container.insertAdjacentHTML(`beforeend`, html[0]);
+            }
+          });
   }
   if (e.target.id === `search-user`) {
     axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
