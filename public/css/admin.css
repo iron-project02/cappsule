@@ -4,8 +4,8 @@
 .auth-field input {
   width: 100%;
 }
-main {
-  width: 100vw;
+.update-wrapper {
+  width: 90vw;
 }
 .add-new > button {
   display: block;
@@ -22,6 +22,7 @@ main {
 }
 .search-results-wrapper {
   min-height: 166px;
+  margin-bottom: 10vh;
 }
 .result-card {
   border-radius: 0.5vw;
