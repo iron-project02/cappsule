@@ -10,3 +10,35 @@
       </a>
   {{/if}}
 </div>
+
+<div class="menu-cards uk-margin uk-grid-match uk-grid-medium uk-child-width-expand" uk-grid>
+  <div>
+    <div class="uk-card uk-card-hover uk-card-large uk-card-primary uk-card-body">
+      <h2>Search</h2>
+      <form action="/search" method="GET" enctype="application/x-www-form-urlencoded">
+        <input type="text" placeholder="Search for a product">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="menu-cards uk-margin uk-grid-match uk-grid-medium uk-child-width-expand" uk-grid>
+  <div>
+    <a href="/{{user.name}}/kit">
+      <div class="uk-card uk-card-hover uk-card-large uk-card-primary uk-card-body">
+        <h2>Cabinet</h2>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="menu-cards uk-margin uk-grid-match uk-grid-medium uk-child-width-expand" uk-grid>
+  <div>
+    <a href="/{{user.name}}/reminders">
+      <div class="uk-card uk-card-hover uk-card-large uk-card-primary uk-card-body">
+        <h2>Reminders</h2>
+      </div>
+    </a>
+  </div>
+</div>
