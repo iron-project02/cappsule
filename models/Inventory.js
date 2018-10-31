@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const inventorySchema = new Schema({
 	kitId: {
 		type: Schema.Types.ObjectId,
+		ref: 'Kit',
 		required: 'There is no related kit to this inventory'
 	},
-	product: {
+	//product: {
 		productId: {
 			type: Schema.Types.ObjectId,
 			ref: 'Product',
@@ -16,7 +17,7 @@ const inventorySchema = new Schema({
 			type: Number,
 			default: 1
 		}
-	}
+	//}
 },{
 	timestamps: {
 		createdAt: 'created_at',

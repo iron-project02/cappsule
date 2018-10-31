@@ -1,24 +1,32 @@
 <h1>Kit</h1>
 
 <div class="kits-wrapper">
-	<ul>
 		{{#if kits}}
-			{{#each kits as |kit|}}
-
-				<div class="uk-margin">
-					<a href="/user/{{kit.userId}}/kit/{{kit._id}}">
-						<div class="uk-card uk-card-default uk-card-hover uk-card-body">
-							<h3 class="uk-card-title">{{kit.name}}</h3>
-							<li>{{kit._id}}</li>
-						</div>
-					</a>
+		<ul uk-accordion>
+		{{#each kits as |kit|}}
+			<li>
+				<a class="uk-accordion-title" href="#">{{kit.name}}</a>
+				<div class="uk-accordion-content uk-card uk-card-body uk-card-default">
+					<ul uk-acordion>ok
+						{{#with inventories}}
+						{{#each inventories as |inventory|}}
+							<li class="uk-card uk-card-body uk-card-default">
+								<a class="uk-accordion-title" href="#">Hola</a>
+								<div class="uk-accordion-content">
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+										magna aliqua.</p>
+								</div>
+							</li>
+						{{/each}}
+						{{/with}}
+					</ul>
 				</div>
-
-			{{/each}}
+			</li>
+		{{/each}}
+		</ul>
 		{{else}}
 
-			<h3>Nothing to show here yet</h3>
+		<h3>Nothing to show here yet</h3>
 
 		{{/if}}
-	</ul>
 </div>

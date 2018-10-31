@@ -12,6 +12,7 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 	User.findById(req.params.id)
 		.then(user => {
 			Kit.find({userId: user._id})
+				.populate('userId')
 				.then(kits => {
 					let data = {
 						title: 'Kit'
@@ -21,10 +22,10 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 					for (let i = 0; i < kits.length; i++){
 						console.log('i =====>',i)
 						console.log('Kit =====> ', kits[i]);
-						p.push(Promise.resolve(Inventory.find({kitId: kits[i]._id})));
+						p.push(Promise.resolve(Inventory.find({kitId: kits[i]._id}).populate('productId')));
 					}
 					Promise.all(p).then(inventories => {
-						console.log('inventories =====>', inventories )
+						//console.log('inventories =====>', inventories[0] )
 						res.render(`private/kits`, {user, kits, inventories, data})
 					});
 				});
