@@ -51,4 +51,16 @@
 </form>
 
 <h3>Delete account</h3>
-<a href="/user/{{user._id}}/delete" type="button">Delete forever</a>
+<button uk-toggle="target: #delete-user" type="button">Delete account</button>
+<div id="delete-user" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <h2 class="uk-modal-title uk-text-danger">Warning</h2>
+        <p>Your about to delete your account and this is can't be undone.</p>
+        <p>Once you delete it, all your information will be lost.</p>
+        <p>Are you sure you want to proceede?</p>
+        <p class="uk-text-right">
+          <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+          <a href="/user/{{user._id}}/delete" type="button" class="uk-text-danger">Delete forever</a>
+        </p>
+    </div>
+</div>
