@@ -7,7 +7,7 @@ const express   = require('express'),
       Kit       = require(`../../models/Kit`);
       Inventory = require(`../../models/Inventory`);
 
-kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res, next) => {
+kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 
 	User.findById(req.params.id)
 		.then(user => {
@@ -18,13 +18,16 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res, next) =>
 						title: 'Kit'
 					}
 					let p = []
-					let cabinet = {}
+					let cabinet = {};
 					for (let i = 0; i < kits.length; i++){
 						p.push(Promise.resolve(Inventory.find({kitId: kits[i]._id})
 						.populate('productId')
 						.then(inventory => {
-							cabinet[kits[i].name] = inventory;
-							})));
+								cabinet[kits[i].name] = inventory;
+						})
+						.catch(err => {
+							console.log('Error =====>', err)
+						})));
 					};
 					Promise.all(p).then(() => {
 						res.render(`private/kits`, {user, cabinet, data})
@@ -54,11 +57,11 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res, next) =>
 kitSites.post(`/user/:id/kit/add`, (req,res) => {
 	Product.create(req.body)
 		.then(kit =>{
-			console.log(`====> Registrado correctamente`)
+			console.log(`=====> Registrado correctamente`)
 			res.json(kit)
 		})
 		.catch(err => {
-			console.log(`====> Error al registrar ${err}`)
+			console.log(`=====> Error al registrar ${err}`)
 			res.json(err)
 		});
 });
@@ -66,11 +69,11 @@ kitSites.post(`/user/:id/kit/add`, (req,res) => {
 kitSites.post(`/user/:userId/kit/:kitId/addproduct`, (req,res) => {
 	Inventory.create(req.body)
 		.then(inventory =>{
-			console.log(`====> Registrado correctamente`)
+			console.log(`=====> Registrado correctamente`)
 			res.json(inventory)
 		})
 		.catch(err => {
-			console.log(`====> Error al registrar ${err}`)
+			console.log(`=====> Error al registrar ${err}`)
 			res.json(err)
 		});
 });
