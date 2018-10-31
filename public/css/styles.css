@@ -2,16 +2,34 @@
   box-sizing: border-box;
 }
 :root {
-  --primary: blue;
-  --warm: red;
-  --neutral: gray;
+  --main: #002856;
+  --cold: #94c0e9;
+  --neutral: #dbd9d6;
 }
 body {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
+  min-height: 100vh;
   overflow-x: hidden;
   width: 100%;
+}
+a {
+  color: var(--cold);
+}
+a:hover {
+  color: var(--main);
+}
+.uk-navbar-container:not(.uk-navbar-transparent) {
+  background: var(--main);
+}
+.uk-navbar-nav>li>a {
+  color: var(--cold);
+}
+.uk-navbar-nav>li:hover>a {
+  color: var(--neutral);
+}
+.uk-offcanvas-bar {
+  background: var(--main);
 }
 main {
   flex: 1 0 auto;
@@ -61,4 +79,8 @@ img.pill {
 }
 footer {
   margin-top: 5vh;
+}
+
+.uk-drop {
+  z-index: 979;
 }
