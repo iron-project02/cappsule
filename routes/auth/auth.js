@@ -3,7 +3,8 @@ const express   = require(`express`),
       passport  = require(`passport`),
       check     = require(`../../helpers/checker`),
       mail      = require(`../../helpers/mailer`),
-      User      = require(`../../models/User`);
+      User      = require(`../../models/User`),
+      Kit       = require(`../../models/Kit`);
 
 authSites.get(`/auth/register`, (req,res) => {
   let data = {
@@ -24,14 +25,17 @@ authSites.post(`/auth/register`, (req,res) => {
   if (req.body.password !== req.body[`confirm-password`]) return res.render(`auth/auth`, {data, errorMessage: `Passwords don't coincide`});
   const {username, email, name, password} = req.body;
   User.register({username, email, name}, password)
-      .then( user => {
-        // const options = {
-        //   email:   user.email,
-        //   subject: `Confirma tu correo`,
-        //   message: `Confirm to get cookies`
-        // };
-        // mail.send(options);
-        res.redirect(`/auth/login`);
+      .then(user => {
+        Kit.create({userId: user._id})
+            .then(() => {
+              // const options = {
+              //   email:   user.email,
+              //   subject: `Confirma tu correo`,
+              //   message: `Confirm to get cookies`
+              // };
+              // mail.send(options);
+              res.redirect(`/auth/login`)
+            });
       })
       .catch( err => {
         if (err.name === `UserExistsError`) return res.status(417).render(`auth/auth`, {data, errorMessage: `Phone number is already registered`});
