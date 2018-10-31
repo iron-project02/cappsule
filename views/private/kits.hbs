@@ -1,32 +1,19 @@
 <h1>Kit</h1>
 
 <div class="kits-wrapper">
-		{{#if kits}}
-		<ul uk-accordion>
-		{{#each kits as |kit|}}
-			<li>
-				<a class="uk-accordion-title" href="#">{{kit.name}}</a>
-				<div class="uk-accordion-content uk-card uk-card-body uk-card-default">
-					<ul uk-acordion>ok
-						{{#with inventories}}
-						{{#each inventories as |inventory|}}
-							<li class="uk-card uk-card-body uk-card-default">
-								<a class="uk-accordion-title" href="#">Hola</a>
-								<div class="uk-accordion-content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua.</p>
-								</div>
-							</li>
-						{{/each}}
-						{{/with}}
-					</ul>
-				</div>
-			</li>
-		{{/each}}
-		</ul>
+		{{#if cabinet}}
+			<ul>
+				{{#each cabinet as |kit|}}
+					<li>{{@key}}</li>
+						<ul>
+								{{#each kit as |product|}}
+									<li>{{product}}</li>
+								{{/each}}
+						</ul>
+				{{/each}}
+			</ul>
 		{{else}}
-
-		<h3>Nothing to show here yet</h3>
-
+			<h3>Nothing to show here yet</h3>
 		{{/if}}
+		<ul>
 </div>
