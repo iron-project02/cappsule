@@ -1,0 +1,46 @@
+<div>
+  <div class="result-card uk-card uk-card-default uk-card-small">
+    <div class="uk-card-header">
+      <h4 class="uk-card-title">${offer.name}</h4>
+    </div>
+    <form action="${window.location.href}" method="POST" enctype="application/x-www-form-urlencoded" id="update-user" class="uk-card-body">
+      <div class="result-field">
+        <label>Name </label>
+        <input name="name" value="${offer.name}" placeholder="${offer.name}" required>
+      </div>
+      <div class="result-field">
+        <label>Alias </label>
+        <input name="alias" value="${offer.alias}" placeholder="${offer.alias}" required>
+      </div>
+      <div class="result-field">
+        <label>Product </label>
+        <input name="productId" value="${offer.productId}" placeholder="${offer.productId}" required>
+      </div>
+      <div class="result-field">
+        <label>Pharmacy </label>
+        <input name="pharmacyId" value="${offer.pharmacyId}" placeholder="${offer.pharmacyId}" required>
+      </div>
+      <div class="result-field">
+        <label>Price </label>
+        <input name="price" value="${offer.price}" placeholder="${offer.price}" type="number" required>
+      </div>
+      <div class="result-field">
+        <label>Discount </label>
+        <input name="discount" value="${offer.discount}" placeholder="${offer.discount}" type="number" required>
+      </div>
+      <div class="result-field">
+        <label>Validity </label>
+        <input name="validity" value="${offer.validity}" placeholder="${offer.validity}" type="date" required>
+      </div>
+      <div class="result-field">
+        <label>Terms </label>
+        <input name="terms" value="${offer.terms}" placeholder="${offer.terms}">
+      </div>
+      <input type="hidden" name="offerID" value="${offer._id}">
+      <div class="submit-form">
+        <button type="submit">Update</button>
+        <button data-event="delete" data-click="${window.location.href}/delete/${offer._id}" type="button">Delete</button>
+      </div>
+    </form>
+  </div>
+</div>
