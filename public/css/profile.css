@@ -5,11 +5,12 @@
   text-align: center;
 }
 .profile-pic {
-  border: 1px solid #ccc;
+  background: center / cover no-repeat var(--cold);
+  border: 1px solid var(--neutral);
   border-radius: 100%;
-  height: auto;
+  height: 120px;
   margin: auto;
-  width: 100px;
+  width: 120px;
 }
 #search-form input, #search-form button {
   background: #eee;
@@ -22,7 +23,7 @@
   border-right: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  padding: 30px;
+  padding: 2.5vh;
 }
 #search-form button {
   border-left: none;
@@ -30,12 +31,11 @@
   border-bottom-left-radius: 0;
   color: var(--main);
   cursor: pointer;
-  padding: 30px 0;
+  padding: 2.5vh 0;
   transition: all 200ms ease;
 }
 #search-form button:hover {
   background: var(--cold);
-  /* color: var(--cold); */
 }
 .menu-cards a {
   text-decoration: none;
@@ -49,7 +49,7 @@
 }
 .menu-cards .uk-card-primary.uk-card-hover:hover {
   background: var(--main);
-  box-shadow: 0 14px 25px var(--neutral);
+  box-shadow: 0 14px 25px rgba(0,40,86,0.6);
 }
 .menu-cards .uk-card-primary.uk-card-hover:hover h2 {
   color: var(--cold);

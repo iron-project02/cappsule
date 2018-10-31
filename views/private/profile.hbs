@@ -2,7 +2,7 @@
 
 <div class="profile-pic-wrapper">
   {{#if user.profile_pic}}
-    <img data-src="{{user.profile_pic}}" alt="{{user.name}}'s profile pic" data-height="100" data-width="100" class="profile-pic uk-margin" uk-img>
+    <div class="profile-pic" style="background-image: url('{{user.profile_pic}}')"></div>
     {{else}}
       <a class="uk-flex-inline uk-flex-column uk-text-center" href="/user/{{user._id}}/edit">
         <img data-src="https://res.cloudinary.com/cappsule/image/upload/v1540575763/public/avatar.png" alt="Upload a new profile pic" data-height="100" data-width="100" class="profile-pic uk-margin" uk-img>
@@ -11,7 +11,7 @@
   {{/if}}
 </div>
 
-<form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="menu-cards uk-margin uk-grid-collapse" uk-grid>
+<form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="menu-cards uk-margin-medium-top uk-margin uk-grid-collapse uk-margin-medium-bottom" uk-grid>
   <div class="uk-width-4-5">
     <input name="name" type="search" placeholder="Search for a product" autocomplete="on" autofocus>
   </div>
