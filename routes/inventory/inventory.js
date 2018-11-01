@@ -36,24 +36,6 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 		});
 });
 
-//kitSites.get(`/user/:id/kit/:kitId`, check.isLogged, check.isUser, (req, res) => {
-//
-//	console.log('Params ====>', req.params)
-//	//User.findById(req.params.id)
-//	//	.then(user => {
-//			Inventory.find({kitId: req.params.kitId})
-//				.then(inventories => {
-//					let data = {
-//						title: 'Kit Content'
-//					}
-//					res.render(`private/inventory`, {inventories, data})
-//					//res.json(inventories)
-//				});
-//
-//	//	})
-//	
-//});
-
 kitSites.post(`/user/:id/kit/add`, (req,res) => {
 	Product.create(req.body)
 		.then(kit =>{
