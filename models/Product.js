@@ -5,7 +5,6 @@ const productSchema = new Schema({
 	name: {
 		type: String,
 		required: 'Product name most be defined',
-		unique: true
 	},
 	image: {
 		type: String,
@@ -17,7 +16,6 @@ const productSchema = new Schema({
 	labId: {
 		type: Schema.Types.ObjectId,
 		ref: 'Lab',
-		required: 'There is no related laboratory to this product'
 	},
 	ingredient: {
 		type: String,
@@ -40,7 +38,7 @@ const productSchema = new Schema({
 	lot: {
 		type: String
 	},
-	expitationDate: {
+	expirationDate: {
 		type: Date
 	},
 	patent: {
@@ -60,8 +58,19 @@ const productSchema = new Schema({
 	excipientCbp: {
 		type: String
 	},
+	pharmacy: {
+		type: String,
+		required: [true, `Pharmacy is needed`],
+		enum: [
+			`Farmacia San Pablo`,
+			`Farmacias del Ahorro`,
+			`Farmacias Guadalajara`
+		],
+		default: `Farmacia San Pablo`
+	},
 	price: {
-		type: Number
+		type: Number,
+		required: true
 	},
 },{
 	timestamps: {
