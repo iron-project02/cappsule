@@ -41,7 +41,7 @@ app.use(logger('dev'))
 app.set('views', path.join(__dirname, 'views'))
    .set('view engine', 'hbs')
    .use(express.static(path.join(__dirname, 'public')))
-   .use(favicon(path.join(__dirname, 'public', 'img', 'favicon.ico')));
+   .use(favicon(path.join(__dirname, 'public', 'img', 'icon', 'favicon.ico')));
 
 hbs.registerPartials(`${__dirname}/views/partials`);
 
