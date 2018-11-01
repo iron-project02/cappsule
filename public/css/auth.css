@@ -1,3 +1,33 @@
+.uk-navbar-nav>li>a {
+  color: var(--neutral);
+}
+.background {
+  background: var(--cold);
+  /* height: 50vh; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 50vh;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+}
+.background .logo-wrapper {
+  margin: 9vh 0;
+  width: 100%;
+}
+.background .logo-wrapper img {
+  display: block;
+  background: white;
+  border-radius: 2.5vh;
+  height: 22vh;
+  margin: 0 auto;
+  padding: 1.5vh 0;
+  padding-left: 14px;
+}
+.auth-container {
+  z-index: 1;
+}
 .auth-field label {
   display: block;
 }

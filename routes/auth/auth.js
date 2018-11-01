@@ -47,6 +47,7 @@ authSites.get(`/auth/login`, (req,res) => {
   let data = {
     title: `Login`,
     css:   `auth`,
+    login: true
   };
   res.render(`auth/auth`, {data, errorMessage: req.flash(`error`)});
 });

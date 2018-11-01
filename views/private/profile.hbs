@@ -5,20 +5,31 @@
     <div class="profile-pic" style="background-image: url('{{user.profile_pic}}')"></div>
     {{else}}
       <a class="uk-flex-inline uk-flex-column uk-text-center" href="/user/{{user._id}}/edit">
-        <img data-src="https://res.cloudinary.com/cappsule/image/upload/v1540575763/public/avatar.png" alt="Upload a new profile pic" data-height="100" data-width="100" class="profile-pic uk-margin" uk-img>
+        <img data-src="/img/avatar.png" alt="Upload a new profile pic" data-height="100" data-width="100" class="profile-pic uk-margin" uk-img>
         <span class="uk-text-meta">Edit</span>
       </a>
   {{/if}}
 </div>
 
-<form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="menu-cards uk-margin-medium-top uk-margin uk-grid-collapse uk-margin-medium-bottom" uk-grid>
-  <div class="uk-width-4-5">
-    <input name="name" type="search" placeholder="Search for a product" autocomplete="on" autofocus>
+<div class="menu-cards uk-margin uk-margin-medium-top uk-grid-medium uk-child-width-expand" uk-grid>
+  <div>
+    <a href="#search-modal" uk-toggle>
+      <div class="uk-card uk-card-hover uk-card-primary uk-card-body">
+        <h2><span uk-search-icon></span> Search...</h2>
+      </div>
+    </a>
   </div>
-  <div class="uk-width-1-5">
-    <button type="submit"><span class="uk-margin-small-right" uk-icon="icon: search"></span></button>
+</div>
+
+<div id="search-modal" class="uk-modal-full uk-modal" uk-modal>
+  <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+    <button class="uk-modal-close-full" type="button" uk-close></button>
+    <form action="/search" method="GET" enctype="application/x-www-form-urlencoded" class="uk-search uk-search-large">
+      <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
+      <input name="name" class="uk-search-input uk-text-center" type="search" placeholder="Search..." autocomplete="on" autofocus>
+    </form>
   </div>
-</form>
+</div>
 
 <div class="menu-cards uk-margin uk-grid-medium uk-child-width-expand" uk-grid>
   <div>
