@@ -6,13 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="robots" content="none, noarchive, nosnippet, noimageindex"><!--change once ready-->
   <meta http-equiv="cache-control" content="no-store"><!--change once ready-->
-  {{!-- <link rel="canonical" href="https://cappsule-app.herokuapp.com/"><!-- once deployed --> --}}
+  <link rel="canonical" href="https://cappsule-app.herokuapp.com/">
   {{!-- <link rel="alternate" href="https://cappsule-app.herokuapp.com/es" hreflang="es-MX"><!-- once created --> --}}
-  {{!-- <base href="https://cappsule-app.herokuapp.com/"><!-- once deployed --> --}}
+  {{!-- <base href="https://cappsule-app.herokuapp.com/"> --}}
   <meta name="author" content="Cappsule Team: Vermont García Serrano & Mauricio González Robles">
   <link href="mailto:cappsule.team@gmail.com" rel="creators">
   <meta name="subject" content="Medicament metasearch engine">
   <meta name="description" content="Best price medicament metasearch engine, and medicine kit manager. Health Social Media, to manage family members, friends, colleagues, and more.">
+  <!-- icons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/icon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/icon/favicon-16x16.png">
+  {{!-- <link rel="manifest" href="/manifest.json"><!-- pending --> --}}
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
   <!--OG meta-->
   <meta property="og:url" content="https://cappsule-app.herokuapp.com/">
   <meta property="og:type" content="web_application">
@@ -36,12 +54,14 @@
 
 <body>
 
-  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar;">
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent; top: 50;">
     <nav class="uk-navbar-container" uk-navbar>
-      <div class="uk-navbar-left">
+      <div class="uk-navbar-left uk-margin-small-left">
         <ul class="uk-navbar-nav">
           <li>
-            <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#main-menu" uk-toggle></a>
+            <a class="uk-navbar-toggle" href="#main-menu" uk-toggle>
+              <span uk-navbar-toggle-icon></span> <span class="uk-visible@s uk-margin-small-left">Menu</span>
+            </a>
             <div id="main-menu" uk-offcanvas="overlay: true; mode: reveal;">
               <div class="uk-offcanvas-bar uk-flex uk-flex-column">
                 <ul class="uk-nav uk-nav-primary">
@@ -96,15 +116,30 @@
           </li>
         </ul>
       </div>
-      <div class="uk-navbar-center">
-        <a href="/" class="uk-navbar-item uk-logo">
-          <img src="/img/pill.png" alt="Cappsule logo" height="50" width="50">
-        </a>
-      </div>
+      {{#unless data.register}}
+        {{#unless data.login}}
+          <div class="uk-navbar-center">
+            <a href="/" class="uk-navbar-item uk-logo">
+              <img data-src="/img/logo-small.png" alt="Cappsule logo" height="30" width="30" class="navbar-logo" uk-img>
+            </a>
+          </div>
+        {{/unless}}
+      {{/unless}}
+      {{#if user}}
+        <div class="uk-navbar-right uk-margin-small-right">
+          <a href="/user/{{user._id}}/edit" class="uk-navbar-item uk-logo">
+            {{#if user.profile_pic}}
+              <div class="profile-pic" style="background-image: url('{{user.profile_pic}}')"></div>
+              {{else}}
+                <img data-src="/img/avatar.png" alt="Upload a new profile pic" data-height="50" data-width="50" class="profile-pic uk-margin" uk-img>
+            {{/if}}
+          </a>
+        </div>
+      {{/if}}
     </nav>
   </div>
 
-  <main class="uk-container uk-container-expand uk-margin-large-top">
+  <main class="uk-container uk-container-expand uk-margin-medium-top">
     {{{body}}}
   </main>
   
