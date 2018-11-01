@@ -4,44 +4,16 @@
 .profile-pic-wrapper {
   text-align: center;
 }
-.profile-pic {
-  border: 1px solid #ccc;
+.profile-pic-wrapper .profile-pic {
+  background: center / cover no-repeat white;
+  border: 1px solid var(--neutral);
   border-radius: 100%;
-  height: auto;
+  height: 120px;
   margin: auto;
-  width: 100px;
-}
-#search-form input, #search-form button {
-  background: #eee;
-  border: 2px inset var(--neutral);
-  border-radius: 0.8vw;
-  font-size: 1.5rem;
-  width: 100%;
-}
-#search-form input {
-  border-right: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding: 30px;
-}
-#search-form button {
-  border-left: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  color: var(--main);
-  cursor: pointer;
-  padding: 30px 0;
-  transition: all 200ms ease;
-}
-#search-form button:hover {
-  background: var(--cold);
-  /* color: var(--cold); */
+  width: 120px;
 }
 .menu-cards a {
   text-decoration: none;
-}
-.menu-cards .uk-card {
-  border-radius: 0.8vw;
 }
 .menu-cards .uk-card-primary {
   background: var(--cold);
@@ -49,13 +21,13 @@
 }
 .menu-cards .uk-card-primary.uk-card-hover:hover {
   background: var(--main);
-  box-shadow: 0 14px 25px var(--neutral);
+  box-shadow: 0 14px 25px rgba(0,40,86,0.6);
 }
 .menu-cards .uk-card-primary.uk-card-hover:hover h2 {
   color: var(--cold);
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 640px) {
   .menu-cards {
     min-width: 50vw;
   }

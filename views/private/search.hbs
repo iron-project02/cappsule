@@ -1,1 +1,28 @@
-{{products}}
+<div class="uk-margin">
+  <form action="/prod" method="GET" enctype="application/x-www-form-urlencoded" class="uk-search uk-search-default">
+    <input name="name" type="search" class="uk-search-input" type="search" placeholder="Search..." autocomplete="on" autofocus>
+    <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
+  </form>
+</div>
+
+<div id="search-results">
+  <div class="uk-child-width-1-2@s uk-grid-small" uk-grid uk-height-match="target:>div>*">
+  {{#each products as |product|}}
+    {{#with product}}
+      <div>
+        <div class="uk-tile uk-tile-default uk-padding-small">
+          <p>Pharma {{pharmacy}}</p>
+          <div class="uk-text-center">
+            <img data-src="{{image}}" alt="{{name}}" height="240" width="240" uk-img>
+          </div>
+          <h4>{{name}}</h4>
+          <p>{{ingredient}}</p>
+          <p>{{presentation}}</p>
+          <p>{{quantity}}</p>
+          <p>$ {{price}}</p>
+        </div>
+      </div>
+    {{/with}}
+  {{/each}}
+  </div>
+</div>

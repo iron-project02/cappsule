@@ -7,11 +7,15 @@
   --neutral: #dbd9d6;
 }
 body {
+  background: rgba(219,217,214,0.2);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
   width: 100%;
+  z-index: -1;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: var(--main);
 }
 a {
   color: var(--cold);
@@ -19,20 +23,62 @@ a {
 a:hover {
   color: var(--main);
 }
+nav {
+  height: 50px;
+  z-index: 979;
+}
+.uk-navbar-container:not(.uk-navbar-sticky) {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
 .uk-navbar-container:not(.uk-navbar-transparent) {
-  background: var(--main);
+  background: var(--neutral);
 }
 .uk-navbar-nav>li>a {
   color: var(--cold);
 }
 .uk-navbar-nav>li:hover>a {
-  color: var(--neutral);
+  color: var(--main);
+
+}
+.uk-navbar-sticky .uk-navbar-nav>li>a {
+  color: var(--main);
+}
+.uk-navbar-sticky .uk-navbar-nav>li:hover>a {
+  color: var(--cold);
 }
 .uk-offcanvas-bar {
   background: var(--main);
 }
+.uk-navbar .uk-logo .navbar-logo {
+  opacity: 1;
+  transition: all 200ms ease;
+}
+.uk-logo .navbar-logo:hover {
+  opacity: 0.8;
+}
+.uk-navbar-right .profile-pic {
+  background: center / cover no-repeat white;
+  border: 1px solid var(--neutral);
+  border-radius: 100%;
+  height: 30px;
+  margin: auto;
+  opacity: 1;
+  width: 30px;
+  transition: all 200ms ease;
+}
+.uk-navbar-right .profile-pic:hover {
+  opacity: 0.8;
+}
 main {
   flex: 1 0 auto;
+  padding-top: 50px;
+  z-index: 0;
+}
+.uk-card {
+  border-radius: 0.8vw;
 }
 .errorCard {
   background: #f0506e;
@@ -47,6 +93,23 @@ main {
   color: #fff; 
 }
 
+@keyframes errorPill {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-25deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+  75% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
 @keyframes errorH2 {
   to {
     opacity: 1;
@@ -61,7 +124,9 @@ img.pill {
   display: block;
   height: auto;
   margin: 0 auto;
-  max-width: 50vw;
+  max-width: 33vw;
+  transform: rotate(0);
+  animation: errorPill 350ms ease 200ms forwards;
 }
 .not-found-wrapper h2 {
   margin-top: 20px;
@@ -69,7 +134,7 @@ img.pill {
   text-align: center;
   transform: translate(0,-100%) scale(0);
   z-index: -1;
-  animation: errorH2 800ms ease-in 0s forwards;
+  animation: errorH2 600ms ease-in 275ms forwards;
 }
 .not-found-wrapper p {
   text-align: center;
@@ -77,10 +142,42 @@ img.pill {
 .not-found-wrapper p span {
   cursor: pointer;
 }
+/* #search-form input, #search-form button {
+  background: white;
+  border: 2px inset var(--neutral);
+  border-radius: 0.8vw;
+  font-size: 1.5rem;
+  width: 100%;
+}
+#search-form input {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 2.5vh;
+}
+#search-form button {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: var(--main);
+  cursor: pointer;
+  padding: 2.5vh 0;
+  transition: all 200ms ease;
+}
+#search-form button:hover {
+  background: var(--cold);
+} */
 footer {
   margin-top: 5vh;
 }
 
 .uk-drop {
   z-index: 979;
+}
+
+@media only screen and (min-width: 640px) {
+  .uk-logo .navbar-logo, .uk-navbar-right .profile-pic {
+    /* height: 50px;
+    width: 50px; */
+  }
 }

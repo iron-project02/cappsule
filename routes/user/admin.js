@@ -21,7 +21,7 @@ adminSites.post(`/admin/:id/create`, check.isLogged, check.isAdmin, (req,res) =>
 adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => {
   if (req.query.alias !== undefined) {
     let query = new RegExp(`.*${req.query.alias}.*`);
-    return Offer.find({alias: { $in: [query] } })
+    return Offer.find({alias: { $regex: query, $options: `i` }})
                 .populate(`productId`)
                 .populate(`pharmacyId`)
                 .then(search => {
@@ -34,7 +34,7 @@ adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => 
   if (req.query.email !== undefined) {
     let query = new RegExp(`.*${req.query.email}.*`);
 
-    return User.find({email: { $in: [query] } }).then(search => {
+    return User.find({email: { $regex: query, $options: `i` }}).then(search => {
       let html = require(`../../helpers/adminHTML`);
       search.push(html.noResults());
       search.push(html.userEditForm());
