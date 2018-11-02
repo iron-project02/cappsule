@@ -30,6 +30,14 @@ function createNew(e) {
     axios .post(`${window.location.href}/create?${e.target[1].name}=${e.target[1].value}`, obj)
           .then(() => {
             for (let i = 0; i < inputs.length - 1; i++) inputs[i].value = ``;
+            e.target.parentNode.previousElementSibling.onclick = () => {
+              UIkit.notification({
+                message: `<span uk-icon=\'icon: check\'></span> Offer Created`,
+                status: `success`,
+                pos: `top-center`,
+                timeout: 3000
+              });
+            };
             e.target.parentNode.previousElementSibling.click();
           });
   }
@@ -112,9 +120,17 @@ function updateResults(e) {
                 }
               },50);
             })(form);
-            (async function updateOK(form) {
+            (async function userUpdateOK(form) {
               form[8].classList = `updated`;
               form[8].innerText = `Updated`;
+              form[8].onclick = (function notifUserUpdateOK() {
+                UIkit.notification({
+                  message: `<span uk-icon=\'icon: check\'></span> User Updated`,
+                  status: `success`,
+                  pos: `top-center`,
+                  timeout: 3000
+                });
+              })();
               await setTimeout(()=> {
                 form[8].classList = ``;
                 form[8].innerText = `Update`;
@@ -125,6 +141,14 @@ function updateResults(e) {
             let form = e.target;
             form[8].classList = `error-update`;
             form[8].innerText = `Error`;
+            form[8].onclick = (function notifUserUpdateError() {
+              UIkit.notification({
+                message: `<span uk-icon=\'icon: ban\'></span> Try again`,
+                status: `danger`,
+                pos: `top-center`,
+                timeout: 3000
+              });
+            })();
           });
   }
 }
@@ -142,6 +166,14 @@ function deleteResult(e) {
           .catch(err => {
             btn.classList = `error-delete`;
             btn.innerText = `Error`;
+            btn.onclick = (function notifUserDeleteError() {
+              UIkit.notification({
+                message: `<span uk-icon=\'icon: ban\'></span> Try again`,
+                status: `danger`,
+                pos: `top-center`,
+                timeout: 3000
+              });
+            })();
           });
   }
 }
