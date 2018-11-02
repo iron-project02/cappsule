@@ -115,3 +115,6 @@
   font-weight: bold;
   padding: 3vh 4vh;
 }
+.uk-notification-message {
+  text-align: center;
+}
