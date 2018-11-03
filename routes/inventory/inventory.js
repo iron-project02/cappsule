@@ -17,13 +17,13 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 					let data = {
 						title: 'Kit'
 					}
-					let p = []
+					let p = [];
 					let cabinet = {};
 					for (let i = 0; i < kits.length; i++){
 						p.push(Promise.resolve(Inventory.find({kitId: kits[i]._id})
 						.populate('productId')
 						.then(inventory => {
-								cabinet[kits[i].name] = inventory;
+							cabinet[kits[i].name] = inventory;
 						})
 						.catch(err => {
 							console.log('Error =====>', err)

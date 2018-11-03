@@ -11,15 +11,19 @@ const reminderSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Treatment'
 	},
-	productId: {
+	inventoryId: {
 		type: Schema.Types.ObjectId,
-		ref: 'Product',
-		required: 'There is no related product to this reminder'
+		ref: 'Inventory',
+		required: 'There is no related inventory product to this reminder'
+	},
+	quantity: {
+		type: Number,
+		required: 'There is no quantity definded'
 	},
 	date: {
 		type: Date,
 		required: 'Remainder date most be defined'
-	}
+	}	
 },{
 	timestamps: {
 		createdAt: 'created_at',
