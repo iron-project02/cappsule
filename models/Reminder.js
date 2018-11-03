@@ -7,6 +7,10 @@ const reminderSchema = new Schema({
 		ref: 'User',
 		required: 'There is no related user to this reminder'
 	},
+	treatmentId: {
+		type: Schema.Types.ObjectId,
+		ref: 'Treatment'
+	},
 	productId: {
 		type: Schema.Types.ObjectId,
 		ref: 'Product',
