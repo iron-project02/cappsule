@@ -7,12 +7,13 @@ const express   = require('express'),
       Kit       = require(`../../models/Kit`);
       Inventory = require(`../../models/Inventory`);
 
+//Find User's Kits
 kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
-
 	User.findById(req.params.id)
 		.then(user => {
 			Kit.find({userId: user._id})
 				.populate('userId')
+				.sort({created_at: 1})
 				.then(kits => {
 					let data = {
 						title: 'Kit'
@@ -36,11 +37,29 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 		});
 });
 
-kitSites.post(`/user/:id/kit/add`, (req,res) => {
-	Product.create(req.body)
+
+//Delete Kit
+kitSites.get(`/user/:id/kit/:name`, check.isLogged, check.isUser, (req,res) => {
+	req.body.userId = req.params.id;
+	Kit.deleteOne({$and: [{userId: req.body.userId}, {name: req.params.name}] })
+		.then(kit => {
+			console.log(`=====> Eliminado correctamente`)
+			res.redirect(`/user/${req.body.userId}/kit`)
+		})
+		.catch(err => {
+			console.log(`=====> Error al eliminar ${err}`)
+			res.json(err)
+		});
+});
+
+
+//Add kit
+kitSites.post(`/user/:id/kit/add`, check.isLogged, check.isUser, (req,res) => {
+	req.body.userId = req.params.id;
+	Kit.create(req.body)
 		.then(kit =>{
 			console.log(`=====> Registrado correctamente`)
-			res.json(kit)
+			res.redirect(`/user/${req.body.userId}/kit`)
 		})
 		.catch(err => {
 			console.log(`=====> Error al registrar ${err}`)

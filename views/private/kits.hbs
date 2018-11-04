@@ -1,13 +1,33 @@
-<h1>Kit</h1>
+<h1 class="uk-text-center">Kit's</h1>
+
+<div class="kits-add-wrapper">
+	<div class="">
+		<form action="/user/{{user._id}}/kit/add" method="post" class="uk-text-center">
+			<button class="uk-button uk-button-default uk-align-center" type="button">Add</button>
+			<div uk-drop="mode: click; pos: bottom-center">
+				<div class="uk-card uk-card-body uk-card-default">
+					<div class="uk-margin">
+						<div class="uk-form-controls">
+							<input class="uk-input" type="text" placeholder="New kit name" name="name">
+						</div>
+					</div>
+					<p class="uk-margin">
+						<button type="submit" class="uk-button uk-button-default">Create Kit</button>
+					</p>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 
 <div class="kits-wrapper">
 		{{#if cabinet}}
 			<ul>
 				{{#each cabinet as |kit|}}
-					<li>{{@key}}</li>
+					<li>{{@key}} <a href="">Rename</a> <a href="/user/{{../user._id}}/kit/{{@key}}">Delete</a></li>
 						<ul>
 								{{#each kit as |product|}}
-									<li>{{product}}</li>
+									<li>{{product.productId.name}}</li>
 								{{/each}}
 						</ul>
 				{{/each}}

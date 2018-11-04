@@ -43,9 +43,6 @@
 <div class="reminders-wrapper">
 	<ul>
 		{{#each reminders as |reminder|}}
-
-		
-
 			<div class="uk-margin">
 				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
 					<div class="uk-card-badge"><a href="/user/{{../user._id}}/reminders/{{reminder._id}}">Delete</a></div>
@@ -54,7 +51,6 @@
 					<li>{{reminder.date}}</li>
 				</div>
 			</div>
-
 		{{/each}}
 	</ul>
 </div>
