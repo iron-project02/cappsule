@@ -66,6 +66,7 @@ searchSites.get(`/prod`, check.isLogged, (req,res) => {
 
           let fspSearchIndex = 'col-xs-12 col-sm-6 col-md-4';
           let fspItemIndex = indexString(fspSearchIndex,FSP.data)
+          console.log('San Pablo results =====> ',fspItemIndex.length)
           
           let imgStartString = '<img src="'
           let imgEndString = '" alt="'
@@ -103,41 +104,47 @@ searchSites.get(`/prod`, check.isLogged, (req,res) => {
 
           // Farmacia del Ahorro Drugstore search results identification
 
-          let fdaSearchProducts = '<h2 class="product-name"><a href="';
-          let fdaItemIndex = indexString(fdaSearchProducts,FA.data)
-          let fdaInitString = 'products-grid row span9'
-
-          imgStartString = '<img src="';
-          imgEndString = '" alt="';
-          linkStartString = '<h2 class="product-name"><a href="';
-          linkEndString = '" title="';
-          let descStartString = '" title="';
-          let descEndString = '">';
-          priceStartString = '<span class="price">'
-          priceEndString = '</span>'
-
           let FDAArray = [];
 
-          pointer = FA.data.indexOf(fdaInitString)
+          if (FA.data.indexOf('Resultados de la búsqueda')>0){
 
-          for (let i=0; i<fdaItemIndex.length; i++){
+            let fdaSearchProducts = '<h2 class="product-name"><a href="';
+            let fdaItemIndex = indexString(fdaSearchProducts,FA.data)
+            console.log('Del Ahorro results =====> ',fdaItemIndex.length)
+            let fdaInitString = 'products-grid row span9'
 
-            let FDAObj = {};
-            
-            pointer = FA.data.indexOf(imgStartString, pointer)+imgStartString.length;
-            FDAObj.image = FA.data.slice(pointer,FA.data.indexOf(imgEndString,pointer));
-            pointer = FA.data.indexOf(linkStartString, pointer) + linkStartString.length;
-            FDAObj.link = FA.data.slice(pointer,FA.data.indexOf(linkEndString,pointer));
+            imgStartString = '<img src="';
+            imgEndString = '" alt="';
+            linkStartString = '<h2 class="product-name"><a href="';
+            linkEndString = '" title="';
+            let descStartString = '" title="';
+            let descEndString = '">';
+            priceStartString = '<span class="price">'
+            priceEndString = '</span>'
 
-            pointer = FA.data.indexOf(descStartString, pointer) + descStartString.length;
-            FDAObj.description = FA.data.slice(pointer,FA.data.indexOf(descEndString,pointer));
-            pointer = FA.data.indexOf(priceStartString, pointer) + priceStartString.length;
-            FDAObj.price = FA.data.slice(pointer,FA.data.indexOf(priceEndString,pointer));
+            pointer = FA.data.indexOf(fdaInitString)
 
-            FDAArray.push(FDAObj)
+            for (let i=0; i<fdaItemIndex.length; i++){
+
+              let FDAObj = {};
+              
+              pointer = FA.data.indexOf(imgStartString, pointer)+imgStartString.length;
+              FDAObj.image = FA.data.slice(pointer,FA.data.indexOf(imgEndString,pointer));
+              pointer = FA.data.indexOf(linkStartString, pointer) + linkStartString.length;
+              FDAObj.link = FA.data.slice(pointer,FA.data.indexOf(linkEndString,pointer));
+
+              pointer = FA.data.indexOf(descStartString, pointer) + descStartString.length;
+              FDAObj.description = FA.data.slice(pointer,FA.data.indexOf(descEndString,pointer));
+              pointer = FA.data.indexOf(priceStartString, pointer) + priceStartString.length;
+              FDAObj.price = FA.data.slice(pointer,FA.data.indexOf(priceEndString,pointer));
+
+              FDAArray.push(FDAObj)
+            }
           }
 
           obj.Ahorro = FDAArray;
+
+          console.log(obj)
 
           res.json(obj);
         }));
