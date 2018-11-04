@@ -52,7 +52,7 @@ function getSanPablo(req,res) {
 
 function getAhorro(req,res) {
   let query = new RegExp(`.*${req.query.name}.*`);
-  return axios.get(`http://www.fahorro.com/catalogsearch/result/?q=${req.query.name}`);
+  return axios.get(`http://www.fahorro.com/catalogsearch/result/?dir=asc&limit=56&order=price&q=${req.query.name}`);
 }
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
   
@@ -60,12 +60,13 @@ searchSites.get(`/prod`, check.isLogged, (req,res) => {
         .then(axios.spread((FSP, FA) => {
           let obj = {};
           
-          ///Tratamiento de informacion
+          //Data treatment
 
-          // Identificar resultados de la busqueda
+          // San Pablo Drugstore search results identification
 
           let fspSearchIndex = 'col-xs-12 col-sm-6 col-md-4';
           let fspItemIndex = indexString(fspSearchIndex,FSP.data)
+          
           let imgStartString = '<img src="'
           let imgEndString = '" alt="'
           let linkStartString = '<a href="'
@@ -78,13 +79,14 @@ searchSites.get(`/prod`, check.isLogged, (req,res) => {
           let priceEndString = '<span class="currency">'
 
           let FSPArray = [];
-          let FSPObj = {};
           let pointer = 0;
-
+          
           for (let i=0; i<fspItemIndex.length; i++){
 
+            let FSPObj = {};
+            
             pointer = FSP.data.indexOf(imgStartString, fspItemIndex[i])+imgStartString.length;
-            FSPObj.img = FSP.data.slice(pointer,FSP.data.indexOf(imgEndString,pointer));
+            FSPObj.image = FSP.data.slice(pointer,FSP.data.indexOf(imgEndString,pointer));
             pointer = FSP.data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
             FSPObj.link = FSP.data.slice(pointer,FSP.data.indexOf(linkEndString,pointer));
             pointer = FSP.data.indexOf(titleStartString, pointer) + titleStartString.length + 33;
@@ -98,9 +100,45 @@ searchSites.get(`/prod`, check.isLogged, (req,res) => {
           }
 
           obj.SanPablo = FSPArray;
-          //obj.Ahorro   = FA.data;
 
-          console.log('Obj =====> ', obj)
+          // Farmacia del Ahorro Drugstore search results identification
+
+          let fdaSearchProducts = '<h2 class="product-name"><a href="';
+          let fdaItemIndex = indexString(fdaSearchProducts,FA.data)
+          let fdaInitString = 'products-grid row span9'
+
+          imgStartString = '<img src="';
+          imgEndString = '" alt="';
+          linkStartString = '<h2 class="product-name"><a href="';
+          linkEndString = '" title="';
+          let descStartString = '" title="';
+          let descEndString = '">';
+          priceStartString = '<span class="price">'
+          priceEndString = '</span>'
+
+          let FDAArray = [];
+
+          pointer = FA.data.indexOf(fdaInitString)
+
+          for (let i=0; i<fdaItemIndex.length; i++){
+
+            let FDAObj = {};
+            
+            pointer = FA.data.indexOf(imgStartString, pointer)+imgStartString.length;
+            FDAObj.image = FA.data.slice(pointer,FA.data.indexOf(imgEndString,pointer));
+            pointer = FA.data.indexOf(linkStartString, pointer) + linkStartString.length;
+            FDAObj.link = FA.data.slice(pointer,FA.data.indexOf(linkEndString,pointer));
+
+            pointer = FA.data.indexOf(descStartString, pointer) + descStartString.length;
+            FDAObj.description = FA.data.slice(pointer,FA.data.indexOf(descEndString,pointer));
+            pointer = FA.data.indexOf(priceStartString, pointer) + priceStartString.length;
+            FDAObj.price = FA.data.slice(pointer,FA.data.indexOf(priceEndString,pointer));
+
+            FDAArray.push(FDAObj)
+          }
+
+          obj.Ahorro = FDAArray;
+
           res.json(obj);
         }));
 })
