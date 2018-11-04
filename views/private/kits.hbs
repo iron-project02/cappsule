@@ -24,7 +24,7 @@
 		{{#if cabinet}}
 			<ul>
 				{{#each cabinet as |kit|}}
-					<li>{{@key}} <a href="">Rename</a> <a href="/user/{{../user._id}}/kit/{{@key}}">Delete</a></li>
+					<li>{{@key}} <a href="/user/{{../user._id}}/kit/update/{{@key}}">Rename</a> <a href="/user/{{../user._id}}/kit/{{@key}}">Delete</a></li>
 						<ul>
 								{{#each kit as |product|}}
 									<li>{{product.productId.name}}</li>

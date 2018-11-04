@@ -10,6 +10,11 @@ kitSchema = new Schema({
   name: {
     type: String,
     default: 'Home'
+  },
+  kitKey: {
+    type: String,
+    required: true,
+    unique: true
   }
 },{
   timestamps: {

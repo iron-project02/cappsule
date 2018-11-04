@@ -37,7 +37,6 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 		});
 });
 
-
 //Delete Kit
 kitSites.get(`/user/:id/kit/:name`, check.isLogged, check.isUser, (req,res) => {
 	req.body.userId = req.params.id;
@@ -52,10 +51,27 @@ kitSites.get(`/user/:id/kit/:name`, check.isLogged, check.isUser, (req,res) => {
 		});
 });
 
+//Update Kit
+kitSites.get(`/user/:id/kit/update/:name`, check.isLogged, check.isUser, (req,res) => {
+	req.body.userId = req.params.id;
+	Kit.findOneAndUpdate({$and: [{userId: req.body.userId}, {name: req.params.name}]}, {$set:{name:"Naomi"}})
+		.then(kit => {
+			console.log(`=====> Renombrado correctamente`)
+			res.redirect(`/user/${req.body.userId}/kit`)
+		})
+		.catch(err => {
+			console.log(`=====> Error al eliminar ${err}`)
+			res.json(err)
+		});
+});
 
 //Add kit
 kitSites.post(`/user/:id/kit/add`, check.isLogged, check.isUser, (req,res) => {
 	req.body.userId = req.params.id;
+	req.body.kitKey = req.body.name;
+	
+	//Realizar la busqueda para implementar el unique
+	
 	Kit.create(req.body)
 		.then(kit =>{
 			console.log(`=====> Registrado correctamente`)
@@ -67,6 +83,7 @@ kitSites.post(`/user/:id/kit/add`, check.isLogged, check.isUser, (req,res) => {
 		});
 });
 
+//Add Products to kit
 kitSites.post(`/user/:userId/kit/:kitId/addproduct`, (req,res) => {
 	Inventory.create(req.body)
 		.then(inventory =>{
@@ -78,7 +95,5 @@ kitSites.post(`/user/:userId/kit/:kitId/addproduct`, (req,res) => {
 			res.json(err)
 		});
 });
-
-
 
 module.exports = kitSites;
