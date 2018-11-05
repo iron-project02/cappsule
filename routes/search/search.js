@@ -29,7 +29,17 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
 
   //hacer la peticion a Google
 
-
+  getImageData(req.body.imageString)
+    .then(imageData => {
+      console.log('Image Data from Google ======> ',Object.keys(imageData.data.responses), imageData.data.responses)
+      let medicine = imageData.data.responses;
+      res.json(imageData.data.responses);
+      //res.render(`private/search`, {data, user, products});
+      //res.redirect('/search', {medicine})
+    })
+    .catch(err => {
+      console.log('Error google request =====>',err)
+    })
   
   //res.json(req.body)
   //res.render('private/searchImagesView.hbs');
@@ -47,6 +57,28 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
 //             res.json(search)
 //           });
 // })
+
+const getImageData = async (data) => {
+  try {
+    return await axios.post(`https://vision.googleapis.com/v1/images:annotate?key=${process.env.VISION_API_KEY}`, {
+      "requests":[
+        {
+          "image":{
+            "content": data
+          },
+          "features":[
+            {
+              "type":"TEXT_DETECTION",
+              "maxResults":10
+            }
+          ]
+        }
+      ]
+    });
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 function indexString(string, searchData) {
   let index = 0
