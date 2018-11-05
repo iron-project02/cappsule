@@ -19,6 +19,23 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
             });
 });
 
+searchSites.get(`/search/image`, check.isLogged, (req, res) =>{
+  
+  res.render('private/searchImagesView.hbs');
+
+})
+
+searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
+
+  //hacer la peticion a Google
+
+
+  
+  //res.json(req.body)
+  //res.render('private/searchImagesView.hbs');
+})
+
+
 // searchSites.get(`/prod`, check.isLogged, (req,res) => {
 //   let query = new RegExp(`.*${req.query.name}.*`);
 //   Product .find({$or : [{name: {$regex: query, $options: `i`}}, {ingredient: {$regex: query, $options: `i`}}]})

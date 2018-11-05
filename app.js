@@ -33,8 +33,8 @@ app .use(session({
 
 // Middleware Setup
 app.use(logger('dev'))
-   .use(bodyParser.json())
-   .use(bodyParser.urlencoded({ extended: false }))
+   .use(bodyParser.json({limit: '50mb'}))
+   .use(bodyParser.urlencoded({limit: '50mb', extended: false }))
    .use(cookieParser());
 
 // Express View engine setup
