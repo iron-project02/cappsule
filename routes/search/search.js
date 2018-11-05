@@ -40,7 +40,7 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
     .catch(err => {
       console.log('Error google request =====>',err)
     })
-  
+
   //res.json(req.body)
   //res.render('private/searchImagesView.hbs');
 })
@@ -188,6 +188,7 @@ function getAhorro(req,res) {
   let query = new RegExp(`.*${req.query.name}.*`);
   return axios.get(`http://www.fahorro.com/catalogsearch/result/?dir=asc&limit=56&order=price&q=${req.query.name}`);
 }
+
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
   
   axios .all([getSanPablo(req,res), getAhorro(req,res)])
