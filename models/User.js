@@ -37,7 +37,9 @@ userSchema = new Schema({
     type:      String,
     enum:      [`admin`, `user`],
     default:   `user`
-  }
+  },
+  facebookID: String,
+  googleID:   String
 },{
   timestamps: {
     createdAt: `created_at`,
