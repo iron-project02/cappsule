@@ -38,7 +38,6 @@ function getAhorro(req) {
   return axios.get(`http://www.fahorro.com/catalogsearch/result/index/?dir=asc&order=price&q=${req.query.name}`);
 }
 
-
 function indexString(string, searchData) {
   let index       = 0,
       i           = 0,
