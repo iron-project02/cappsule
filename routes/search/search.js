@@ -31,9 +31,6 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
 //             res.json(search)
 //           });
 // })
-function getSanPablo(req) {
-  return axios.get(`https://farmaciasanpablo.com.mx/search/?sort=price-asc&q=${req.query.name}`);
-}
 
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
   
