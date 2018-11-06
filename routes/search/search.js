@@ -31,11 +31,11 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
 //           });
 // })
 function getSanPablo(req) {
-  return axios.get(`https://farmaciasanpablo.com.mx/search/?text=${req.query.name}`);
+  return axios.get(`https://farmaciasanpablo.com.mx/search/?sort=price-asc&q=${req.query.name}`);
 }
 
 function getAhorro(req) {
-  return axios.get(`http://www.fahorro.com/catalogsearch/result/?dir=asc&limit=56&order=price&q=${req.query.name}`);
+  return axios.get(`http://www.fahorro.com/catalogsearch/result/index/?dir=asc&order=price&q=${req.query.name}`);
 }
 
 function indexString(string, searchData) {
@@ -81,13 +81,14 @@ function sanPabloResults(data) {
     pointer         = data.indexOf(imgStartString, fspItemIndex[i])+imgStartString.length;
     FSPObj.image    = data.slice(pointer,data.indexOf(imgEndString,pointer));
     pointer         = data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
-    FSPObj.link     = data.slice(pointer,data.indexOf(linkEndString,pointer));
+    FSPObj.link     = `https://www.farmaciasanpablo.com.mx${data.slice(pointer,data.indexOf(linkEndString,pointer))}`;
     pointer         = data.indexOf(titleStartString, pointer) + titleStartString.length + 33;
     FSPObj.title    = data.slice(pointer,data.indexOf(titleEndString,pointer));
     pointer         = data.indexOf(subtitleStartString, pointer) + subtitleStartString.length + 29;
     FSPObj.subtitle = data.slice(pointer,data.indexOf(subtitleEndString,pointer));
-    pointer         = data.indexOf(priceStartString, pointer) + priceStartString.length + 26;
+    pointer         = data.indexOf(priceStartString, pointer) + priceStartString.length + 27;
     FSPObj.price    = data.slice(pointer,data.indexOf(priceEndString,pointer));
+    FSPObj.pharma   = `Farmacia San Pablo`;
     
     FSPArray.push(FSPObj);
   }
@@ -118,14 +119,15 @@ function delAhorroResults(data) {
     for (let i = 0; i < fdaItemIndex.length; i++){
       let FDAObj = {};
       
-      pointer            = data.indexOf(imgStartString, pointer)+imgStartString.length;
-      FDAObj.image       = data.slice(pointer,data.indexOf(imgEndString,pointer));
-      pointer            = data.indexOf(linkStartString, pointer) + linkStartString.length;
-      FDAObj.link        = data.slice(pointer,data.indexOf(linkEndString,pointer));
-      pointer            = data.indexOf(descStartString, pointer) + descStartString.length;
-      FDAObj.description = data.slice(pointer,data.indexOf(descEndString,pointer));
-      pointer            = data.indexOf(priceStartString, pointer) + priceStartString.length;
-      FDAObj.price       = data.slice(pointer,data.indexOf(priceEndString,pointer));
+      pointer       = data.indexOf(imgStartString, pointer)+imgStartString.length;
+      FDAObj.image  = data.slice(pointer,data.indexOf(imgEndString,pointer));
+      pointer       = data.indexOf(linkStartString, pointer) + linkStartString.length;
+      FDAObj.link   = data.slice(pointer,data.indexOf(linkEndString,pointer));
+      pointer       = data.indexOf(descStartString, pointer) + descStartString.length;
+      FDAObj.title  = data.slice(pointer,data.indexOf(descEndString,pointer));
+      pointer       = data.indexOf(priceStartString, pointer) + priceStartString.length + 1;
+      FDAObj.price  = data.slice(pointer,data.indexOf(priceEndString,pointer));
+      FDAObj.pharma = `Farmacia del Ahorro`;
 
       FDAArray.push(FDAObj)
     }
@@ -136,11 +138,15 @@ function delAhorroResults(data) {
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
   axios .all([getSanPablo(req), getAhorro(req)])
         .then(axios.spread((FSP, FA) => {
-          let obj = {};
-          
+          let obj  = {},
+              html = require(`../../helpers/searchHTML`);
+
           // Data treatment
           obj.SanPablo = sanPabloResults(FSP.data);
           obj.Ahorro   = delAhorroResults(FA.data);
+
+          obj.notfound = html.noResults();
+          obj.html     = html.productCard();
 
           res.json(obj);
         }));
