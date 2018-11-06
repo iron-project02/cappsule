@@ -1,26 +1,36 @@
-const searchJS = document.querySelector(`script[src='/js/search.js']`),
-      axiosJS  = document.createElement(`script`);
+const searchJS   = document.querySelector(`script[src='/js/search.js']`),
+      axiosJS    = document.createElement(`script`),
+      searchForm = document.getElementById(`search-form`);
 axiosJS.src = `https://unpkg.com/axios/dist/axios.min.js`;
 document.body.insertBefore(axiosJS, searchJS);
 
-window.onload = () => {
-  addEventListener(`submit`, e => {
-    e.preventDefault();
-    const inst = axios.create({ headers: {
-                                  test: true,
-                              }});
-    axios .get(`${window.location.origin}/prod?${e.target[0].name}=${e.target[0].value}`)
-          .then(search => {
-            const container = document.getElementById(`search-results`);
-            let div1 = document.createElement(`div`),
-                div2 = document.createElement(`div`);
+searchForm.onsubmit = e => {
+  e.preventDefault();
+  axios .get(`${window.location.origin}/prod?${e.target[0].name}=${e.target[0].value}`)
+        .then(search => {
+          const container = document.getElementById(`search-results`);
+          container.innerHTML = ``;
+          console.log(search);
+          console.log(`===`);
+          console.log(search.data.SanPablo[0]);
+          console.log(`===`);
+          console.log(search.data.Ahorro[0]);
+          console.log(`===`);
+          let allProducts = search.data.SanPablo.map(item => item);
 
-            container.innerHTML = ``;
-            div1.innerHTML      = search.data.SanPablo;
-            div2.innerHTML      = search.data.Ahorro;
+          search.data.Ahorro.forEach(item => allProducts.push(item));
 
-            container.appendChild(div1);
-            container.appendChild(div2);
+          (async function sortProducts(all) {
+            all.sort((a,b) => {
+              let priceA = parseFloat(a.price),
+                  priceB = parseFloat(b.price);
+              return priceA - priceB;
+            });
+            await console.log(allProducts);
+          })(allProducts);
+          
+          allProducts.forEach(product => {
+            container.insertAdjacentHTML(`beforeend`, eval('`'+search.data.html+'`'));
           });
-  });
-}
+        });
+};
