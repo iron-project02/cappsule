@@ -23,6 +23,9 @@ a {
 a:hover {
   color: var(--main);
 }
+button { 
+  cursor: pointer;
+}
 nav {
   height: 50px;
   z-index: 979;
