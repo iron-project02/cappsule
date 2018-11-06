@@ -33,8 +33,8 @@ function createNew(e) {
             e.target.parentNode.previousElementSibling.onclick = () => {
               UIkit.notification({
                 message: `<span uk-icon=\'icon: check\'></span> Offer Created`,
-                status: `success`,
-                pos: `top-center`,
+                status:  `success`,
+                pos:     `top-center`,
                 timeout: 3000
               });
             };
@@ -118,7 +118,7 @@ function updateResults(e) {
                   form[i].placeholder = user[form[i].name];
                   if (form[i].name === `age` && form[i].value === ``) form[i].value = 0;
                 }
-              },50);
+              },100);
             })(form);
             (async function userUpdateOK(form) {
               form[8].classList = `updated`;
@@ -126,8 +126,8 @@ function updateResults(e) {
               form[8].onclick = (function notifUserUpdateOK() {
                 UIkit.notification({
                   message: `<span uk-icon=\'icon: check\'></span> User Updated`,
-                  status: `success`,
-                  pos: `top-center`,
+                  status:  `success`,
+                  pos:     `top-center`,
                   timeout: 3000
                 });
               })();
@@ -144,8 +144,8 @@ function updateResults(e) {
             form[8].onclick = (function notifUserUpdateError() {
               UIkit.notification({
                 message: `<span uk-icon=\'icon: ban\'></span> Try again`,
-                status: `danger`,
-                pos: `top-center`,
+                status:  `danger`,
+                pos:     `top-center`,
                 timeout: 3000
               });
             })();
@@ -169,8 +169,8 @@ function deleteResult(e) {
             btn.onclick = (function notifUserDeleteError() {
               UIkit.notification({
                 message: `<span uk-icon=\'icon: ban\'></span> Try again`,
-                status: `danger`,
-                pos: `top-center`,
+                status:  `danger`,
+                pos:     `top-center`,
                 timeout: 3000
               });
             })();
