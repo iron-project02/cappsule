@@ -1,10 +1,42 @@
+<div class="uk-margin">
+  <form action="/search/image" method="POST" enctype="application/x-www-form-urlencoded" class="uk-search uk-search-default">
+    <!--
+    <input id="searchResults" name="imageString" class="uk-search-input" type="search" placeholder="Search..." autocomplete="on" autofocus>
+    -->
+    <textarea name="imageString" id="searchResults" cols="30" rows="10"></textarea>
+    <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
+  </form>
+</div>
+
+<a href="/search/image">Images</a>
+
+<div id="search-results">
+  <div class="uk-child-width-1-2@s uk-grid-small" uk-grid uk-height-match="target:>div>*">
+  {{#each products as |product|}}
+    {{#with product}}
+      <div>
+        <div class="uk-tile uk-tile-default uk-padding-small">
+          <p>Pharma {{pharmacy}}</p>
+          <div class="uk-text-center">
+            <img data-src="{{image}}" alt="{{name}}" height="240" width="240" uk-img>
+          </div>
+          <h4>{{name}}</h4>
+          <p>{{ingredient}}</p>
+          <p>{{presentation}}</p>
+          <p>{{quantity}}</p>
+          <p>$ {{price}}</p>
+        </div>
+      </div>
+    {{/with}}
+  {{/each}}
+  </div>
+</div>
+
+
 <div>
   <video id="player" controls autoplay></video>
   <button id="capture">Capturar</button>
   <canvas id="snapshot" width=320 height=240></canvas>
-</div>
-<div>
-  <input id="searchResults" name="name"></input>
 </div>
 
 <script>
@@ -28,7 +60,10 @@
     var pngUrl = snapshotCanvas.toDataURL();
     var dataString = pngUrl.slice(22,pngUrl.length)
     //console.log('PNG URL DATA =====> ',dataString)
+
+    document.getElementById('searchResults').value = dataString;
     
+    /*
     $.ajax({
       type: 'POST',
       url: 'http://localhost:5000/search/image',
@@ -50,6 +85,7 @@
         //alert('Ok');
       }
     })
+    */
     
     // Stop all video streams.
     //document.getElementById('player').setAttribute('display', 'none');
