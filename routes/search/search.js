@@ -31,50 +31,6 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
 //           });
 // })
 
-
-
-
-
-function delAhorroResults(data) {
-  let FDAArray = [];
-
-  // Farmacia del Ahorro Drugstore search results identification
-  if (data.indexOf(`Resultados de la búsqueda`) > 0) {
-    let fdaSearchProducts = `<h2 class="product-name"><a href="`,
-        fdaItemIndex      = indexString(fdaSearchProducts,data);
-    console.log(`=> Del Ahorro results:\n`,fdaItemIndex.length);
-
-    let fdaInitString    = `products-grid row span9`,
-        imgStartString   = `<img src="`,
-        imgEndString     = `" alt="`,
-        linkStartString  = `<h2 class="product-name"><a href="`,
-        linkEndString    = `" title="`,
-        descStartString  = `" title="`,
-        descEndString    = `">`,
-        priceStartString = `<span class="price">`,
-        priceEndString   = `</span>`;
-
-    let pointer = data.indexOf(fdaInitString);
-
-    for (let i = 0; i < fdaItemIndex.length; i++){
-      let FDAObj = {};
-      
-      pointer       = data.indexOf(imgStartString, pointer)+imgStartString.length;
-      FDAObj.image  = data.slice(pointer,data.indexOf(imgEndString,pointer));
-      pointer       = data.indexOf(linkStartString, pointer) + linkStartString.length;
-      FDAObj.link   = data.slice(pointer,data.indexOf(linkEndString,pointer));
-      pointer       = data.indexOf(descStartString, pointer) + descStartString.length;
-      FDAObj.title  = data.slice(pointer,data.indexOf(descEndString,pointer));
-      pointer       = data.indexOf(priceStartString, pointer) + priceStartString.length + 1;
-      FDAObj.price  = data.slice(pointer,data.indexOf(priceEndString,pointer));
-      FDAObj.pharma = `Farmacia del Ahorro`;
-
-      FDAArray.push(FDAObj)
-    }
-  }
-  return FDAArray;
-}
-
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
   axios .all([getSanPablo(req), getAhorro(req)])
         .then(axios.spread((FSP, FA) => {

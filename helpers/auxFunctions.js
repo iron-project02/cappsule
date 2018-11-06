@@ -65,7 +65,6 @@ exports.sanPabloResults = function (data) {
 		let FSPObj = {};
 
 		FSPObj.pharmacy = 'Farmacia San Pablo';
-		
 		pointer         = data.indexOf(imgStartString, fspItemIndex[i])+imgStartString.length;
 		FSPObj.image    = data.slice(pointer,data.indexOf(imgEndString,pointer));
 		pointer         = data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
@@ -90,19 +89,19 @@ exports.delAhorroResults = function (data) {
 
 	if (data.indexOf('Resultados de la búsqueda')>0){
 
-		let fdaSearchProducts = '<h2 class="product-name"><a href="';
-		let fdaItemIndex = indexString(fdaSearchProducts,data)
+		let fdaSearchProducts = '<h2 class="product-name"><a href="',
+		    fdaItemIndex      = indexString(fdaSearchProducts,data);
 		//console.log('Del Ahorro results =====> ',fdaItemIndex.length)
-		let fdaInitString = 'products-grid row span9'
 
-		let imgStartString = '<img src="';
-		let imgEndString = '" alt="';
-		let linkStartString = '<h2 class="product-name"><a href="';
-		let linkEndString = '" title="';
-		let descStartString = '" title="';
-		let descEndString = '">';
-		let priceStartString = '<span class="price">'
-		let priceEndString = '</span>'
+		let fdaInitString    = `products-grid row span9`,
+		    imgStartString   = `<img src="`,
+		    imgEndString     = `" alt="`,
+		    linkStartString  = `<h2 class="product-name"><a href="`,
+		    linkEndString    = `" title="`,
+		    descStartString  = `" title="`,
+		    descEndString    = `">`,
+		    priceStartString = `<span class="price">`,
+		    priceEndString   = `</span>`;
 
 		let pointer = data.indexOf(fdaInitString)
 
@@ -111,22 +110,20 @@ exports.delAhorroResults = function (data) {
 			let FDAObj = {};
 
 			FDAObj.pharmacy = 'Farmacia del Ahorro';
-			
-			pointer = data.indexOf(imgStartString, pointer)+imgStartString.length;
-			FDAObj.image = data.slice(pointer,data.indexOf(imgEndString,pointer));
-			pointer = data.indexOf(linkStartString, pointer) + linkStartString.length;
-			FDAObj.link = data.slice(pointer,data.indexOf(linkEndString,pointer));
-			pointer = data.indexOf(descStartString, pointer) + descStartString.length;
-			FDAObj.description = data.slice(pointer,data.indexOf(descEndString,pointer));
-			pointer = data.indexOf(priceStartString, pointer) + priceStartString.length;
-			FDAObj.price = data.slice(pointer,data.indexOf(priceEndString,pointer));
+			pointer         = data.indexOf(imgStartString, pointer)+imgStartString.length;
+			FDAObj.image    = data.slice(pointer,data.indexOf(imgEndString,pointer));
+			pointer         = data.indexOf(linkStartString, pointer) + linkStartString.length;
+			FDAObj.link     = data.slice(pointer,data.indexOf(linkEndString,pointer));
+			pointer         = data.indexOf(descStartString, pointer) + descStartString.length;
+			FDAObj.title    = data.slice(pointer,data.indexOf(descEndString,pointer));
+			pointer         = data.indexOf(priceStartString, pointer) + priceStartString.length + 1;
+			FDAObj.price    = data.slice(pointer,data.indexOf(priceEndString,pointer));
 
 			FDAArray.push(FDAObj)
 		}
 	}
 	return FDAArray;
 };
-
 
 exports.getSanPablo = function (query) {
 	return axios.get(`https://farmaciasanpablo.com.mx/search/?sort=price-asc&q=${query}`);
