@@ -64,7 +64,7 @@ exports.sanPabloResults = function (data) {
 
 		let FSPObj = {};
 
-		FSPObj.pharmacy = 'Farmacia San Pablo';
+		FSPObj.pharma   = 'Farmacia San Pablo';
 		pointer         = data.indexOf(imgStartString, fspItemIndex[i])+imgStartString.length;
 		FSPObj.image    = data.slice(pointer,data.indexOf(imgEndString,pointer));
 		pointer         = data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
@@ -109,7 +109,7 @@ exports.delAhorroResults = function (data) {
 
 			let FDAObj = {};
 
-			FDAObj.pharmacy = 'Farmacia del Ahorro';
+			FDAObj.pharma   = 'Farmacia del Ahorro';
 			pointer         = data.indexOf(imgStartString, pointer)+imgStartString.length;
 			FDAObj.image    = data.slice(pointer,data.indexOf(imgEndString,pointer));
 			pointer         = data.indexOf(linkStartString, pointer) + linkStartString.length;

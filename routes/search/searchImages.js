@@ -1,6 +1,7 @@
 const express     = require('express'),
       searchSites = express.Router(),
       check       = require(`../../helpers/checker`),
+      auxFunc     = require(`../../helpers/auxFunctions`),
       axios       = require(`axios`),
       Product     = require(`../../models/Product`);
 
@@ -19,7 +20,7 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
 
   //hacer la peticion a Google
 
-  getImageData(req.body.imageString)
+  auxFunc.getImageData(req.body.imageString)
     .then(imageData => {
       console.log('Image Data from Google ======> ', imageData.data.responses)
       let medicine = imageData.data.responses;
@@ -32,16 +33,16 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
     })
 });
 
-searchSites.get(`/prod`, check.isLogged, (req,res) => {
+searchSites.get(`/search/images/prod`, check.isLogged, (req,res) => {
   
-  axios .all([getSanPablo(req,res), getAhorro(req,res)])
+  axios .all([auxFunc.getSanPablo(req,res), auxFunc.getAhorro(req,res)])
         .then(axios.spread((FSP, FA) => {
           let obj = {};
           
           //Data treatment
 
-          obj.SanPablo = sanPabloResults(FSP.data);
-          obj.Ahorro = delAhorroResults(FA.data);
+          obj.SanPablo = auxFunc.sanPabloResults(FSP.data);
+          obj.Ahorro = auxFunc.delAhorroResults(FA.data);
 
           console.log(obj)
 

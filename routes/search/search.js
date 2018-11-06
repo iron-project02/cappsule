@@ -1,6 +1,7 @@
 const express     = require('express'),
       searchSites = express.Router(),
       check       = require(`../../helpers/checker`),
+      auxFunc     = require(`../../helpers/auxFunctions`),
       axios       = require(`axios`),
       Product     = require(`../../models/Product`);
 
@@ -32,14 +33,14 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
 // })
 
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
-  axios .all([getSanPablo(req), getAhorro(req)])
+  axios .all([auxFunc.getSanPablo(req.query.name), auxFunc.getAhorro(req.query.name)])
         .then(axios.spread((FSP, FA) => {
           let obj  = {},
               html = require(`../../helpers/searchHTML`);
 
           // Data treatment
-          obj.SanPablo = sanPabloResults(FSP.data);
-          obj.Ahorro   = delAhorroResults(FA.data);
+          obj.SanPablo = auxFunc.sanPabloResults(FSP.data);
+          obj.Ahorro   = auxFunc.delAhorroResults(FA.data);
 
           obj.notfound = html.noResults();
           obj.html     = html.productCard();
