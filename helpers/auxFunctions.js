@@ -23,9 +23,10 @@ exports.getImageData = async (data) => {
 };
 
 function indexString (string, searchData) {
-	let index = 0
-	let i = 0;
-	let searchIndex = [];
+	let index       = 0,
+      i           = 0,
+			searchIndex = [];
+			
 	while(index>-1){
 			index = searchData.indexOf(string,index);
 			if (index >-1){
@@ -40,23 +41,24 @@ function indexString (string, searchData) {
 exports.sanPabloResults = function (data) {
 
 	// San Pablo Drugstore search results identification
-	let fspSearchIndex = 'col-xs-12 col-sm-6 col-md-4';
-	let fspItemIndex = indexString(fspSearchIndex,data)
+	let fspSearchIndex = `col-xs-12 col-sm-6 col-md-4`,
+      fspItemIndex   = indexString(fspSearchIndex,data);
+
 	console.log('San Pablo results =====> ',fspItemIndex.length)
 	
-	let imgStartString = '<img src="'
-	let imgEndString = '" alt="'
-	let linkStartString = '<a href="'
-	let linkEndString = '">'
-	let titleStartString = '<p class="item-title">'
-	let titleEndString = '</p>'
-	let subtitleStartString = '<p class="item-subtitle">'
-	let subtitleEndString = '</p>'
-	let priceStartString = '<p class="item-prize">'
-	let priceEndString = '<span class="currency">'
+	let imgStartString      = `<img src="`,
+      imgEndString        = `" alt="`,
+      linkStartString     = `<a href="`,
+      linkEndString       = `">`,
+      titleStartString    = `<p class="item-title">`,
+      titleEndString      = `</p>`,
+      subtitleStartString = `<p class="item-subtitle">`,
+      subtitleEndString   = `</p>`,
+      priceStartString    = `<p class="item-prize">`,
+      priceEndString      = `<span class="currency">`;
 
-	let FSPArray = [];
-	let pointer = 0;
+  let FSPArray = [],
+      pointer  = 0;
 	
 	for (let i=0; i<fspItemIndex.length; i++){
 
@@ -64,16 +66,16 @@ exports.sanPabloResults = function (data) {
 
 		FSPObj.pharmacy = 'Farmacia San Pablo';
 		
-		pointer = data.indexOf(imgStartString, fspItemIndex[i])+imgStartString.length;
-		FSPObj.image = data.slice(pointer,data.indexOf(imgEndString,pointer));
-		pointer = data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
-		FSPObj.link = data.slice(pointer,data.indexOf(linkEndString,pointer));
-		pointer = data.indexOf(titleStartString, pointer) + titleStartString.length + 33;
-		FSPObj.title = data.slice(pointer,data.indexOf(titleEndString,pointer));
-		pointer = data.indexOf(subtitleStartString, pointer) + subtitleStartString.length + 29;
+		pointer         = data.indexOf(imgStartString, fspItemIndex[i])+imgStartString.length;
+		FSPObj.image    = data.slice(pointer,data.indexOf(imgEndString,pointer));
+		pointer         = data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
+		FSPObj.link     = `https://www.farmaciasanpablo.com.mx${data.slice(pointer,data.indexOf(linkEndString,pointer))}`;
+		pointer         = data.indexOf(titleStartString, pointer) + titleStartString.length + 33;
+		FSPObj.title    = data.slice(pointer,data.indexOf(titleEndString,pointer));
+		pointer         = data.indexOf(subtitleStartString, pointer) + subtitleStartString.length + 29;
 		FSPObj.subtitle = data.slice(pointer,data.indexOf(subtitleEndString,pointer));
-		pointer = data.indexOf(priceStartString, pointer) + priceStartString.length + 26;
-		FSPObj.price = data.slice(pointer,data.indexOf(priceEndString,pointer));
+		pointer         = data.indexOf(priceStartString, pointer) + priceStartString.length + 27;
+		FSPObj.price    = data.slice(pointer,data.indexOf(priceEndString,pointer));
 		
 		FSPArray.push(FSPObj)
 	}
@@ -127,10 +129,11 @@ exports.delAhorroResults = function (data) {
 
 
 exports.getSanPablo = function (query) {
-	return axios.get(`https://farmaciasanpablo.com.mx/search/?text=${query}`);
+	return axios.get(`https://farmaciasanpablo.com.mx/search/?sort=price-asc&q=${query}`);
 };
 
 exports.getAhorro = function (query) {
 	//let query = new RegExp(`.*${req.query.name}.*`);
-	return axios.get(`http://www.fahorro.com/catalogsearch/result/?dir=asc&limit=56&order=price&q=${query}`);
+	return axios.get(`http://www.fahorro.com/catalogsearch/result/index/?dir=asc&order=price&q=${query}`);
 };
+

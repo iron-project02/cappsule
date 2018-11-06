@@ -8,7 +8,7 @@ searchForm.onsubmit = e => {
   e.preventDefault();
   axios .get(`${window.location.origin}/prod?${e.target[0].name}=${e.target[0].value}`)
         .then(search => {
-          const container = document.getElementById(`search-results`);
+          const container = document.querySelector(`#search-results > div`);
           container.innerHTML = ``;
           console.log(search);
           console.log(`===`);
