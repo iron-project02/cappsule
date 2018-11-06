@@ -26,6 +26,11 @@
 .menu-cards .uk-card-primary.uk-card-hover:hover h2 {
   color: var(--cold);
 }
+#search-form button:hover {
+  background: var(--cold);
+  border-radius: 0.8vw;
+  color: var(--main);
+}
 
 @media only screen and (min-width: 640px) {
   .menu-cards {

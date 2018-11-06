@@ -31,22 +31,30 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
 //             res.json(search)
 //           });
 // })
+function getSanPablo(req) {
+  return axios.get(`https://farmaciasanpablo.com.mx/search/?sort=price-asc&q=${req.query.name}`);
+}
 
 searchSites.get(`/prod`, check.isLogged, (req,res) => {
   
   axios .all([auxiliar.getSanPablo(req.query.name), auxiliar.getAhorro(req.query.name)])
         .then(axios.spread((FSP, FA) => {
-          let obj = {};
-          
-          //Data treatment
+          let obj  = {},
+              html = require(`../../helpers/searchHTML`);
 
           obj.SanPablo = auxiliar.sanPabloResults(FSP.data);
           obj.Ahorro = auxiliar.delAhorroResults(FA.data);
 
-          console.log(obj)
+          obj.notfound = html.noResults();
+          obj.html     = html.productCard();
 
           res.json(obj);
         }));
-})
+});
+
+searchSites.post(`/prod`, check.isLogged, (req,res) => {
+  Product.create()
+  console.log(req.body);
+});
 
 module.exports = searchSites;

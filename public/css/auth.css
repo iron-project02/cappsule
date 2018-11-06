@@ -1,9 +1,11 @@
 .uk-navbar-nav>li>a {
+  color: var(--main);
+}
+.uk-navbar-nav>li:hover>a {
   color: var(--neutral);
 }
 .background {
   background: var(--cold);
-  /* height: 50vh; */
   position: absolute;
   top: 0;
   left: 0;
@@ -24,9 +26,6 @@
   margin: 0 auto;
   padding: 1.5vh 0;
   padding-left: 14px;
-}
-.auth-container {
-  z-index: 1;
 }
 .auth-field label {
   display: block;
