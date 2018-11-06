@@ -80,7 +80,7 @@ function sanPabloResults (data) {
     FSPObj.title = data.slice(pointer,data.indexOf(titleEndString,pointer));
     pointer = data.indexOf(subtitleStartString, pointer) + subtitleStartString.length + 29;
     FSPObj.subtitle = data.slice(pointer,data.indexOf(subtitleEndString,pointer));
-    pointer = data.indexOf(priceStartString, pointer) + priceStartString.length + 26;
+    pointer = data.indexOf(priceStartString, pointer) + priceStartString.length + 27;
     FSPObj.price = data.slice(pointer,data.indexOf(priceEndString,pointer));
     
     FSPArray.push(FSPObj)
@@ -107,7 +107,7 @@ function delAhorroResults (data) {
     let linkEndString = '" title="';
     let descStartString = '" title="';
     let descEndString = '">';
-    let priceStartString = '<span class="price">'
+    let priceStartString = '<span class="price">$'
     let priceEndString = '</span>'
 
     let pointer = data.indexOf(fdaInitString)
