@@ -1,5 +1,7 @@
-const mailer    = require(`nodemailer`),
-      transport = mailer.createTransport({
+const mailer      = require(`nodemailer`),
+      hbs         = require(`hbs`),
+      fs          = require(`fs`),
+      transporter = mailer.createTransport({
         service: `SendGrid`,
         auth: {
           user: process.env.SEND_USER,
@@ -7,18 +9,38 @@ const mailer    = require(`nodemailer`),
         }
       });
 
-transport.verify(function(err, succ) {
-  if (err) console.log(err);
-  else console.log('SendGrid is ready to send mail');
+transporter.verify(function(err, succ) {
+  if (err) return console.log(err);
+  console.log('SendGrid is ready to send mail');
 });
 
-exports.send = (options) => {
+const generateHTML = user => {
+        const html = hbs.compile(fs.readFileSync((__dirname, `./views/mailing.hbs`), `utf8`));
+        return html(user);
+      },
+      welcomeTXT = user => `\n
+      Welcome, ${user.name}!\n\n
+
+      You are now part of the great Cappsule community.\n
+      Find out all the features we have to offer, by loggin in.\n
+      https://cappsule-app.herokuapp.com\n\n
+
+      Some of these are:\n
+      • Find the cheapest option\n
+      • Have control of all your medicines\n
+      • Get reminders about your treatments\n\n
+
+      We are really happy you to see you around!\n\n\n
+
+      Cappsule team.`;
+
+exports.send = user => {
   const mailOptions = {
-    from:    `Cappsule App <noreply@ironhack.com>`,
-    to:      options.email,
-    subject: `Subject: ${options.subject}`,
-    text:    options.message,
-    hmtl:    `<h1>${options.subject}</h1>`
+    from:    `Cappsule Team \<noreply@cappsule.com\>`,
+    to:      user.email,
+    subject: `Welcome to Cappsule, ${user.name}! 💊`,
+    text:    welcomeTXT(user),
+    html:    generateHTML(user)
   };
-  return transport.sendMail(mailOptions);
+  return transporter.sendMail(mailOptions);
 };
