@@ -4,33 +4,55 @@ const express     = require('express'),
       axios       = require(`axios`),
       Product     = require(`../../models/Product`);
 
-searchSites.get(`/search`, check.isLogged, (req,res) => {
-  let query = new RegExp(`.*${req.query.name}.*`);
-    Product .find({$or : [{name: {$regex: query, $options: `i`}}, {ingredient: {$regex: query, $options: `i`}}]})
-            .sort({price: 1})
-            .then(products => {
-              const {user} = req;
-              let data = {
-                title: `"${req.query.name}" - Results`,
-                css:   `search`,
-                js:    `search`
-              };
-              res.render(`private/search`, {data, user, products});
-            });
+
+searchSites.get(`/search/image`, check.isLogged, (req, res) =>{
+  
+  res.render('private/searchImages.hbs');
+
+})
+
+searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
+  
+  console.log('Front Data ======>', req.body.imageString.length)
+
+  //res.json(req.body.imageString.length)
+
+  //hacer la peticion a Google
+
+  getImageData(req.body.imageString)
+    .then(imageData => {
+      console.log('Image Data from Google ======> ', imageData.data.responses)
+      let medicine = imageData.data.responses;
+      //res.redirect('/');
+      //res.render('private/search', {medicine})
+      res.json(medicine);
+    })
+    .catch(err => {
+      console.log('Error google request =====>', err)
+    })
 });
 
-// searchSites.get(`/prod`, check.isLogged, (req,res) => {
-//   let query = new RegExp(`.*${req.query.name}.*`);
-//   Product .find({$or : [{name: {$regex: query, $options: `i`}}, {ingredient: {$regex: query, $options: `i`}}]})
-//           .sort({price: 1})
-//           .then(search => {
-//             let html = require(`../../helpers/searchHTML`);
-//             search.push(html.noResults());
-//             search.push(html.productCard());
-//             res.json(search)
-//           });
-// })
-
+const getImageData = async (data) => {
+  try {
+    return await axios.post(`https://vision.googleapis.com/v1/images:annotate?key=${process.env.VISION_API_KEY}`, {
+      "requests":[
+        {
+          "image":{
+            "content": data
+          },
+          "features":[
+            {
+              "type":"TEXT_DETECTION",
+              "maxResults":10
+            }
+          ]
+        }
+      ]
+    });
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 function indexString(string, searchData) {
   let index = 0

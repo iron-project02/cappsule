@@ -52,16 +52,18 @@ app.locals.appTitle = ' | Cappsule: Medicine cabinet on the go';
 const index     = require('./routes/index'),
 	  authSites   = require(`./routes/auth/auth`),
 	  searchSites = require('./routes/search/search'),
-	  remiSites   = require('./routes/reminder/reminder'),
+	  seaImgSites = require('./routes/search/searchImages'),
+	  adminSites  = require(`./routes/user/admin`),
 	  userSites   = require(`./routes/user/profile`),
-	  treaSites   = require(`./routes/treatment/treatment`);
-	  prodSites   = require(`./routes/product/product`),
-	  kitSites    = require(`./routes/inventory/inventory`),
-	  adminSites  = require(`./routes/user/admin`);
+	  remiSites   = require('./routes/reminder'),
+	  treaSites   = require(`./routes/treatment`);
+	  prodSites   = require(`./routes/product`),
+	  kitSites    = require(`./routes/inventory`);
 
 app .use('/', index)
 		.use(`/`, authSites)
 		.use('/', searchSites)
+		.use('/', seaImgSites)
 		.use('/', remiSites)
 		.use(`/`, userSites)
 		.use(`/`, treaSites)

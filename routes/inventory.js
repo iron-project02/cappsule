@@ -1,11 +1,11 @@
 const express   = require('express'),
       kitSites  = express.Router();
-      check     = require(`../../helpers/checker`),
-      multer    = require(`../../helpers/multer`),
-      User      = require(`../../models/User`),
-      Product   = require(`../../models/Product`);
-      Kit       = require(`../../models/Kit`);
-      Inventory = require(`../../models/Inventory`);
+      check     = require(`../helpers/checker`),
+      multer    = require(`../helpers/multer`),
+      User      = require(`../models/User`),
+      Product   = require(`../models/Product`);
+      Kit       = require(`../models/Kit`);
+      Inventory = require(`../models/Inventory`);
 
 //Find User's Kits
 kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {

@@ -3,12 +3,17 @@
   <button id="capture">Capturar</button>
   <canvas id="snapshot" width=320 height=240></canvas>
 </div>
+<div>
+  <input id="searchResults" name="name"></input>
+</div>
 
 <script>
   var player = document.getElementById('player'); 
   var snapshotCanvas = document.getElementById('snapshot');
   var captureButton = document.getElementById('capture');
   var videoTracks;
+
+  var searchResults;
 
   var handleSuccess = function(stream) {
     // Attach the video stream to the video element and autoplay.
@@ -27,11 +32,22 @@
     $.ajax({
       type: 'POST',
       url: 'http://localhost:5000/search/image',
-      data: {imageString: dataString},
+      data: {
+        imageString: dataString,
+        },
       dataType: 'json',
       success: function (data) {
+
+        console.log('Succeded ======>');
+        console.log(data)
+
+        searchResults = data[0];
+
+        console.log('Results ======> ',searchResults)
+
+        document.getElementById('searchResults').setAttribute('value', searchResults.textAnnotations[0].description)
+
         //alert('Ok');
-        //console.log('Srcceded ======>');
       }
     })
     
