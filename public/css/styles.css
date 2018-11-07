@@ -76,6 +76,7 @@ nav {
 }
 main {
   flex: 1 0 auto;
+  min-height: calc(100vh - 50px);
   padding-top: 50px;
   z-index: 0;
 }
@@ -155,6 +156,7 @@ footer {
   align-items: center;
   height: 40px;
   opacity: 0.6;
+  transform: rotateY(90deg);
   width: 40px;
 }
 .back-to-top .uk-totop {
@@ -177,6 +179,14 @@ footer {
 }
 .back-to-top .uk-totop:focus {
   color: var(--main);
+}
+.show-btt {
+  animation: showBtt 350ms ease forwards;
+}
+@keyframes showBtt {
+  to {
+    transform: rotateY(0);
+  }
 }
 
 .uk-drop {
