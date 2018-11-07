@@ -44,6 +44,33 @@
   border-radius: 0.8vw;
   color: var(--main);
 }
+.search-image {
+  cursor: pointer;
+  height: 40px;
+}
+.search-image a {
+  background: var(--neutral);
+  border-radius: 0.8vw;
+  color: var(--main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  height: 100%;
+  text-align: center;
+  transition: all 200ms ease;
+}
+.search-image:hover a {
+  background: var(--cold);
+  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
+  color: var(--main);
+}
+.search-image:active a {
+  background: var(--main);
+  box-shadow: inset 3px 5px 5px rgb(148,192,233,0.6);
+  color: var(--cold);
+}
+
 
 @media only screen and (min-width: 640px) {
   .menu-cards {
@@ -58,6 +85,10 @@
   .menu-cards .uk-card h2 span svg {
     height: 20px;
     width: 20px;
+  }
+  .search-image a svg {
+    height: 35px;
+    width: 35px;
   }
 }
 @media only screen and (min-width: 1200px) {
