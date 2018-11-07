@@ -162,14 +162,6 @@ function deleteResult(e) {
     axios .delete(e.target.dataset.click)
           .then(() => {
             cards.removeChild(card);
-            btn.onclick = (function notifUserDeleteOK() {
-              UIkit.notification({
-                message: `<span uk-icon=\'icon: check\'></span> User deleted`,
-                status:  `success`,
-                pos:     `top-center`,
-                timeout: 3000
-              });
-            })();
           })
           .catch(err => {
             btn.classList = `error-delete`;

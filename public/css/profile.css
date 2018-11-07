@@ -15,12 +15,6 @@
 .menu-cards a {
   text-decoration: none;
 }
-.menu-cards a:focus {
-  outline: none;
-}
-.menu-cards a:focus > div {
-  box-shadow: 0 0 10px var(--main);
-}
 .menu-cards .uk-card-primary {
   background: var(--cold);
   transition: all 200ms ease;
@@ -32,76 +26,14 @@
 .menu-cards .uk-card-primary.uk-card-hover:hover h2 {
   color: var(--cold);
 }
-.menu-cards {
-  min-width: 100vw;
-}
-.menu-cards .uk-card-body {
-  padding: 15px;
-}
-.menu-cards .uk-card h2 {
-  font-size: 1.3rem;
-}
-.menu-cards .uk-card h2 span svg {
-  height: 15px;
-  width: 15px;
-}
 #search-form button:hover {
   background: var(--cold);
   border-radius: 0.8vw;
   color: var(--main);
 }
-.search-image {
-  cursor: pointer;
-  height: 40px;
-}
-.search-image a {
-  background: var(--neutral);
-  border-radius: 0.8vw;
-  color: var(--main);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  height: 100%;
-  text-align: center;
-  transition: all 200ms ease;
-}
-.search-image:hover a {
-  background: var(--cold);
-  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
-  color: var(--main);
-}
-.search-image:active a {
-  background: var(--main);
-  box-shadow: inset 3px 5px 5px rgb(148,192,233,0.6);
-  color: var(--cold);
-}
-
 
 @media only screen and (min-width: 640px) {
   .menu-cards {
     min-width: 50vw;
-  }
-  .menu-cards .uk-card-body {
-    padding: 30px;
-  }
-  .menu-cards .uk-card h2 {
-    font-size: 1.7rem;
-  }
-  .menu-cards .uk-card h2 span svg {
-    height: 20px;
-    width: 20px;
-  }
-  .search-image a svg {
-    height: 35px;
-    width: 35px;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  .menu-cards .uk-card-body {
-    padding: 40px;
-  }
-  .menu-cards .uk-card h2 {
-    font-size: 2rem;
   }
 }
