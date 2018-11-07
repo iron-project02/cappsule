@@ -4,6 +4,24 @@ const searchJS   = document.querySelector(`script[src='/js/search.js']`),
 axiosJS.src = `https://unpkg.com/axios/dist/axios.min.js`;
 document.body.insertBefore(axiosJS, searchJS);
 
+console.log(`search.js`);
+
+window.onload = () => {
+  console.log(`loaded`);
+  
+  console.log(`${window.location.origin}/search/getSP`);
+  
+  axios.get(`${window.location.origin}/search/getSP`)
+        .then(result => {
+          console.log(`axios`);
+          
+          console.log(result);
+          
+          const container = document.querySelector(`.uk-modal-body`);
+          container.innerHTML = result.data.html;
+        });
+}
+
 searchForm.onsubmit = e => {
   e.preventDefault();
   axios .get(`${window.location.origin}/prod?${e.target[0].name}=${e.target[0].value}`)
