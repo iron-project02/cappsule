@@ -45,6 +45,15 @@
   height: 15px;
   width: 15px;
 }
+#search-modal .uk-modal-dialog .uk-grid {
+  width: 90vw;
+}
+#search-form input {
+  /* font-size: 1.75rem; */
+}
+#search-form button{
+  display: none;
+}
 #search-form button:hover {
   background: var(--cold);
   border-radius: 0.8vw;
@@ -65,6 +74,7 @@
   height: 100%;
   text-align: center;
   transition: all 200ms ease;
+  width: 80px;
 }
 .search-image:hover a {
   background: var(--cold);
@@ -79,6 +89,15 @@
 
 
 @media only screen and (min-width: 640px) {
+  #search-modal .uk-modal-dialog .uk-grid {
+    width: initial;
+  }
+  #search-form input {
+    font-size: 2.6rem;
+  }
+  #search-form button{
+    display: flex;
+  }
   .menu-cards {
     min-width: 50vw;
   }
