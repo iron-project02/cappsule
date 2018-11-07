@@ -6,6 +6,8 @@ document.body.insertBefore(axiosJS, adminJS);
 window.onload = () => {
   console.log(`Running admin.js`);
 
+  loader();
+
   addEventListener(`submit`, onSubmit);
   addEventListener(`click`, onDelete);
 
