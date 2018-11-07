@@ -70,11 +70,12 @@ exports.sanPabloResults = data => {
 		pointer         = data.indexOf(linkStartString, pointer) + linkEndString.length + 7;
 		FSPObj.link     = `https://www.farmaciasanpablo.com.mx${data.slice(pointer,data.indexOf(linkEndString,pointer))}`;
 		pointer         = data.indexOf(titleStartString, pointer) + titleStartString.length + 33;
-		FSPObj.title    = data.slice(pointer,data.indexOf(titleEndString,pointer));
+		FSPObj.title1   = data.slice(pointer,data.indexOf(titleEndString,pointer));
 		pointer         = data.indexOf(subtitleStartString, pointer) + subtitleStartString.length + 29;
-		FSPObj.subtitle = data.slice(pointer,data.indexOf(subtitleEndString,pointer));
+		FSPObj.title2		= data.slice(pointer,data.indexOf(subtitleEndString,pointer));
 		pointer         = data.indexOf(priceStartString, pointer) + priceStartString.length + 27;
 		FSPObj.price    = data.slice(pointer,data.indexOf(priceEndString,pointer));
+		FSPObj.title 		= `${FSPObj.title1} ${FSPObj.title2}`;
 		
 		FSPArray.push(FSPObj);
 	}
