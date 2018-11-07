@@ -15,6 +15,9 @@ searchSites.get(`/search/image`, check.isLogged, (req, res) =>{
 });
 
 searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
+
+  const {user} = req;
+
   //res.render('private/search.hbs');
   //console.log('Front Data ======>', req.body.imageString.length)
 
@@ -28,19 +31,24 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
       // la informacion a la vista de los resultados de la busqueda
 
       console.log('Image Data from Google ======> ', imageData.data.responses)
-      let medicine = imageData.data.responses[0].textAnnotations[0].description;
-      let medicine2 = imageData.data.responses[0].fullTextAnnotation.text;
-      console.log('Text =====> ', medicine )
-      console.log('Text =====> ', medicine2 )
-      //res.redirect('/');
+      let medicine = imageData.data.responses[0].textAnnotations[1].description;
+      let medicine2 = imageData.data.responses[0].textAnnotations[2].description;
+      //let medicine2 = imageData.data.responses[0].fullTextAnnotation.text;
+      console.log('Text =====> ', medicine)
+      console.log('Text =====> ', medicine2)
+      ////res.redirect('/');
       let variable = {
-        name: 'Hola Mundo'
+        description: imageData.data.responses[0].fullTextAnnotation.text
       }
-      res.render('private/search', {variable, medicine, medicine2})
+      let data = {
+        title: "Search by Image"
+      }
+      res.render('private/search', {user, variable, medicine, medicine2, data})
       //res.json(medicine);
     })
     .catch(err => {
-      console.log('Error google request =====>', err)
+      console.log('Error google request =====>', err);
+      res.render('private/searchImages.hbs', {user});
     });    
 });
 
