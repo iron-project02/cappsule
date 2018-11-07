@@ -28,12 +28,12 @@ function indexString(string, searchData) {
 			searchIndex = [];
 			
 	while (index > -1) {
-			index = searchData.indexOf(string,index);
-			if (index > -1) {
-					searchIndex[i] = index;    
-					i++;
-					index ++;
-			}
+		index = searchData.indexOf(string,index);
+		if (index > -1) {
+				searchIndex[i] = index;    
+				i++;
+				index ++;
+		}
 	}
 	return searchIndex;
 }
