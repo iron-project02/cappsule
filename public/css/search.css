@@ -2,8 +2,12 @@
   display: flex;
   justify-content: flex-end;
 }
-#search-form {
-  width: 100%;
+.search-products {
+  background: #f6f6f6;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+  z-index: 979;
 }
 #search-form input {
   background: #fff;
@@ -41,11 +45,11 @@
 }
 .search-image:hover a {
   background: var(--cold);
-  box-shadow: 0 5px 5px rgba(0,40,86,0.6);;
+  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
   color: var(--main);
 }
 .search-image:active a {
   background: var(--neutral);
-  box-shadow: inset 3px 5px 5px rgba(0,40,86,0.6);;
+  box-shadow: inset 3px 5px 5px rgba(0,40,86,0.6);
   color: var(--main);
 }
