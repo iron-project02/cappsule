@@ -26,6 +26,19 @@
 .menu-cards .uk-card-primary.uk-card-hover:hover h2 {
   color: var(--cold);
 }
+.menu-cards {
+  min-width: 100vw;
+}
+.menu-cards .uk-card-body {
+  padding: 15px;
+}
+.menu-cards .uk-card h2 {
+  font-size: 1.3rem;
+}
+.menu-cards .uk-card h2 span svg {
+  height: 15px;
+  width: 15px;
+}
 #search-form button:hover {
   background: var(--cold);
   border-radius: 0.8vw;
@@ -35,5 +48,23 @@
 @media only screen and (min-width: 640px) {
   .menu-cards {
     min-width: 50vw;
+  }
+  .menu-cards .uk-card-body {
+    padding: 30px;
+  }
+  .menu-cards .uk-card h2 {
+    font-size: 1.7rem;
+  }
+  .menu-cards .uk-card h2 span svg {
+    height: 20px;
+    width: 20px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .menu-cards .uk-card-body {
+    padding: 40px;
+  }
+  .menu-cards .uk-card h2 {
+    font-size: 2rem;
   }
 }
