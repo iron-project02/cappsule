@@ -192,10 +192,3 @@ footer {
 .uk-drop {
   z-index: 979;
 }
-
-@media only screen and (min-width: 640px) {
-  /* .uk-logo .navbar-logo, .uk-navbar-right .profile-pic { */
-    /* height: 50px;
-    width: 50px; */
-  /* } */
-}
