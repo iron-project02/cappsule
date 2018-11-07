@@ -80,7 +80,7 @@ main {
   padding-top: 50px;
   z-index: 0;
 }
-.uk-card {
+.uk-card, .uk-tile {
   border-radius: 0.8vw;
 }
 .errorCard {

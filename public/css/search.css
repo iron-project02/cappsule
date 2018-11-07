@@ -53,3 +53,13 @@
   box-shadow: inset 3px 5px 5px rgba(0,40,86,0.6);
   color: var(--main);
 }
+#search-results div[uk-grid] div a {
+  text-decoration: none;
+}
+#search-results div[uk-grid] > div:hover > a > div{
+  background: var(--neutral);
+  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
+}
+#search-results div[uk-grid] > div > a > div {
+  transition: all 250ms ease;
+}
