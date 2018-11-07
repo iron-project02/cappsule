@@ -11,7 +11,8 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
                 title: `"${req.query.name}" - Results`,
                 css:   `search`
               },
-              obj  = {};
+              {user} = req,
+              obj    = {};
 
           // Data treatment
           obj.SanPablo = auxFunc.sanPabloResults(FSP.data);
@@ -26,7 +27,7 @@ searchSites.get(`/search`, check.isLogged, (req,res) => {
                   priceB = parseFloat(b.price);
               return priceA - priceB;
             });
-            await res.render(`private/search`, {data, products});
+            await res.render(`private/search`, {data, user, products, obj});
           })(products);
         }));
 });

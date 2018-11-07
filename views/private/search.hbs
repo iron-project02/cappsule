@@ -1,9 +1,10 @@
 <div class="map-wrapper" uk-lightbox>
   <a href="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15053.353020892524!2d-99.1713847!3d19.3977857!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbb5d8a3084e2a6ae!2sIronhack+Mexico+City!5e0!3m2!1sen!2smx!4v1541120853303" data-caption="Google Maps" data-type="iframe" uk-icon="location"></a>
 </div>
+
 <div class="search-products uk-grid-small uk-grid-match uk-margin" uk-grid>
   <div class="uk-width-5-6">
-    <form action="/prod" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-default">
+    <form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-default">
       <input name="name" type="search" placeholder="Search..." autocomplete="on" autofocus class="uk-search-input">
       <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
     </form>
@@ -14,39 +15,22 @@
 </div>
 
 <div id="search-results">
-  <div class="uk-child-width-1-2@s uk-child-width-1-3@l uk-grid-small" uk-grid uk-height-match="target:>div>*">
+  <div class="uk-child-width-1-2@s uk-child-width-1-3@l uk-grid-small" uk-grid uk-height-match="target:>div>*>*">
   {{#each products as |product|}}
     {{#with product}}
       <div>
-        <div class="uk-tile uk-tile-default uk-padding-small">
-          <p>{{pharmacy}}</p>
-          <div class="uk-text-center">
-            <img data-src="{{image}}" alt="{{name}}" height="240" width="240" uk-img>
+        <a href="{{link}}" title="Go to {{pharma}}" target="_blank">
+          <div class="uk-tile uk-tile-default uk-padding-small">
+            <p>{{pharma}}</p>
+            <div class="uk-text-center">
+              <img data-src="{{image}}" alt="{{title}}" height="240" width="240" uk-img>
+            </div>
+            <h4>{{title}}</h4>
+            <p>$ {{price}} MXN</p>
           </div>
-          <h4>{{name}}</h4>
-          <p>{{ingredient}}</p>
-          <p>{{presentation}}</p>
-          <p>{{quantity}}</p>
-          <p>$ {{price}}</p>
-        </div>
+        </a>
       </div>
     {{/with}}
   {{/each}}
   </div>
 </div>
-
-{{#if medicine}}
-
-  <p>{{medicine}}</p>
-  
-{{/if}}
-{{#if medicine2}}
-
-  <p>{{medicine2}}</p>
-  
-{{/if}}
-{{#if variable}}
-
-  <p>{{variable.name}}</p>
-  
-{{/if}}
