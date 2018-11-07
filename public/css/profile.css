@@ -15,6 +15,12 @@
 .menu-cards a {
   text-decoration: none;
 }
+.menu-cards a:focus {
+  outline: none;
+}
+.menu-cards a:focus > div {
+  box-shadow: 0 0 10px var(--main);
+}
 .menu-cards .uk-card-primary {
   background: var(--cold);
   transition: all 200ms ease;
