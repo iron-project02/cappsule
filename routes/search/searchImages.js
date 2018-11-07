@@ -58,7 +58,7 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
                   priceB = parseFloat(b.price);
               return priceA - priceB;
             });
-            await console.log(allProducts);
+            await console.log(products);
           })(products);
 
           res.render('private/search', {data, user, variable, products, medicine, medicine2})
