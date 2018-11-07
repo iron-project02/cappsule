@@ -2,7 +2,7 @@ const express   = require(`express`),
       authSites = express.Router(),
       passport  = require(`passport`),
       check     = require(`../../helpers/checker`),
-      mail      = require(`../../helpers/mailer`),
+      mailer    = require(`../../helpers/mailer`),
       User      = require(`../../models/User`),
       Kit       = require(`../../models/Kit`);
 
@@ -22,19 +22,14 @@ authSites.post(`/auth/register`, (req,res) => {
     register: true
   };
   if (req.body.username === `` || req.body.password === ``) return res.render(`auth/auth`, {data, errorMessage: `Please indicate username and password`});
-  if (req.body.password !== req.body[`confirm-password`]) return res.render(`auth/auth`, {data, errorMessage: `Passwords don't coincide`});
+  if (req.body.password !== req.body[`confirm-password`]) return res.render(`auth/auth`, {data, errorMessage: `Passwords don't match`});
   const {username, email, name, password} = req.body;
   User.register({username, email, name}, password)
       .then(user => {
-        Kit.create({userId: user._id})
+        Kit.create({userId: user._id, kitKey: `${user._id}Home`})
             .then(() => {
-              // const options = {
-              //   email:   user.email,
-              //   subject: `Confirma tu correo`,
-              //   message: `Confirm to get cookies`
-              // };
-              // mail.send(options);
-              res.redirect(`/auth/login`)
+              mailer.send(user);
+              res.redirect(`/auth/login`);
             });
       })
       .catch( err => {

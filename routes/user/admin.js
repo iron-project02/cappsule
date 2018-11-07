@@ -4,7 +4,8 @@ const express    = require(`express`)
       User       = require(`../../models/User`),
       Offer      = require(`../../models/Offer`),
       Product    = require(`../../models/Product`),
-      Pharmacy   = require(`../../models/Pharmacy`);
+      Pharmacy   = require(`../../models/Pharmacy`),
+      Kit        = require(`../../models/Kit`);
 
 adminSites.post(`/admin/:id/create`, check.isLogged, check.isAdmin, (req,res) => {
   if (req.query.alias !== undefined) {
@@ -34,7 +35,7 @@ adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => 
   if (req.query.email !== undefined) {
     let query = new RegExp(`.*${req.query.email}.*`);
 
-    return User.find({email: { $regex: query, $options: `i` }}).then(search => {
+    return User.find({email: { $regex: query, $options: `i` }}).sort({email: 1}).then(search => {
       let html = require(`../../helpers/adminHTML`);
       search.push(html.noResults());
       search.push(html.userEditForm());
@@ -50,6 +51,7 @@ adminSites.patch(`/admin/:id/update`, check.isLogged, check.isAdmin, (req,res) =
 });
 
 adminSites.delete(`/admin/:id/delete/:user`, check.isLogged, check.isAdmin, (req,res) => {
+  Kit.deleteOne({userId: req.params.user}).catch(err => console.log(err));
   return User.findByIdAndDelete(req.params.user).then(user => res.json(user));
 });
 
