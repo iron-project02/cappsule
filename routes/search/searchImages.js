@@ -7,8 +7,10 @@ const express     = require('express'),
 
 
 searchSites.get(`/search/image`, check.isLogged, (req, res) =>{
+
+  const {user} = req;
   
-  res.render('private/searchImages.hbs');
+  res.render('private/searchImages.hbs', {user});
 
 });
 
