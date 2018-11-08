@@ -74,9 +74,17 @@
 .add-product-wrapper {
   text-align: right;
 }
+.add-product-wrapper span.buy-button {
+  background: green;
+  color: white;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+.add-product-wrapper span.buy-button:hover {
+  background: darkgreen;
+}
 .add-product-wrapper button {
   background: var(--main);
-  border-radius: 0.8vw;
   color: var(--cold);
   transition: all 200ms ease;
 }
