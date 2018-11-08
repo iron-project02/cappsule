@@ -23,7 +23,8 @@ a {
 a:hover {
   color: var(--main);
 }
-button { 
+button, .uk-button {
+  border-radius: 0.8vw;
   cursor: pointer;
 }
 nav {
