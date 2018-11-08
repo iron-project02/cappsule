@@ -7,15 +7,21 @@ const express    = require(`express`)
       Pharmacy   = require(`../../models/Pharmacy`),
       Kit        = require(`../../models/Kit`);
 
+adminSites.get(`/admin/:id`, check.isLogged, check.isAdmin, (req,res) => {
+  let data = {
+        title: `Admin - ${req.user.name}`,
+        css:   `admin`,
+        js:    `admin`
+      },
+      {user} = req;
+  Product.find().then(products => {
+    Pharmacy.find().then(pharmacies => res.render(`private/admin`, {data, user, products, pharmacies}));
+  });
+});
+
 adminSites.post(`/admin/:id/create`, check.isLogged, check.isAdmin, (req,res) => {
   if (req.query.alias !== undefined) {
-    Product.find({name: req.body.productId}).then(product => {
-      Pharmacy.find({name: req.body.pharmacyId}).then(pharmacy => {
-        req.body.productId  = product[0]._id;
-        req.body.pharmacyId = pharmacy[0]._id;
-        Offer.create(req.body).then(offer => res.json(offer)).catch(err => res.json(err))
-      });
-    });
+    Offer.create(req.body).then(offer => res.json(offer)).catch(err => res.json(err));
   }
 });
 
@@ -34,11 +40,21 @@ adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => 
   }
   if (req.query.email !== undefined) {
     let query = new RegExp(`.*${req.query.email}.*`);
-
     return User.find({email: { $regex: query, $options: `i` }}).sort({email: 1}).then(search => {
       let html = require(`../../helpers/adminHTML`);
       search.push(html.noResults());
       search.push(html.userEditForm());
+      res.json(search);
+    });
+  }
+  if (req.query.product !== undefined) {
+    let query = new RegExp(`.*${req.query.product}.*`);
+    return Product.find({name: { $regex: query, $options: `i` }}).sort({name: 1}).then(search => {
+      console.log(search);
+      
+      let html = require(`../../helpers/adminHTML`);
+      search.push(html.noResults());
+      search.push(html.productEditForm());
       res.json(search);
     });
   }

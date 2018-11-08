@@ -77,6 +77,23 @@ function getResults(e) {
             }
           });
   }
+  if (e.target.id === `search-product`) {
+    axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
+          .then(search => {
+            const container = document.getElementById(`product-results`);
+            container.innerHTML = ``;
+            let onlyProducts = search.data.filter(item => typeof item === `object`),
+                html         = search.data.filter(item => typeof item === `string`);
+
+            if (typeof search.data[0] === `object`) {
+              onlyProducts.forEach(product => {
+                container.insertAdjacentHTML(`beforeend`, eval('`'+html[1]+'`'));
+              });
+            } else {
+              container.insertAdjacentHTML(`beforeend`, html[0]);
+            }
+          });
+  }
   if (e.target.id === `search-user`) {
     axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
           .then(search => {
