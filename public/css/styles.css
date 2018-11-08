@@ -141,10 +141,23 @@ img.pill {
   animation: errorH2 600ms ease-in 275ms forwards;
 }
 .not-found-wrapper p {
+  cursor: pointer;
+  display: inline-block;
   text-align: center;
 }
-.not-found-wrapper p span {
-  cursor: pointer;
+.not-found-wrapper p img {
+  background: var(--main);
+  border-radius: 100%;
+  display: inline-block;
+  height: 30px;
+  margin-right: 5px;
+  padding: 5px;
+  width: 30px;
+  transition: all 500ms ease;
+}
+.not-found-wrapper p:hover img {
+  background: var(--cold);
+  transform: rotate(-400deg);
 }
 footer {
   margin-top: 5vh;
