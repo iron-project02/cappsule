@@ -1,12 +1,19 @@
 <h1 class="uk-text-center">Edit my profile</h1>
 
-<h2>Account information</h2>
-<form action="/user/{{user._id}}/edit" method="post" enctype="multipart/form-data" class="uk-flex uk-flex-column uk-margin uk-margin-large-top">
-  <div class="uk-margin-auto uk-text-center">
-    <div class="user-edit-field">
-      <label for="profile_pic">Profile pic</label>
-      <input name="profile_pic" type="file" value="{{user.profile_pic}}">
+<h3>Edit profile pic</h3>
+<div class="js-upload uk-placeholder uk-text-center">
+    <span uk-icon="icon: cloud-upload"></span>
+    <span class="uk-text-middle">Drop your photo here or</span>
+    <div uk-form-custom>
+        <input name="profile_pic" type="file" value="{{user.profile_pic}}">
+        <span class="uk-link">browse your files</span>
     </div>
+</div>
+<progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+
+<h3 class="uk-margin-large-top">Basic info</h3>
+<form action="/user/{{user._id}}/edit" method="post" enctype="multipart/form-data" id="edit-user" class="uk-flex uk-flex-column uk-margin uk-margin-small-top">
+  <div class="uk-margin-auto">
     <div class="user-edit-field">
       <label for="name">Name</label>
       <input name="name" type="text" placeholder="Your name" value="{{user.name}}" required>
@@ -46,21 +53,25 @@
         <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
       </div>
     {{/if}}
-    <button type="submit">Save</button>
+    <div class="button-wrapper uk-margin">
+      <button type="submit" class="uk-button">Save</button>
+    </div>
   </div>
 </form>
 
 <h3>Delete account</h3>
-<button uk-toggle="target: #delete-user" type="button" class="uk-button uk-button-danger">Delete account</button>
+<p class="uk-text-center">
+  <button uk-toggle="target: #delete-user" type="button" class="uk-button uk-button-danger">Are you sure?</button>
+</p>
 <div id="delete-user" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <h2 class="uk-modal-title uk-text-danger">Warning</h2>
-        <p>Your about to delete your account and this is can't be undone.</p>
-        <p>Once you delete it, all your information will be lost.</p>
-        <p>Are you sure you want to proceede?</p>
-        <p class="uk-text-right">
-          <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-          <a href="/user/{{user._id}}/delete" type="button" class="uk-button uk-button-danger">Delete forever</a>
-        </p>
-    </div>
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+    <h2 class="uk-modal-title uk-text-danger">Warning!</h2>
+    <p class="uk-text-justify">Your about to delete your account and this is <i><b>can't be undone</b></i>.</p>
+    <p class="uk-text-justify">Once you delete it, all your information will be <i>lost</i>.</p>
+    <p class="uk-text-justify">Are you sure you want to proceede?</p>
+    <p class="uk-text-right">
+      <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+      <a href="/user/{{user._id}}/delete" type="button" class="uk-button uk-button-danger">Delete forever</a>
+    </p>
+  </div>
 </div>
