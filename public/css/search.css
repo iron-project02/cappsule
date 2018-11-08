@@ -53,3 +53,42 @@
   box-shadow: inset 3px 5px 5px rgba(0,40,86,0.6);
   color: var(--main);
 }
+#search-results div[uk-grid] div a {
+  text-decoration: none;
+}
+#search-results div[uk-grid] > div:hover > a > div{
+  background: var(--neutral);
+  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
+}
+#search-results div[uk-grid] > div > a > div {
+  transition: all 250ms ease;
+}
+.uk-tile form {
+  display: flex;
+  min-height: 502px;
+  flex-direction: column;
+}
+.product-info {
+  flex: 1 0 auto;
+}
+.add-product-wrapper {
+  text-align: right;
+}
+.add-product-wrapper span.buy-button {
+  background: green;
+  color: white;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+.add-product-wrapper span.buy-button:hover {
+  background: darkgreen;
+}
+.add-product-wrapper button {
+  background: var(--main);
+  color: var(--cold);
+  transition: all 200ms ease;
+}
+.add-product-wrapper button:hover {
+  background: var(--cold);
+  color: var(--main);
+}

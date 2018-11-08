@@ -110,7 +110,7 @@ exports.delAhorroResults = data => {
 
 			let FDAObj = {};
 
-			FDAObj.pharma = `Farmacia del Ahorro`;
+			FDAObj.pharma = `Farmacias del Ahorro`;
 			pointer       = data.indexOf(imgStartString, pointer)+imgStartString.length;
 			FDAObj.image  = data.slice(pointer,data.indexOf(imgEndString,pointer));
 			pointer       = data.indexOf(linkStartString, pointer) + linkStartString.length;

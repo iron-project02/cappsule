@@ -48,9 +48,6 @@
 #search-modal .uk-modal-dialog .uk-grid {
   width: 90vw;
 }
-#search-form input {
-  /* font-size: 1.75rem; */
-}
 #search-form button{
   display: none;
 }

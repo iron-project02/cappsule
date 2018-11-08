@@ -1,0 +1,28 @@
+<h1 class="uk-text-center">Special Deals</h1>
+
+<div class="offer-results">
+  <div class="uk-child-width-1-2@s uk-child-width-1-3@l uk-grid-small" uk-grid uk-height-match="target:>div>*>*">
+    {{#each offers as |offer|}}
+      {{#with offer}}
+        <div>
+          <a href="/search?name={{productId.name}}">
+            <div class="uk-tile uk-tile-default uk-padding-small">
+              <h4 class="uk-text-center">{{name}}</h4>
+              <p>Don't miss this discount on</p>
+              <div class="img-wrapper">
+                <img data-src="{{productId.image}}" alt="{{productId.name}}" height="240" width="240" uk-img>
+              </div>
+              <h3>{{productId.name}}</h3>
+              <p>Regular price</p>
+              <p>${{price}} MXN</p>
+              <p>Now <span class="discount">{{discount}}% off !</span></p>
+              <p>Valid until {{validity}}</p>
+              <p>Only at Farmacia {{pharmacyId.name}}</p>
+              <h6>{{terms}}</h6>
+            </div>
+          </a>
+        </div>
+      {{/with}}
+    {{/each}}
+  </div>
+</div>

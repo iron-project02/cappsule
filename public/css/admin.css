@@ -11,7 +11,7 @@
   display: block;
   margin: 0 auto;
 }
-.create-field input {
+#create-offer .create-field input, #create-offer .create-field select {
   width: 100%;
 }
 .search-form {
