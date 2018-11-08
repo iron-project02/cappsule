@@ -9,7 +9,10 @@ const btt = document.querySelector(`.back-to-top`);
 if (btt) {
   window.onscroll = e => {
     if (e.pageYOffset > 200) btt.classList.add(`show-btt`);
-    if (e.pageYOffset < 200) btt.classList.remove(`show-btt`);
+    if (e.pageYOffset < 200) {
+      btt.classList.remove(`show-btt`);
+      btt.blur();
+    }
   };
 }
 
