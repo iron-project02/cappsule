@@ -44,7 +44,7 @@ exports.sanPabloResults = data => {
 	let fspSearchIndex = `col-xs-12 col-sm-6 col-md-4`,
       fspItemIndex   = indexString(fspSearchIndex,data);
 
-	console.log(`=> San Pablo results:\n${fspItemIndex.length}`);
+	//console.log(`=> San Pablo results:\n${fspItemIndex.length}`);
 	
 	let imgStartString      = `<img src="`,
       imgEndString        = `" alt="`,
@@ -92,7 +92,7 @@ exports.delAhorroResults = data => {
 		let fdaSearchProducts = `<h2 class="product-name"><a href="`,
 				fdaItemIndex      = indexString(fdaSearchProducts,data);
 				
-		console.log(`=> Del Ahorro results:\n${fdaItemIndex.length}`);
+		//console.log(`=> Del Ahorro results:\n${fdaItemIndex.length}`);
 
 		let fdaInitString    = `products-grid row span9`,
 		    imgStartString   = `<img src="`,

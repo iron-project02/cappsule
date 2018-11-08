@@ -1,94 +1,43 @@
 <div class="uk-margin">
-  <form action="/search/image" method="POST" enctype="application/x-www-form-urlencoded" class="uk-search uk-search-default">
+  <form id="search-form" action="/search/image" method="POST" enctype="application/x-www-form-urlencoded" class="uk-search uk-search-default">
     <!--
     <input id="searchResults" name="imageString" class="uk-search-input" type="search" placeholder="Search..." autocomplete="on" autofocus>
     -->
-    <textarea name="imageString" id="searchResults" cols="30" rows="10"></textarea>
-    <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
+    <textarea name="imageString" id="searchResults" cols="30" rows="10" style="display: none" ></textarea>
+    <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle style="display: none" ></button>
   </form>
 </div>
 
-<a href="/search/image">Images</a>
-
-<div id="search-results">
-  <div class="uk-child-width-1-2@s uk-grid-small" uk-grid uk-height-match="target:>div>*">
-  {{#each products as |product|}}
-    {{#with product}}
-      <div>
-        <div class="uk-tile uk-tile-default uk-padding-small">
-          <p>Pharma {{pharmacy}}</p>
-          <div class="uk-text-center">
-            <img data-src="{{image}}" alt="{{name}}" height="240" width="240" uk-img>
-          </div>
-          <h4>{{name}}</h4>
-          <p>{{ingredient}}</p>
-          <p>{{presentation}}</p>
-          <p>{{quantity}}</p>
-          <p>$ {{price}}</p>
-        </div>
-      </div>
-    {{/with}}
-  {{/each}}
-  </div>
-</div>
-
-
 <div>
-  <video id="player" controls autoplay></video>
-  <button id="capture">Capturar</button>
-  <canvas id="snapshot" width=320 height=240></canvas>
+  <video id="player" autoplay></video>
+  <canvas id="snapshot" width=320 height=240 style="display: none"></canvas></canvas>
+  <button id="capture" class="uk-search-icon-flip" uk-search-icon uk-search-toggle style="display: block; align-text: center"></button>
 </div>
 
 <script>
-  var player = document.getElementById('player'); 
-  var snapshotCanvas = document.getElementById('snapshot');
-  var captureButton = document.getElementById('capture');
-  var videoTracks;
-
-  var searchResults;
+  var player = document.getElementById('player'),
+      snapshotCanvas = document.getElementById('snapshot'),
+      captureButton = document.getElementById('capture'),
+      videoTracks,
+      searchResults;
 
   var handleSuccess = function(stream) {
-    // Attach the video stream to the video element and autoplay.
     player.srcObject = stream;
     videoTracks = stream.getVideoTracks();
   };
 
   captureButton.addEventListener('click', function() {
-    var context = snapshot.getContext('2d');
-    context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+    var ctx = snapshot.getContext('2d');
+    ctx.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
 
-    var pngUrl = snapshotCanvas.toDataURL();
-    var dataString = pngUrl.slice(22,pngUrl.length)
-    //console.log('PNG URL DATA =====> ',dataString)
+    var pngUrl = snapshotCanvas.toDataURL(),
+        dataString = pngUrl.slice(22,pngUrl.length);
 
-    document.getElementById('searchResults').value = dataString;
+    Promise.resolve($('#searchResults').val(dataString)).then(()=> {
+      console.log('Ok')
+      $("#search-form").submit();
+    });
     
-    /*
-    $.ajax({
-      type: 'POST',
-      url: 'http://localhost:5000/search/image',
-      data: {
-        imageString: dataString,
-        },
-      dataType: 'json',
-      success: function (data) {
-
-        console.log('Succeded ======>');
-        console.log(data)
-
-        searchResults = data[0];
-
-        console.log('Results ======> ',searchResults)
-
-        document.getElementById('searchResults').setAttribute('value', searchResults.textAnnotations[0].description)
-
-        //alert('Ok');
-      }
-    })
-    */
-    
-    // Stop all video streams.
-    //document.getElementById('player').setAttribute('display', 'none');
     videoTracks.forEach(function(track) {track.stop()});
   });
 
