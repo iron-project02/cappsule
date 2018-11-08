@@ -18,11 +18,11 @@ userSites.get(`/user/:id`, check.isLogged, check.isUser, (req,res) => {
 });
 
 userSites.get(`/user/:id/edit`, check.isLogged, check.isUser, (req,res) => {
-  let data   = {
-        title: user.name,
-        css:   `user-edit`
-      },
-      {user} = req;
+  const {user} = req;
+  let   data   = {
+          title: user.name,
+          css:   `user-edit`
+        };
   res.render(`private/userEdit`, {data, user})
 });
 
