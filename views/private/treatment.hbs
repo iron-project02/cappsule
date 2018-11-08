@@ -1,1 +1,56 @@
-<h1>Treatments</h1>
+<h1 class="uk-text-center">Treatments</h1>
+<div class="treatment-add-wrapper">
+	<div class="">
+		<form action="/user/{{user._id}}/treatments/add" method="post" class="uk-text-center">
+			<button class="uk-button uk-button-default uk-align-center" type="button">Add</button>
+			<div uk-drop="mode: click; pos: bottom-center">
+				<div class="uk-card uk-card-body uk-card-default">
+					<div class="uk-margin">
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select" name="inventoryId">
+								<option value="">Please select medicine...</option>
+								{{#if cabinet}}
+									{{#each cabinet as |kit|}}
+										{{#each kit as |product|}}
+											<option value="{{product._id}}">{{product.productId.name}} - {{@../key}}</option>
+										{{/each}}
+									{{/each}}
+								{{else}}
+									<h3>Nothing to show here yet</h3>
+								{{/if}}
+							</select>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<div class="uk-form-controls">
+							<input class="uk-input" type="number" placeholder="Quantity" name="quantity">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<div class="uk-form-controls">
+							<input class="uk-input" type="datetime-local" placeholder="Select Date/Hour" name="date">
+						</div>
+					</div>
+					<p class="uk-margin">
+						<button type="submit" class="uk-button uk-button-default">Create treatment</button>
+					</p>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="treatments-wrapper">
+	<ul>
+		{{#each treatments as |treatment|}}
+			<div class="uk-margin">
+				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+					<div class="uk-card-badge"><a href="/user/{{../user._id}}/treatments/{{treatment._id}}">Delete</a></div>
+					<h3 class="uk-card-title">{{treatment.inventoryId.productId.name}}</h3>
+					<li>Take {{treatment.quantity}} {{treatment.inventoryId.productId.unity}}</li>
+					<li>{{treatment.date}}</li>
+				</div>
+			</div>
+		{{/each}}
+	</ul>
+</div>
