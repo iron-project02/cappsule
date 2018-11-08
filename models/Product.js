@@ -59,14 +59,15 @@ const productSchema = new Schema({
 		type: String
 	},
 	pharmacy: {
-		type: String,
-		required: [true, `Pharmacy is needed`],
-		enum: [
-			`Farmacia San Pablo`,
-			`Farmacias del Ahorro`,
-			`Farmacias Guadalajara`
-		],
-		default: `Farmacia San Pablo`
+		type: Schema.Types.ObjectId,
+		ref: 'Pharmacy',
+		//required: [true, `Pharmacy is needed`],
+		//enum: [
+		//	`Farmacia San Pablo`,
+		//	`Farmacias del Ahorro`,
+		//	`Farmacias Guadalajara`
+		//],
+		default: `5be26943ee041889b1c48eaa`
 	},
 	price: {
 		type: Number,

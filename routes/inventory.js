@@ -4,6 +4,7 @@ const express   = require('express'),
       multer    = require(`../helpers/multer`),
       User      = require(`../models/User`),
       Product   = require(`../models/Product`);
+      Pharmacy  = require(`../models/Pharmacy`);
       Kit       = require(`../models/Kit`);
       Inventory = require(`../models/Inventory`);
 
@@ -54,7 +55,8 @@ kitSites.get(`/user/:id/kit/:name`, check.isLogged, check.isUser, (req,res) => {
 //Update Kit
 kitSites.get(`/user/:id/kit/update/:name`, check.isLogged, check.isUser, (req,res) => {
 	req.body.userId = req.params.id;
-	Kit.findOneAndUpdate({$and: [{userId: req.body.userId}, {name: req.params.name}]}, {$set:{name:"Naomi"}})
+	req.body.newName = 'Other';
+	Kit.findOneAndUpdate({$and: [{userId: req.body.userId}, {name: req.params.name}]}, {$set:{name:req.body.newName, kitKey: req.body.userId + req.body.newName}})
 		.then(kit => {
 			console.log(`=====> Renombrado correctamente`)
 			res.redirect(`/user/${req.body.userId}/kit`)
@@ -68,7 +70,7 @@ kitSites.get(`/user/:id/kit/update/:name`, check.isLogged, check.isUser, (req,re
 //Add kit
 kitSites.post(`/user/:id/kit/add`, check.isLogged, check.isUser, (req,res) => {
 	req.body.userId = req.params.id;
-	req.body.kitKey = req.body.name;
+	req.body.kitKey = req.params.id+req.body.name;
 	
 	//Realizar la busqueda para implementar el unique
 	
@@ -98,14 +100,19 @@ kitSites.post(`/user/:userId/kit/:kitId/addproduct`, (req,res) => {
 
 kitSites.post(`/user/:id/inventory/add`, check.isLogged, check.isUser, (req,res) => {
 	let {userId, name, image, ingredient, pharmacy, price} = req.body
-	Product	.create({name, image, ingredient, pharmacy,price})
-					.then(product => {
-						Kit	.findOne({userId})
-								.then(kit => {
-									Inventory	.create({kitId: kit._id, productId: product._id})
-														.then(() => res.redirect(`/user/${userId}/kit`));
-								});
-					});
+	Pharmacy. findOne({name: pharmacy})
+					.then(pharma => {
+						let pharmacy = pharma._id;
+						Product	.create({name, image, ingredient, pharmacy, price})
+										.then(product => {
+											Kit	.findOne({userId})
+													.then(kit => {
+														Inventory	.create({kitId: kit._id, productId: product._id})
+																			.then(() => res.redirect(`/user/${userId}/kit`))
+																			.catch(err => {console.log('Product create =====>',err);});
+													}).catch(err => {console.log('Kit find =====>',err);});
+										}).catch(err => {console.log('Product create =====>',err);});
+					}).catch(err => {console.log('Pharmacy find =====>',err);});
 });
 
 module.exports = kitSites;
