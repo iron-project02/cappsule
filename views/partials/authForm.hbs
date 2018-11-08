@@ -34,13 +34,13 @@
       <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
     </div>
   {{/if}}
-  <div class="auth-submit uk-text-center">
+  <p class="auth-submit uk-text-center">
     {{#if data.register}}
-      <button type="submit">Register</button>
+      <button type="submit" class="uk-button">Register</button>
       {{else}}
-        <button type="submit">Log in</button>
+        <button type="submit" class="uk-button">Log in</button>
     {{/if}}
-  </div>
+  </p>
 </form>
 
 {{#if data.register}}
