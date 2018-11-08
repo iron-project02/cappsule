@@ -18,11 +18,11 @@ userSites.get(`/user/:id`, check.isLogged, check.isUser, (req,res) => {
 });
 
 userSites.get(`/user/:id/edit`, check.isLogged, check.isUser, (req,res) => {
-  const {user} = req;
-  let   data   = {
-          title: user.name,
-          css:   `user-edit`
-        };
+  let data   = {
+        title: user.name,
+        css:   `user-edit`
+      },
+      {user} = req;
   res.render(`private/userEdit`, {data, user})
 });
 
@@ -36,16 +36,6 @@ userSites.post(`/user/:id/edit`, check.isLogged, check.isUser, multer.single(`pr
 userSites.get(`/user/:id/delete`, check.isLogged, check.isUser, (req,res) => {
   User.findByIdAndDelete(req.user._id)
       .then( () => res.redirect(`/`) );
-});
-
-userSites.get(`/admin/:id`, check.isLogged, check.isAdmin, (req,res) => {
-  const {user} = req;
-  let data = {
-    title: `Admin - ${req.user.name}`,
-    css:   `admin`,
-    js:    `admin`
-  };
-  res.render(`private/admin`, {data, user});
 });
 
 
