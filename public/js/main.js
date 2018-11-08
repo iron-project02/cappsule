@@ -29,4 +29,26 @@ window.onload = () => {
 
   let searchDiv = document.querySelector(`[href='#search-modal']`);
   if (searchDiv) searchDiv.focus();
+
+  const bar = document.getElementById('js-progressbar');
+  if (bar) {
+    UIkit.upload('.js-upload', {
+      url:  `${window.location.href}`,
+      name: `profile_pic`,
+      loadStart: e => {
+        bar.removeAttribute('hidden');
+        bar.max = e.total;
+        bar.value = e.loaded;
+      },
+      progress: e => {
+        bar.max = e.total;
+        bar.value = e.loaded;
+      },
+      loadEnd: e => {
+        bar.max = e.total;
+        bar.value = e.loaded;
+        window.location.replace(`${window.location.origin}`);
+      }
+    });
+  }
 };
