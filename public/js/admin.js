@@ -6,6 +6,8 @@ document.body.insertBefore(axiosJS, adminJS);
 window.onload = () => {
   console.log(`Running admin.js`);
 
+  loader();
+
   addEventListener(`submit`, onSubmit);
   addEventListener(`click`, onDelete);
 
@@ -68,6 +70,23 @@ function getResults(e) {
                 }
 
                 offer.validity = formatDate(offer.validity);
+                container.insertAdjacentHTML(`beforeend`, eval('`'+html[1]+'`'));
+              });
+            } else {
+              container.insertAdjacentHTML(`beforeend`, html[0]);
+            }
+          });
+  }
+  if (e.target.id === `search-product`) {
+    axios .get(`${window.location.href}/search?${e.target[0].name}=${e.target[0].value}`)
+          .then(search => {
+            const container = document.getElementById(`product-results`);
+            container.innerHTML = ``;
+            let onlyProducts = search.data.filter(item => typeof item === `object`),
+                html         = search.data.filter(item => typeof item === `string`);
+
+            if (typeof search.data[0] === `object`) {
+              onlyProducts.forEach(product => {
                 container.insertAdjacentHTML(`beforeend`, eval('`'+html[1]+'`'));
               });
             } else {
@@ -162,6 +181,14 @@ function deleteResult(e) {
     axios .delete(e.target.dataset.click)
           .then(() => {
             cards.removeChild(card);
+            btn.onclick = (function notifUserDeleteOK() {
+              UIkit.notification({
+                message: `<span uk-icon=\'icon: check\'></span> User deleted`,
+                status:  `success`,
+                pos:     `top-center`,
+                timeout: 3000
+              });
+            })();
           })
           .catch(err => {
             btn.classList = `error-delete`;

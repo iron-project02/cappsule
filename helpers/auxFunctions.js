@@ -28,12 +28,12 @@ function indexString(string, searchData) {
 			searchIndex = [];
 			
 	while (index > -1) {
-			index = searchData.indexOf(string,index);
-			if (index > -1) {
-					searchIndex[i] = index;    
-					i++;
-					index ++;
-			}
+		index = searchData.indexOf(string,index);
+		if (index > -1) {
+				searchIndex[i] = index;    
+				i++;
+				index ++;
+		}
 	}
 	return searchIndex;
 }
@@ -44,7 +44,7 @@ exports.sanPabloResults = data => {
 	let fspSearchIndex = `col-xs-12 col-sm-6 col-md-4`,
       fspItemIndex   = indexString(fspSearchIndex,data);
 
-	console.log(`=> San Pablo results:\n${fspItemIndex.length}`);
+	//console.log(`=> San Pablo results:\n${fspItemIndex.length}`);
 	
 	let imgStartString      = `<img src="`,
       imgEndString        = `" alt="`,
@@ -92,7 +92,7 @@ exports.delAhorroResults = data => {
 		let fdaSearchProducts = `<h2 class="product-name"><a href="`,
 				fdaItemIndex      = indexString(fdaSearchProducts,data);
 				
-		console.log(`=> Del Ahorro results:\n${fdaItemIndex.length}`);
+		//console.log(`=> Del Ahorro results:\n${fdaItemIndex.length}`);
 
 		let fdaInitString    = `products-grid row span9`,
 		    imgStartString   = `<img src="`,
@@ -110,7 +110,7 @@ exports.delAhorroResults = data => {
 
 			let FDAObj = {};
 
-			FDAObj.pharma = `Farmacia del Ahorro`;
+			FDAObj.pharma = `Farmacias del Ahorro`;
 			pointer       = data.indexOf(imgStartString, pointer)+imgStartString.length;
 			FDAObj.image  = data.slice(pointer,data.indexOf(imgEndString,pointer));
 			pointer       = data.indexOf(linkStartString, pointer) + linkStartString.length;

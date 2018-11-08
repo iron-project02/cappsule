@@ -6,10 +6,10 @@
 }
 .background {
   background: var(--cold);
+  height: 50vh;
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 50vh;
   right: 0;
   width: 100%;
   z-index: -1;

@@ -58,7 +58,8 @@ const index     = require('./routes/index'),
 	  remiSites   = require('./routes/reminder'),
 	  treaSites   = require(`./routes/treatment`);
 	  prodSites   = require(`./routes/product`),
-	  kitSites    = require(`./routes/inventory`);
+		kitSites    = require(`./routes/inventory`),
+		offersSites	= require(`./routes/offers`);
 
 app .use('/', index)
 		.use(`/`, authSites)
@@ -70,7 +71,8 @@ app .use('/', index)
 		.use(`/`, prodSites)
 		.use(`/`, prodSites)
 		.use(`/`, kitSites)
-		.use(`/`, adminSites);
+		.use(`/`, adminSites)
+		.use(`/`, offersSites);
 
 
 module.exports = app;

@@ -1,0 +1,16 @@
+.offer-results {
+  color: var(--main);
+  margin-top: 50px;
+}
+.offer-results a {
+  text-decoration: none;
+}
+.img-wrapper img {
+  display: block;
+  margin: 0 auto;
+}
+.uk-tile span.discount {
+  font-size: 110%;
+  font-weight: bold;
+  color: tomato;
+}

@@ -1,3 +1,33 @@
 .uk-offcanvas-bar .uk-nav-primary > li.li-edit > a {
   color: #fff;
 }
+.js-upload.uk-placeholder {
+  background: rgba(148,192,233,0.2);
+  border: 2px dashed var(--neutral);
+  border-radius: 0.8vw;
+  color: var(--main);
+}
+form#edit-user > div {
+  width: 100%;
+}
+form#edit-user .user-edit-field {
+  margin-top: 10px;
+}
+form#edit-user .user-edit-field input, .user-edit-field select {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+}
+form#edit-user .button-wrapper {
+  text-align: center;
+}
+form#edit-user .button-wrapper button {
+  background: var(--cold);
+  color: var(--main);
+  transition: all 200ms ease;
+}
+form#edit-user .button-wrapper button:hover, form#edit-user .button-wrapper button:active {
+  background: var(--main);
+  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
+  color: var(--cold);
+}

@@ -24,10 +24,17 @@
 <div id="search-modal" class="uk-modal-full uk-modal" uk-modal>
   <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
     <button class="uk-modal-close-full" type="button" uk-close></button>
-    <form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-large">
-      <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
-      <input name="name" class="uk-search-input uk-text-center" type="search" placeholder="Search..." autocomplete="on" autofocus>
-    </form>
+    <div class="uk-grid-collapse" uk-grid uk-height-match="target:>div>*">
+      <div class="uk-width-expand">
+        <form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-large">
+          <input name="name" type="search" placeholder="Search..." autocomplete="on" autofocus class="uk-search-input uk-text-center">
+          <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
+        </form>
+      </div>
+      <div class="search-image uk-width-auto">
+        <a href="/search/image"><span uk-icon="icon: camera"></span></a>
+      </div>
+    </div>
   </div>
 </div>
 

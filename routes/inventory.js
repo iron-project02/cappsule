@@ -96,4 +96,16 @@ kitSites.post(`/user/:userId/kit/:kitId/addproduct`, (req,res) => {
 		});
 });
 
+kitSites.post(`/user/:id/inventory/add`, check.isLogged, check.isUser, (req,res) => {
+	let {userId, name, image, ingredient, pharmacy, price} = req.body
+	Product	.create({name, image, ingredient, pharmacy,price})
+					.then(product => {
+						Kit	.findOne({userId})
+								.then(kit => {
+									Inventory	.create({kitId: kit._id, productId: product._id})
+														.then(() => res.redirect(`/user/${userId}/kit`));
+								});
+					});
+});
+
 module.exports = kitSites;

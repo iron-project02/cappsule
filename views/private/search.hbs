@@ -1,49 +1,65 @@
 <div class="map-wrapper" uk-lightbox>
   <a href="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15053.353020892524!2d-99.1713847!3d19.3977857!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbb5d8a3084e2a6ae!2sIronhack+Mexico+City!5e0!3m2!1sen!2smx!4v1541120853303" data-caption="Google Maps" data-type="iframe" uk-icon="location"></a>
 </div>
-<div class="uk-margin">
-  <form action="/prod" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-default">
-    <input name="name" type="search" placeholder="Search..." autocomplete="on" autofocus class="uk-search-input">
-    <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
-  </form>
+
+{{#if imageRes}}
+  <h3>Showing "{{products.length}}" results for the search by "{{imageRes.name}}"</h3>
+  <h4>Or search by "<span id="ingredient">{{imageRes.ingredient}}</span>"</h4>
+  <!-- <p>{{imageRes.description}}</p> -->
+{{/if}}
+
+<div class="search-products uk-grid-small uk-grid-match uk-margin" uk-grid>
+  <div class="uk-width-5-6">
+    <form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-default">
+      <input id="inputSearch" name="name" type="search" placeholder="Search..." autocomplete="on" autofocus class="uk-search-input">
+      <button type="submit" class="uk-search-icon-flip" uk-search-icon uk-search-toggle></button>
+    </form>
+  </div>
+  <div class="search-image uk-width-1-6">
+    <a href="/search/image"><span uk-icon="icon: camera"></span></a>
+  </div>
 </div>
 
-<a href="/search/image">Images</a>
-
 <div id="search-results">
-  <div class="uk-child-width-1-2@s uk-child-width-1-3@l uk-grid-small" uk-grid uk-height-match="target:>div>*">
+  <div class="uk-child-width-1-2@s uk-child-width-1-3@l uk-grid-small" uk-grid uk-height-match="target:>div>*>*">
   {{#each products as |product|}}
     {{#with product}}
       <div>
-        <div class="uk-tile uk-tile-default uk-padding-small">
-          <p>{{pharmacy}}</p>
-          <div class="uk-text-center">
-            <img data-src="{{image}}" alt="{{name}}" height="240" width="240" uk-img>
+        <a href="{{link}}" title="Go to {{pharma}}" target="_blank">
+          <div class="uk-tile uk-tile-default uk-padding-small">
+            <p>{{pharma}}</p>
+            <form action="/user/{{../user._id}}/inventory/add" method="POST" enctype="application/x-www-form-urlencoded">
+              <input type="hidden" name="userId" value="{{../user._id}}">
+              <input type="hidden" name="name" value="{{title}}">
+              <input type="hidden" name="image" value="{{image}}">
+              <input type="hidden" name="ingredient" value="{{title}}">
+              <input type="hidden" name="pharmacy" value="{{pharma}}">
+              <input type="hidden" name="price" value="{{price}}">
+              <div class="product-info">
+                <div class="uk-text-center">
+                  <img data-src="{{image}}" alt="{{title}}" height="240" width="240" uk-img>
+                </div>
+                <h4>{{title}}</h4>
+                <p>$ {{price}} MXN</p>
+              </div>
+              <div class="add-product-wrapper">
+                <span class="buy-button uk-button">Buy</span>
+                <button type="submit" class="uk-button uk-button-default">Add to Cabinet</button>
+              </div>
+            </form>
           </div>
-          <h4>{{name}}</h4>
-          <p>{{ingredient}}</p>
-          <p>{{presentation}}</p>
-          <p>{{quantity}}</p>
-          <p>$ {{price}}</p>
-        </div>
+        </a>
       </div>
     {{/with}}
   {{/each}}
   </div>
 </div>
 
-{{#if medicine}}
+<script>
 
-  <p>{{medicine}}</p>
-  
-{{/if}}
-{{#if medicine2}}
+  $('#ingredient').on('click', (e) =>{
+    $('#inputSearch').val(e.target.textContent)
+    $( "#search-form" ).submit();
+  });
 
-  <p>{{medicine2}}</p>
-  
-{{/if}}
-{{#if variable}}
-
-  <p>{{variable.description}}</p>
-  
-{{/if}}
+</script>

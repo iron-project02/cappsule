@@ -35,12 +35,12 @@
   <meta property="og:url" content="https://cappsule-app.herokuapp.com/">
   <meta property="og:type" content="web_application">
   <meta property="og:title" content="{{data.title}}">
-  {{!-- <meta property="og:image" content="https://"><!-- once created --> --}}
+  <meta property="og:image" content="https://cappsule-app.herokuapp.com/img/logo-small.png">
   <meta property="og:description" content="Best price medicament metasearch engine, and medicine kit manager. Health Social Media, to manage family members, friends, colleagues, and more.">
   <meta property="og:site_name" content="Cappsule: Medicine cabinet on the go">
   <meta property="og:locale" content="en_MX">
   <meta property="article:author" content="Cappsule Team: Vermont García Serrano & Mauricio González Robles">
-  {{!-- <meta property="og:see_also" content="{{homepageUrl}}"> --}}
+  <meta property="og:see_also" content="{{homepageUrl}}">
   <!--/OG meta-->
   <meta name="twitter:card" content="summary"><!--Twitter meta-->
   <meta name="pinterest" content="nopin"><!--Pinterest meta-->
@@ -54,7 +54,12 @@
 </head>
 
 <body>
-
+  <div id="loader">
+    <div>
+      <img src="/img/loader.jpg" alt="Cappsule app">
+    </div>
+  </div>
+  
   <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent; top: 50;">
     <nav class="uk-navbar-container" uk-navbar>
       <div class="uk-navbar-left uk-margin-small-left">
@@ -63,7 +68,7 @@
             <a class="uk-navbar-toggle" href="#main-menu" uk-toggle>
               <span uk-navbar-toggle-icon></span> <span class="uk-visible@s uk-margin-small-left">Menu</span>
             </a>
-            <div id="main-menu" uk-offcanvas="overlay: true; mode: reveal;">
+            <div id="main-menu" uk-offcanvas="overlay: true; mode: slide;">
               <div class="uk-offcanvas-bar uk-flex uk-flex-column">
                 <ul class="uk-nav uk-nav-primary">
                   <button class="uk-offcanvas-close" type="button" uk-close></button>
@@ -76,7 +81,7 @@
                       <a href="/search"><span class="uk-margin-small-right" uk-icon="icon: search"></span> Search</a>
                     </li>
                     <li class="li-offers">
-                      <a href="/offers"><span class="uk-margin-small-right" uk-icon="icon: tag"></span> Offers</a>
+                      <a href="/offers"><span class="uk-margin-small-right" uk-icon="icon: tag"></span> Special deals</a>
                     </li>
                     <li class="uk-nav-divider"></li>
                     <li class="li-cabinet">
@@ -147,8 +152,10 @@
   <footer>
     Footer
   </footer>
-
-  <a href="#" uk-totop uk-scroll="duration: 750" class="back-to-top uk-position-fixed uk-position-bottom-right uk-position-small"></a>
+  
+  {{#if user}}
+    <a href="#" uk-totop uk-scroll="duration: 750" class="back-to-top uk-position-fixed uk-position-bottom-right uk-position-small"></a>  
+  {{/if}}
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.20/js/uikit.min.js"></script>

@@ -23,6 +23,10 @@ a {
 a:hover {
   color: var(--main);
 }
+button, .uk-button {
+  border-radius: 0.8vw;
+  cursor: pointer;
+}
 nav {
   height: 50px;
   z-index: 979;
@@ -73,10 +77,11 @@ nav {
 }
 main {
   flex: 1 0 auto;
+  min-height: calc(100vh - 50px);
   padding-top: 50px;
   z-index: 0;
 }
-.uk-card {
+.uk-card, .uk-tile {
   border-radius: 0.8vw;
 }
 .errorCard {
@@ -152,6 +157,7 @@ footer {
   align-items: center;
   height: 40px;
   opacity: 0.6;
+  transform: rotateY(90deg);
   width: 40px;
 }
 .back-to-top .uk-totop {
@@ -175,14 +181,51 @@ footer {
 .back-to-top .uk-totop:focus {
   color: var(--main);
 }
+@keyframes showBtt {
+  to {
+    transform: rotateY(0);
+  }
+}
+.show-btt {
+  animation: showBtt 350ms ease forwards;
+}
+#loader {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+#loader div {
+  height: 100vh;
+  width: 100%;
+}
+@keyframes loader {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#loader div img {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  opacity: 1;
+  width: auto;
+  animation: loader 1s ease infinite forwards;
+}
+
 
 .uk-drop {
   z-index: 979;
-}
-
-@media only screen and (min-width: 640px) {
-  .uk-logo .navbar-logo, .uk-navbar-right .profile-pic {
-    /* height: 50px;
-    width: 50px; */
-  }
 }
