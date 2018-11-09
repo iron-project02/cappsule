@@ -4,8 +4,6 @@ axiosJS.src = `https://unpkg.com/axios/dist/axios.min.js`;
 document.body.insertBefore(axiosJS, adminJS);
 
 window.onload = () => {
-  console.log(`Running admin.js`);
-
   loader();
 
   addEventListener(`submit`, onSubmit);

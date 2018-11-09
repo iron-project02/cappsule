@@ -50,8 +50,6 @@ adminSites.get(`/admin/:id/search`, check.isLogged, check.isAdmin, (req,res) => 
   if (req.query.product !== undefined) {
     let query = new RegExp(`.*${req.query.product}.*`);
     return Product.find({name: { $regex: query, $options: `i` }}).sort({name: 1}).then(search => {
-      console.log(search);
-      
       let html = require(`../../helpers/adminHTML`);
       search.push(html.noResults());
       search.push(html.productEditForm());
