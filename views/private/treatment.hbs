@@ -1,10 +1,11 @@
 <h1 class="uk-text-center">Treatments</h1>
 <div class="treatment-add-wrapper">
 	<div class="">
-		<form action="/user/{{user._id}}/treatments/add" method="post" class="uk-text-center">
+		<form action="/user/{{user._id}}/prescriptions/add" method="post" class="uk-text-center" enctype="multipart/form-data">
 			<button class="uk-button uk-button-default uk-align-center" type="button">Add</button>
 			<div uk-drop="mode: click; pos: bottom-center">
 				<div class="uk-card uk-card-body uk-card-default">
+					<!--
 					<div class="uk-margin">
 						<div class="uk-form-controls">
 							<select class="uk-select" id="form-stacked-select" name="inventoryId">
@@ -21,23 +22,49 @@
 							</select>
 						</div>
 					</div>
+					-->
 					<div class="uk-margin">
 						<div class="uk-form-controls">
-							<input class="uk-input" type="number" placeholder="Quantity" name="quantity">
+							<input class="uk-input" type="text" placeholder="Medic Name" name="medicName">
+						</div>
+					</div>
+					<div class="uk-margin">
+						<div class="js-upload uk-form-controls" uk-form-custom>
+							<input class="uk-input" type="file" multiple name="prescription_pic">
+							<button class="uk-button uk-button-default" type="button" tabindex="-1">Add a prescription foto</button>
 						</div>
 					</div>
 					<div class="uk-margin">
 						<div class="uk-form-controls">
-							<input class="uk-input" type="datetime-local" placeholder="Select Date/Hour" name="date">
+							<input class="uk-input" type="datetime-local" placeholder="Select Prescription Date/Hour" name="date">
 						</div>
 					</div>
 					<p class="uk-margin">
-						<button type="submit" class="uk-button uk-button-default">Create treatment</button>
+						<button type="submit" class="uk-button uk-button-default">Create Prescription</button>
 					</p>
 				</div>
 			</div>
 		</form>
 	</div>
+</div>
+
+
+
+
+
+<div class="prescription-wrapper">
+	<ul>
+		{{#each prescriptions as |prescription|}}
+			<div class="uk-margin">
+				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+					<div class="uk-card-badge"><a href="/user/{{../user._id}}/treatments/{{treatment._id}}">Delete</a></div>
+					<h3 class="uk-card-title">{{treatment.inventoryId.productId.name}}</h3>
+					<li>Take {{treatment.quantity}} {{treatment.inventoryId.productId.unity}}</li>
+					<li>{{treatment.date}}</li>
+				</div>
+			</div>
+		{{/each}}
+	</ul>
 </div>
 
 <div class="treatments-wrapper">
