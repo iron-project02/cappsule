@@ -12,6 +12,7 @@
   <video id="player" autoplay></video>
   <canvas id="snapshot" width=320 height=240 style="display: none"></canvas></canvas>
   <button id="capture" class="uk-search-icon-flip" uk-search-icon uk-search-toggle style="display: block; align-text: center"></button>
+  <button id="flip-button">Flip camera</button>
 </div>
 
 <script>
@@ -41,6 +42,15 @@
     videoTracks.forEach(function(track) {track.stop()});
   });
 
-  navigator.mediaDevices.getUserMedia({video: true})
-      .then(handleSuccess);
+  var front = false;
+  document.getElementById('flip-button').onclick = function() { front = !front; console.log(front, constraints)};
+  
+  var constraints = { video: { facingMode: (front? "user" : "environment") } };
+
+  navigator.mediaDevices.getUserMedia(constraints)
+      .then(handleSuccess)
+     /* .catch(err => {
+        console.log('Error =====> ', err);
+
+      });*/
 </script>
