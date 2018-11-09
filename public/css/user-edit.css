@@ -1,22 +1,36 @@
 .uk-offcanvas-bar .uk-nav-primary > li.li-edit > a {
   color: #fff;
 }
+h1 {
+  margin-bottom: 80px;
+}
 .js-upload.uk-placeholder {
   background: rgba(148,192,233,0.2);
   border: 2px dashed var(--neutral);
   border-radius: 0.8vw;
   color: var(--main);
 }
+form#edit-user {
+  background: #fff;
+  border-radius: 0.8vw;
+  padding: 20px 20px 0;
+}
 form#edit-user > div {
   width: 100%;
 }
-form#edit-user .user-edit-field {
-  margin-top: 10px;
+form#edit-user .user-edit-field .uk-inline {
+  width: 100%;
 }
 form#edit-user .user-edit-field input, .user-edit-field select {
+  border: none;
+  border-bottom: 1px solid var(--neutral);
+  color: var(--main);
   display: block;
   margin-top: 5px;
   width: 100%;
+}
+form#edit-user .user-edit-field input.uk-form-blank:focus {
+  border: none;
 }
 form#edit-user .button-wrapper {
   text-align: center;
