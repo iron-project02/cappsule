@@ -4,21 +4,26 @@
 .uk-navbar-nav>li:hover>a {
   color: var(--neutral);
 }
+main {
+  min-width: 290px;
+}
+main.uk-margin-medium-top {
+  margin-top: 10px !important;
+}
 .background {
   background: var(--cold);
   height: 50vh;
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
+  top: 0;
   width: 100%;
   z-index: -1;
 }
-.background .logo-wrapper {
-  margin: 9vh 0;
+.logo-wrapper {
   width: 100%;
 }
-.background .logo-wrapper img {
+.logo-wrapper img {
   display: block;
   background: white;
   border-radius: 2.5vh;
@@ -27,9 +32,71 @@
   padding: 1.5vh 0;
   padding-left: 14px;
 }
-.auth-field label {
-  display: block;
+.auth-container {
+  position: relative;
 }
-.auth-field input {
+.auth-container h1 {
+  font-size: 3.5vh;
+  margin: 1.7vh 0 0;
+}
+.auth-form-wrapper {
+  background: #fff;
+  border-radius: 1vh;
+  box-shadow: 0 0 15px rgba(148,192,233,0.8);
+  min-height: 155px;
+  padding: 25px;
+  padding-bottom: 70px;
+  position: absolute;
+  left: 50%;
+  top: 13vh;
+  transform: translate(-50%,0);
+  min-width: 260px;
+}
+#auth-form .auth-field {
+  border-bottom: 1px solid var(--neutral);
+}
+#auth-form .auth-field label {
+  font-size: 1.5vh;
+}
+#auth-form .uk-form-blank:focus {
+  border: none;
+}
+#auth-form .auth-field input {
+  color: var(--main);
+  font-size: 2vh;
+}
+#auth-form button {
+  background: var(--main);
+  border-radius: 15px;
+  color: var(--cold);
+  font-size: 2.4vh;
+  position: absolute;
+  bottom: -17px;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: 160px;
+}
+#auth-form button:hover {
+  background: var(--cold);
+  box-shadow: 0 5px 5px rgba(0,40,86,0.6);
+  color: var(--main);
+}
+#auth-form button:active {
+  background: var(--neutral);
+  box-shadow: inset 2px 3px 5px rgb(148,192,233,0.8);
+  color: var(--main);
+}
+.sign {
+  color: #fff;
+  margin: 0;
   width: 100%;
+}
+.sign span {
+  text-shadow: 0 0 3px var(--main);
+}
+.sign a {
+  color: var(--main);
+}
+.sign a:hover {
+  color: var(--neutral);
 }

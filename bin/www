@@ -6,11 +6,12 @@ let app = require('../app');
 
 // catch 404 and render a not-found.hbs template
 app.use((req, res, next) => {
+  if (req.user !== undefined) var {user} = req;
   let data = {
     title: `Page not found`
   }
   res.status(404)
-     .render('not-found', {data});
+     .render('not-found', {data, user});
 });
 
 app.use((err, req, res, next) => {

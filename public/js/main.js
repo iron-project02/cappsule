@@ -26,8 +26,6 @@ if (formLoad) {
 }
 
 window.onload = () => {
-  console.log(`Running!`);
-
   loader();
 
   let searchDiv = document.querySelector(`[href='#search-modal']`);

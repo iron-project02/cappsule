@@ -1,6 +1,9 @@
 .uk-offcanvas-bar .uk-nav-primary > li.li-home > a {
   color: #fff;
 }
+h1 span {
+  text-transform: capitalize;
+}
 .profile-pic-wrapper {
   text-align: center;
 }

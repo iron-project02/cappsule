@@ -11,8 +11,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-bottom: 75px;
   width: 100%;
-  z-index: -1;
+}
+h1 {
+  text-transform: uppercase;
 }
 h1, h2, h3, h4, h5, h6 {
   color: var(--main);
@@ -79,7 +82,6 @@ main {
   flex: 1 0 auto;
   min-height: calc(100vh - 50px);
   padding-top: 50px;
-  z-index: 0;
 }
 .uk-card, .uk-tile {
   border-radius: 0.8vw;

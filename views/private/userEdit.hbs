@@ -1,4 +1,4 @@
-<h1 class="uk-text-center">Edit my profile</h1>
+<h1 class="uk-text-center">My profile</h1>
 
 <h3>Edit profile pic</h3>
 <div class="js-upload uk-placeholder uk-text-center">
@@ -12,50 +12,63 @@
 <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
 
 <h3 class="uk-margin-large-top">Basic info</h3>
-<form action="/user/{{user._id}}/edit" method="post" enctype="multipart/form-data" id="edit-user" class="uk-flex uk-flex-column uk-margin uk-margin-small-top">
-  <div class="uk-margin-auto">
-    <div class="user-edit-field">
-      <label for="name">Name</label>
-      <input name="name" type="text" placeholder="Your name" value="{{user.name}}" required>
+<form action="/user/{{user._id}}/edit" method="post" enctype="multipart/form-data" id="edit-user" class="uk-flex uk-flex-column uk-margin uk-margin-small-top uk-form-stacked">
+  <div class="user-edit-field uk-margin-small">
+    <label for="name" class="uk-form-label">Name</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
+      <input name="name" type="text" placeholder="Your name" value="{{user.name}}" required class="uk-input uk-form-blank">
     </div>
-    <div class="user-edit-field">
-      <label for="username">Phone number</label>
-      <input name="username" type="tel" placeholder="10 digits number" minlength="10" maxlength="10" size="10" value="{{user.username}}" required>
+  </div>
+  <div class="user-edit-field uk-margin-small">
+    <label for="username" class="uk-form-label">Phone number</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: receiver"></span>
+      <input name="username" type="tel" placeholder="10 digits number" minlength="10" maxlength="10" value="{{user.username}}" required class="uk-input uk-form-blank">
     </div>
-    <div class="user-edit-field">
-      <label for="email">Email</label>
-      <input name="email" type="email" placeholder="user@cappsule.com" value="{{user.email}}" required>
+  </div>
+  <div class="user-edit-field uk-margin-small">
+    <label for="email" class="uk-form-label">Email</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
+      <input name="email" type="email" placeholder="user@cappsule.com" value="{{user.email}}" required class="uk-input uk-form-blank">
     </div>
-    <div class="user-edit-field">
-      <label for="age">Age</label>
-      <input name="age" type="number" placeholder="age" value="{{user.age}}">
+  </div>
+  <div class="user-edit-field uk-margin-small">
+    <label for="age" class="uk-form-label">Age</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: calendar"></span>
+      <input name="age" type="number" placeholder="age" value="{{user.age}}" class="uk-input uk-form-blank">
     </div>
-    <div class="user-edit-field">
-      <label for="gender">Gender</label>
-      <select name="gender">
-        {{#if user.gender}}
-          <option value="{{user.gender}}" selected disabled>{{user.gender}}</option>
+  </div>
+  <div class="user-edit-field uk-margin-small">
+    <label for="gender" class="uk-form-label">Gender</label>
+    <select name="gender" class="uk-select">
+      {{#if user.gender}}
+        <option value="{{user.gender}}" selected disabled>{{user.gender}}</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        {{else}}
+          <option selected disabled>Select one</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
-          {{else}}
-            <option selected disabled>Select one</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        {{/if}}
-      </select>
+      {{/if}}
+    </select>
+  </div>
+  <div class="user-edit-field uk-margin-small">
+    <label for="address" class="uk-form-label">Address</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: receiver"></span>
+      <input name="address" type="text" placeholder="Street, location, country" value="{{user.address}}" class="uk-input uk-form-blank">
     </div>
-    <div class="user-edit-field">
-      <label for="address">Address</label>
-      <input name="address" type="text" placeholder="Street, location, country" value="{{user.address}}">
+  </div>
+  {{#if errorMessage}}
+    <div class="errorCard uk-card uk-card-body uk-card-default uk-card-small uk-margin">
+      <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
     </div>
-    {{#if errorMessage}}
-      <div class="errorCard uk-card uk-card-body uk-card-default uk-card-small uk-margin">
-        <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
-      </div>
-    {{/if}}
-    <div class="button-wrapper uk-margin">
-      <button type="submit" class="uk-button">Save</button>
-    </div>
+  {{/if}}
+  <div class="button-wrapper uk-margin">
+    <button type="submit" class="uk-button">Save</button>
   </div>
 </form>
 
