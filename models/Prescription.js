@@ -1,5 +1,5 @@
 const mongoose = require(`mongoose`),
-      Schema   = mongoose.Schema,
+      Schema   = mongoose.Schema;
 
 prescriptionSchema = new Schema({
   userId: {
@@ -10,9 +10,10 @@ prescriptionSchema = new Schema({
 	medicName:         String,
 	prescription_pic:  [String],
   prescription_date: Date,
-	prescriptionId: {
+	treatmentId: {
 		type:      [Schema.Types.ObjectId],
-		ref:       `Prescription`,
+    ref:       `Treatment`,
+    autopopulate: true
 	},
 },{
   timestamps: {

@@ -5,12 +5,14 @@ const inventorySchema = new Schema({
 	kitId: {
 		type: Schema.Types.ObjectId,
 		ref: 'Kit',
-		required: 'There is no related kit to this inventory'
+		required: 'There is no related kit to this inventory',
+		autopopulate: true
 	},
 	productId: {
 		type: Schema.Types.ObjectId,
 		ref: 'Product',
-		required: 'There is no related productId to this product'
+		required: 'There is no related productId to this product',
+		autopopulate: true
 	},
 	quantity: {
 		type: Number,

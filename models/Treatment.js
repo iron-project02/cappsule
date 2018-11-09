@@ -5,16 +5,16 @@ treatmentSchema = new Schema({
   userId: {
     type:      Schema.Types.ObjectId,
     ref:       `User`,
-    required:  [true, `Owner is required`]
+    required:  [true, `Owner is required`],
+    autopopulate: true
   },
-  productId: {
-    type:      Schema.Types.ObjectId,
-    ref:       `Product`,
-    required:  [true, `Product is required`]
+  productName: {
+    type:      String,
+    required:  [true, `Product is required`],
   },
-  doctor:      String,
-  frequency:   Number,
   dosage:      Number,
+  frequency:   Number,
+  days:        Number,
   start_date:  Date,
   end_date:    Date
 },{

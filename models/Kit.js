@@ -5,7 +5,8 @@ kitSchema = new Schema({
   userId: {
     type:      Schema.Types.ObjectId,
     ref:       `User`,
-    required:  [true, `Owner is required`]
+    required:  [true, `Owner is required`],
+    autopopulate: true
   },
   name: {
     type: String,
