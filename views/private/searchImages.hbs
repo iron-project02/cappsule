@@ -12,7 +12,7 @@
   <video id="player" autoplay></video>
   <canvas id="snapshot" width=320 height=240 style="display: none"></canvas></canvas>
   <button id="capture" class="uk-search-icon-flip" uk-search-icon uk-search-toggle style="display: block; align-text: center"></button>
-  <button id="flip-button">Flip camera</button>
+  <!-- <button id="flip-button">Flip camera</button> -->
 </div>
 
 <script>
@@ -43,7 +43,7 @@
   });
 
   var front = false;
-  document.getElementById('flip-button').onclick = function() { front = !front; console.log(front, constraints)};
+  //document.getElementById('flip-button').onclick = function() { front = !front; console.log(front, constraints)};
   
   var constraints = { video: { facingMode: (front? "user" : "environment") } };
 
