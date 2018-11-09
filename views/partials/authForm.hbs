@@ -1,4 +1,4 @@
-<form id="authForm"
+<form id="auth-form" class="uk-form-stacked"
   {{#if data.register}}
     action="/auth/register"
     {{else}}
@@ -6,27 +6,42 @@
   {{/if}}
   method="post" enctype="application/x-www-form-urlencoded">
   {{#if data.register}}
-    <div class="auth-field">
-      <label for="name">Name</label>
-      <input name="name" type="text" placeholder="What is your name?" autofocus required>
+    <div class="auth-field uk-margin-small">
+      <label for="name" class="uk-form-label">Name</label>
+      <div class="uk-inline uk-form-controls">
+        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
+        <input name="name" type="text" placeholder="What is your name?" autofocus required class="uk-input uk-form-blank">
+      </div>
     </div>
-    <div class="auth-field">
-      <label for="email">Email</label>
-      <input name="email" type="email" placeholder="user@cappsule.com" required>
+    <div class="auth-field uk-margin-small">
+      <label for="email" class="uk-form-label">Email</label>
+      <div class="uk-inline">
+        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
+        <input name="email" type="email" placeholder="user@cappsule.com" required class="uk-input uk-form-blank">
+      </div>
     </div>  
   {{/if}}
-  <div class="auth-field">
-    <label for="username">Phone number</label>
-    <input name="username" type="tel" placeholder="10 digits number" minlength="10" maxlength="10" size="10" autocomplete="username" autofocus required>
+  <div class="auth-field uk-margin-small">
+    <label for="username" class="uk-form-label">Phone number</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: receiver"></span>
+      <input name="username" type="tel" placeholder="10 digit number" minlength="10" maxlength="10" autocomplete="username" autofocus required class="uk-input uk-form-blank">
+    </div>
   </div>
-  <div class="auth-field">
-    <label for="password">Password</label>
-    <input name="password" type="password" placeholder="Enter your password" size="10" autocomplete="current-password" required>
+  <div class="auth-field uk-margin-small">
+    <label for="password" class="uk-form-label">Password</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+      <input name="password" type="password" placeholder="Your password" autocomplete="current-password" required class="uk-input uk-form-blank">
+    </div>
   </div>
   {{#if data.register}}
-  <div class="auth-field">
-    <label for="confirm-password">Confirm password</label>
-    <input name="confirm-password" type="password" placeholder="Enter the same password" size="10" autocomplete="off" required>
+  <div class="auth-field uk-margin-small">
+    <label for="confirm-password" class="uk-form-label">Confirm password</label>
+    <div class="uk-inline uk-form-controls">
+      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+      <input name="confirm-password" type="password" placeholder="Same password" autocomplete="off" required class="uk-input uk-form-blank">
+    </div>
   </div>
   {{/if}}
   {{#if errorMessage}}
@@ -34,17 +49,9 @@
       <p class="errorMessage uk-text-meta">{{errorMessage}}</p>
     </div>
   {{/if}}
-  <p class="auth-submit uk-text-center">
-    {{#if data.register}}
-      <button type="submit" class="uk-button">Register</button>
-      {{else}}
-        <button type="submit" class="uk-button">Log in</button>
-    {{/if}}
-  </p>
+  {{#if data.register}}
+    <button type="submit" class="uk-button">Register</button>
+    {{else}}
+      <button type="submit" class="uk-button">Log in</button>
+  {{/if}}
 </form>
-
-{{#if data.register}}
-  <p>Already have an account? <a href="/auth/login">Log in</a></p>
-  {{else}}
-    <p>Don't have an account yet? <a href="/auth/register">Register</a></p>
-{{/if}}

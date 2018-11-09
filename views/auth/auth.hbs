@@ -1,17 +1,23 @@
-<div class="background">
-  <div class="logo-wrapper">
-    <img src="/img/logo.png" alt="Cappsule">
-  </div>
+<div class="background"></div>
+
+<div class="logo-wrapper">
+  <img src="/img/logo.png" alt="Cappsule">
 </div>
 
-<div class="auth-container uk-flex uk-flex uk-flex-column uk-height-large">
-  <div class="uk-margin-auto uk-margin-auto-vertical">
-    {{#if data.register}}
-      <h1 class="uk-margin-large-bottom uk-text-center">Register</h1>
-      {{else}}
-        <h1 class="uk-margin-large-bottom uk-text-center">Login</h1>
-    {{/if}}
-    
+<div class="auth-container uk-flex uk-flex uk-flex-column">
+  {{#if data.register}}
+    <h1 class="uk-text-center">Register</h1>
+    {{else}}
+      <h1 class="uk-text-center">Login</h1>
+  {{/if}}
+
+  {{#if data.register}}
+    <p class="sign uk-text-center"><span>Already have an account?</span> <a href="/auth/login">Log in</a></p>
+    {{else}}
+      <p class="sign uk-text-center"><span>Don't have an account yet?</span> <a href="/auth/register">Register</a></p>
+  {{/if}}
+  
+  <div class="auth-form-wrapper">
     {{> authForm}}
   </div>
 </div>
