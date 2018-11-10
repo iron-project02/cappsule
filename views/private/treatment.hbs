@@ -29,21 +29,22 @@
 		</form>
 	</div>
 </div>
-
 <div class="prescription-wrapper">
 	<ul>
 		{{#each prescriptions as |prescription|}}
 			<div class="uk-margin">
 				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
 					<div style="display: flex; justify-content: flex-end">
-						<a href="#prescription-picture-modal" uk-toggle>View Picture</a>
+						{{#if prescription.prescription_pic}}
+							<div uk-lightbox> <a class="uk-button uk-button-default" href="{{prescription.prescription_pic.[0]}}">View Picture</a> </div>
+						{{/if}}
 					</div>
-					<h4 class="uk-card-title">Md. {{prescription.medicName}} @ <span>Date {{prescription.prescription_date}}</span></h4>
+					<h4 class="uk-card-title">Md. {{prescription.medicName}} @ <span>Date {{prescription.prescription_date}} hola</span></h4>
 					<div class="treatments-wrapper">
 						<ul>
 							{{#each prescription.treatmentId as |treatment|}}
 								<div class="uk-margin">
-									<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+									<div class="uk-card uk-card-default uk-card-hover uk-card-body uk-align-center">
 										<h3 class="uk-card-title">{{treatment.productName}}</h3>
 										<p>Take {{dosage}} tablets every {{treatment.frequency}} hours for {{days}} days</p>
 										<div><a href="/user/{{../../user._id}}/treatments/{{treatment._id}}" style="display: block; text-align: right">Delete</a></div>
@@ -51,7 +52,7 @@
 								</div>
 							{{/each}}
 						</ul>
-					</div
+					</div>
           <div class="">
 						<form id="treatment-form" action="/user/{{../user._id}}/treatments/add" method="post" class="uk-text-center">
 							<button class="uk-button uk-button-default uk-align-center" type="button">Add Treatment</button>
@@ -101,7 +102,6 @@
 					</div>
 				</div>
 			</div>
-			{{>prescriptionPic}}
 		{{/each}}
 	</ul>
 </div>

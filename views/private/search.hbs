@@ -9,6 +9,10 @@
   <h4>Or search by "<span id="ingredient">{{imageRes.ingredient}}</span>"</h4>
 {{/if}}
 
+{{#if products}}
+  <h3>Showing "{{products.length}}" results for the search by "{{seaRes}}"</h3>
+{{/if}}
+
 <div class="search-products uk-grid-small uk-grid-match uk-margin" uk-grid>
   <div class="uk-width-5-6">
     <form action="/search" method="GET" enctype="application/x-www-form-urlencoded" id="search-form" class="uk-search uk-search-default">

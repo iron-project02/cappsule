@@ -46,7 +46,6 @@ const productSchema = new Schema({
 	},
 	controlled: {
 		type: Boolean,
-		//required: 'Controlled status most be defined',
 		default: true
 	},
 	formula: {
@@ -61,12 +60,6 @@ const productSchema = new Schema({
 	pharmacy: {
 		type: Schema.Types.ObjectId,
 		ref: 'Pharmacy',
-		//required: [true, `Pharmacy is needed`],
-		//enum: [
-		//	`Farmacia San Pablo`,
-		//	`Farmacias del Ahorro`,
-		//	`Farmacias Guadalajara`
-		//],
 		default: `5be26943ee041889b1c48eaa`
 	},
 	price: {

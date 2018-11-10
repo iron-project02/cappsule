@@ -25,13 +25,8 @@
   });
 
   var front = false;
-  //document.getElementById('flip-button').onclick = function() { front = !front; console.log(front, constraints)};
   
   var constraints = { video: { facingMode: (front? "user" : "environment") } };
 
   navigator.mediaDevices.getUserMedia(constraints)
       .then(handleSuccess)
-     /* .catch(err => {
-        console.log('Error =====> ', err);
-
-      });*/

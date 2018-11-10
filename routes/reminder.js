@@ -4,7 +4,6 @@ const express   = require('express'),
       multer    = require(`../helpers/multer`),
       User      = require(`../models/User`),
       Reminder  = require(`../models/Reminder`);
-      //Push      = require(`../../node_modules/push.js/bin/push.min.js`);
 
 remSites.get(`/user/:id/reminders`, check.isLogged, check.isUser, (req, res) => {
     User.findById(req.params.id)
