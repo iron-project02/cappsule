@@ -35,9 +35,8 @@
 		{{#each prescriptions as |prescription|}}
 			<div class="uk-margin">
 				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
-					<div class="uk-card-badge">
-						<a href="/user/{{../user._id}}/treatments/{{prescription._id}}/pic">View Picture</a>
-						<a href="/user/{{../user._id}}/treatments/{{prescription._id}}">Edit</a>
+					<div style="display: flex; justify-content: flex-end">
+						<a href="#prescription-picture-modal" uk-toggle>View Picture</a>
 					</div>
 					<h4 class="uk-card-title">Md. {{prescription.medicName}} @ <span>Date {{prescription.prescription_date}}</span></h4>
 					<div class="treatments-wrapper">
@@ -45,25 +44,9 @@
 							{{#each prescription.treatmentId as |treatment|}}
 								<div class="uk-margin">
 									<div class="uk-card uk-card-default uk-card-hover uk-card-body">
-										<div class="uk-card-badge">
-											<a href="/user/{{../../user._id}}/treatments/{{treatment._id}}">Create Reminders</a>
-											<a href="/user/{{../../user._id}}/treatments/{{treatment._id}}">Delete</a>
-										</div>
 										<h3 class="uk-card-title">{{treatment.productName}}</h3>
-										<li>Take {{dosage}} tablets every {{treatment.frequency}} hours for {{days}} days</li>
-										<!--	
-										<form action="/user/{{../../user._id}}/reminders/all" method="POST" enctype="application/x-www-form-urlencoded">
-											<input type="hidden" name="userId" value="{{../../user._id}}">
-											<input type="hidden" name="name" value="{{treatment.dosage}}">
-											<input type="hidden" name="image" value="{{treatment.frequency}}">
-											<input type="hidden" name="ingredient" value="{{treatment.days}}">
-											<input type="hidden" name="pharmacy" value="{{treatment.productName}}">
-											<div class="create-reminder-wrapper">
-												<button type="submit" class="uk-button uk-button-default">Create Reminders</button>
-											</div>
-										</form>
-										-->
-
+										<p>Take {{dosage}} tablets every {{treatment.frequency}} hours for {{days}} days</p>
+										<div><a href="/user/{{../../user._id}}/treatments/{{treatment._id}}" style="display: block; text-align: right">Delete</a></div>
 									</div>
 								</div>
 							{{/each}}
@@ -83,7 +66,6 @@
 													{{#each ../cabinet as |kit|}}
 														{{#each kit as |product|}}
 															<option value="{{product._id}}={{product.productId.name}}">{{product.productId.name}} - {{@../key}}</option>
-														 <!--	<input type="hidden" name="inventoryId" value="{{product._id}}"> -->
 														{{/each}}
 													{{/each}}
 												{{else}}
@@ -119,6 +101,8 @@
 					</div>
 				</div>
 			</div>
+			{{>prescriptionPic}}
 		{{/each}}
 	</ul>
 </div>
+

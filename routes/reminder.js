@@ -16,6 +16,7 @@ remSites.get(`/user/:id/reminders`, check.isLogged, check.isUser, (req, res) => 
 					title: 'Reminders'
 				}
 				p.push(Promise.resolve(Reminder.find({userId: user._id})
+					.sort({date: 1})
 					.populate({
 						path: 'inventoryId',
 						populate: {
