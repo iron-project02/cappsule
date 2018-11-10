@@ -7,6 +7,8 @@
 {{#if imageRes}}
   <h3>Showing "{{products.length}}" results for the search by "{{imageRes.name}}"</h3>
   <h4>Or search by "<span id="ingredient">{{imageRes.ingredient}}</span>"</h4>
+{{else}}
+  <h3>Showing "{{products.length}}" results for the search by "{{seaRes}}"</h3>
 {{/if}}
 
 <div class="search-products uk-grid-small uk-grid-match uk-margin" uk-grid>

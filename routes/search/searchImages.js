@@ -2,8 +2,7 @@ const express     = require('express'),
       searchSites = express.Router(),
       check       = require(`../../helpers/checker`),
       auxFunc     = require(`../../helpers/auxFunctions`),
-      axios       = require(`axios`),
-      Product     = require(`../../models/Product`);
+      axios       = require(`axios`);
 
 
 searchSites.get(`/search/image`, check.isLogged, (req, res) =>{
@@ -24,12 +23,9 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
   
   const {user} = req;
 
-  //hacer la peticion a Google
-  
   auxFunc.getImageData(req.body.imageString)
     .then(imageData => {
 
-      //console.log('Image Data from Google ======> ', imageData.data.responses)
       let imageRes = {
         description: imageData.data.responses[0].fullTextAnnotation.text,
         name:        imageData.data.responses[0].textAnnotations[1].description,
@@ -62,7 +58,7 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
         }));
     })
     .catch(err => {
-      console.log('Error google request =====>', err)
+      res.redirect('/search');
     })
 });
 

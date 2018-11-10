@@ -8,11 +8,11 @@
 				<div class="uk-card uk-card-body uk-card-default">
 					<div class="uk-margin">
 						<div class="uk-form-controls">
-							<input class="uk-input" type="text" placeholder="New kit name" name="name">
+							<input class="uk-input" type="text" placeholder="New cabinet name" name="name">
 						</div>
 					</div>
 					<p class="uk-margin">
-						<button type="submit" class="uk-button uk-button-default">Create Kit</button>
+						<button type="submit" class="uk-button uk-button-default">Create cabinet</button>
 					</p>
 				</div>
 			</div>
@@ -24,47 +24,51 @@
 		{{#if cabinet}}
 			<ul>
 				{{#each cabinet as |kit|}}
-					<li>{{@key}}
-
-						<form action="/user/{{../user._id}}/kit/update/{{@key}}" method="post" class="uk-text-center">
-							<button class="uk-button uk-button-default uk-align-center" type="button">Rename</button>
-							<div uk-drop="mode: click; pos: bottom-center">
-								<div class="uk-card uk-card-body uk-card-default">
-									<div class="uk-margin">
-										<div class="uk-form-controls">
-											<input class="uk-input" type="text" placeholder="New name" name="newName">
+					<div class="uk-margin">
+						<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+							<h3 class="uk-card-title">{{@key}}</h3>
+							<ul>
+									{{#each kit as |product|}}
+										<p>{{product.productId.name}}</p>
+									{{/each}}
+							</ul>
+							<div style="display: flex; flex-flow: row; justify-content: space-evenly">
+								<div>
+									<a class="uk-button uk-button-default" href="#search-modal" uk-toggle >Add item</a>
+								</div>
+								<form action="/user/{{../user._id}}/kit/update/{{@key}}" method="post" class="uk-text-center">
+									<button class="uk-button uk-button-default uk-align-center" type="button">Rename</button>
+									<div uk-drop="mode: click; pos: bottom-center">
+										<div class="uk-card uk-card-body uk-card-default">
+											<div class="uk-margin">
+												<div class="uk-form-controls">
+													<input class="uk-input" type="text" placeholder="New name" name="newName">
+												</div>
+											</div>
+											<p class="uk-margin">
+												<button type="submit" class="uk-button uk-button-default">Rename cabinet</button>
+											</p>
 										</div>
 									</div>
-									<p class="uk-margin">
-										<button type="submit" class="uk-button uk-button-default">Rename Kit</button>
-									</p>
-								</div>
-							</div>
-						</form>
-
-						<form action="/user/{{../user._id}}/kit/{{@key}}" method="get" class="uk-text-center">
-							<button class="uk-button uk-button-default uk-align-center" type="button">Delete</button>
-							<div uk-drop="mode: click; pos: bottom-center">
-								<div class="uk-card uk-card-body uk-card-default">
-									<div class="uk-margin">
-										<div class="uk-form-controls">
-											<p>This can't be undone, are you sure?</p>
+								</form>
+								<form action="/user/{{../user._id}}/kit/{{@key}}" method="get" class="uk-text-center">
+									<button class="uk-button uk-button-default uk-align-center" type="button">Delete</button>
+									<div uk-drop="mode: click; pos: bottom-center">
+										<div class="uk-card uk-card-body uk-card-default">
+											<div class="uk-margin">
+												<div class="uk-form-controls">
+													<p>This can't be undone, are you sure?</p>
+												</div>
+											</div>
+											<p class="uk-margin">
+												<button type="submit" class="uk-button uk-button-default">Yes Delete</button>
+											</p>
 										</div>
 									</div>
-									<p class="uk-margin">
-										<button type="submit" class="uk-button uk-button-default">Yes Delete</button>
-									</p>
-								</div>
+								</form>
 							</div>
-						</form>
-
-					</li>
-						<ul>
-								{{#each kit as |product|}}
-									<li>{{product.productId.name}}</li>
-								{{/each}}
-						</ul>
-			    <a href="#search-modal" uk-toggle >Add item</a>
+						</div>
+					</div>
 				{{/each}}
 			</ul>
 		{{else}}
