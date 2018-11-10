@@ -45,10 +45,10 @@
 		{{#each reminders as |reminder|}}
 			<div class="uk-margin">
 				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
-					<div class="uk-card-badge"><a href="/user/{{../user._id}}/reminders/{{reminder._id}}">Delete</a></div>
 					<h3 class="uk-card-title">{{reminder.inventoryId.productId.name}}</h3>
-					<li>Take {{reminder.quantity}} {{reminder.inventoryId.productId.unity}}</li>
-					<li>{{reminder.date}}</li>
+					<p>Date: {{reminder.date}}</p>
+					<p>Dosage: {{reminder.quantity}} {{reminder.inventoryId.productId.unity}}</p>
+					<div><a href="/user/{{../user._id}}/reminders/{{reminder._id}}" style="display: block; text-align: right">Delete</a></div>
 				</div>
 			</div>
 		{{/each}}

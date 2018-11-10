@@ -134,10 +134,11 @@ treaSites.post(`/user/:id/treatments/add`, check.isLogged, check.isUser, (req, r
 
 					remNum = (req.body.days * 24 / req.body.frequency);
 
-					//req.body.date = new Date();
+					let msDate = Date.parse(new Date());
+					console.log('Miliseconds');
 
 					for (let i = 1; i<remNum; i++ ){
-						req.body.date = new Date() + req.body.frequency * 3600000 * i;
+						req.body.date = new Date(msDate + req.body.frequency * 3600000 * i);
 						console.log('Date =====> ', req.body.date)
 						Reminder.create(req.body)
 					}
