@@ -7,9 +7,7 @@
 {{#if imageRes}}
   <h3>Showing "{{products.length}}" results for the search by "{{imageRes.name}}"</h3>
   <h4>Or search by "<span id="ingredient">{{imageRes.ingredient}}</span>"</h4>
-{{/if}}
-
-{{#if products}}
+{{else}}
   <h3>Showing "{{products.length}}" results for the search by "{{seaRes}}"</h3>
 {{/if}}
 

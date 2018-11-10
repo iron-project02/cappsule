@@ -141,3 +141,19 @@ exports.formatDate= date => {
 
 	return [year, month, day].join('-');
   }
+
+
+exports.isEmpty = obj => {
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key)) return false;
+	}
+		return true;
+  }
+
+  function isEmpty(obj) {
+	for(var key in obj) {
+		if(obj.hasOwnProperty(key))
+			return false;
+	}
+	return true;
+  }

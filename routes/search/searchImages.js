@@ -58,7 +58,7 @@ searchSites.post(`/search/image`, check.isLogged, (req, res) =>{
         }));
     })
     .catch(err => {
-      console.log('Error google request =====>', err)
+      res.redirect('/search');
     })
 });
 
