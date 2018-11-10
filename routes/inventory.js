@@ -17,8 +17,8 @@ kitSites.get(`/user/:id/kit/`, check.isLogged, check.isUser, (req, res) => {
 				.sort({created_at: 1})
 				.then(kits => {
 					let data = {
-						title: 'Kit',
-						css:   `profile`
+						title: 'Kit'
+						
 					}
 					let p = [];
 					let cabinet = {};
