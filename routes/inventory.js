@@ -53,16 +53,16 @@ kitSites.get(`/user/:id/kit/:name`, check.isLogged, check.isUser, (req,res) => {
 });
 
 //Update Kit
-kitSites.get(`/user/:id/kit/update/:name`, check.isLogged, check.isUser, (req,res) => {
+kitSites.post(`/user/:id/kit/update/:name`, check.isLogged, check.isUser, (req,res) => {
 	req.body.userId = req.params.id;
-	req.body.newName = 'Other';
+	//req.body.newName = 'Other';
 	Kit.findOneAndUpdate({$and: [{userId: req.body.userId}, {name: req.params.name}]}, {$set:{name:req.body.newName, kitKey: req.body.userId + req.body.newName}})
 		.then(kit => {
 			console.log(`=====> Renombrado correctamente`)
 			res.redirect(`/user/${req.body.userId}/kit`)
 		})
 		.catch(err => {
-			console.log(`=====> Error al eliminar ${err}`)
+			console.log(`=====> Error al renombrar ${err}`)
 			res.json(err)
 		});
 });

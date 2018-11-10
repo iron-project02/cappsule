@@ -13,6 +13,7 @@ searchSites.get(`/search/image`, check.isLogged, (req, res) =>{
   let data = {
     title: `Search by Image - Results`,
     css:   `search`,
+    js:    `searchImages`
   }
   
   res.render('private/searchImages.hbs', {user, data});

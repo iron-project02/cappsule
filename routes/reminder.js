@@ -51,6 +51,7 @@ remSites.get(`/user/:id/reminders`, check.isLogged, check.isUser, (req, res) => 
 
 remSites.post(`/user/:id/reminders/add`, check.isLogged, check.isUser, (req, res) => {
 	req.body.userId = req.params.id;
+	console.log('Reminder req.body =====> ', req.body)
 	Reminder.create(req.body)
 		.then(() => {
 			res.redirect(`/user/${req.body.userId}/reminders`)

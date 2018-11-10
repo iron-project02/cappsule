@@ -36,7 +36,7 @@
 			<div class="uk-margin">
 				<div class="uk-card uk-card-default uk-card-hover uk-card-body">
 					<div class="uk-card-badge">
-						<a href="/user/{{../user._id}}/treatments/{{prescription._id}}">View Picture</a>
+						<a href="/user/{{../user._id}}/treatments/{{prescription._id}}/pic">View Picture</a>
 						<a href="/user/{{../user._id}}/treatments/{{prescription._id}}">Edit</a>
 					</div>
 					<h4 class="uk-card-title">Md. {{prescription.medicName}} @ <span>Date {{prescription.prescription_date}}</span></h4>
@@ -50,12 +50,25 @@
 											<a href="/user/{{../../user._id}}/treatments/{{treatment._id}}">Delete</a>
 										</div>
 										<h3 class="uk-card-title">{{treatment.productName}}</h3>
-										<li>Take {{treatment.dosage}} tablets every {{treatment.frequency}} hours for {{treatment.days}} days</li>
+										<li>Take {{dosage}} tablets every {{treatment.frequency}} hours for {{days}} days</li>
+										<!--	
+										<form action="/user/{{../../user._id}}/reminders/all" method="POST" enctype="application/x-www-form-urlencoded">
+											<input type="hidden" name="userId" value="{{../../user._id}}">
+											<input type="hidden" name="name" value="{{treatment.dosage}}">
+											<input type="hidden" name="image" value="{{treatment.frequency}}">
+											<input type="hidden" name="ingredient" value="{{treatment.days}}">
+											<input type="hidden" name="pharmacy" value="{{treatment.productName}}">
+											<div class="create-reminder-wrapper">
+												<button type="submit" class="uk-button uk-button-default">Create Reminders</button>
+											</div>
+										</form>
+										-->
+
 									</div>
 								</div>
 							{{/each}}
 						</ul>
-					</div>
+					</div
           <div class="">
 						<form id="treatment-form" action="/user/{{../user._id}}/treatments/add" method="post" class="uk-text-center">
 							<button class="uk-button uk-button-default uk-align-center" type="button">Add Treatment</button>
@@ -64,12 +77,13 @@
 									<input type="hidden" name="prescriptionId" value="{{prescription._id}}">
 									<div class="uk-margin">
 										<div class="uk-form-controls">
-											<select class="uk-select" id="form-stacked-select" name="productName">
+											<select class="uk-select" id="form-stacked-select" name="inventoryIdproductName">
 												<option>Please select medicine...</option>
 												{{#if ../cabinet}}
 													{{#each ../cabinet as |kit|}}
 														{{#each kit as |product|}}
-															<option value="{{product.productId.name}}">{{product.productId.name}} - {{@../key}}</option>
+															<option value="{{product._id}}={{product.productId.name}}">{{product.productId.name}} - {{@../key}}</option>
+														 <!--	<input type="hidden" name="inventoryId" value="{{product._id}}"> -->
 														{{/each}}
 													{{/each}}
 												{{else}}
