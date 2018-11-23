@@ -148,6 +148,14 @@
   <main class="uk-container uk-container-expand uk-margin-medium-top">
     {{{body}}}
   </main>
+
+  {{#if user}}
+    <footer>
+      <div class="footer-info">
+        <p>Created by <a href="https://github.com/vermontgarcia">Vermont García</a> &amp; <a href="https://github.com/mauriciogzrs">Mauricio González</a></p>
+      </div>
+    </footer>
+  {{/if}}
   
   {{#if user}}
     <a href="#" uk-totop uk-scroll="duration: 750" class="back-to-top uk-position-fixed uk-position-bottom-right uk-position-small"></a>  

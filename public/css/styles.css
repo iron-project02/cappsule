@@ -11,7 +11,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 75px;
   width: 100%;
 }
 h1 {
@@ -22,6 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 a {
   color: var(--cold);
+  text-decoration: none;
 }
 a:hover {
   color: var(--main);
@@ -80,7 +80,7 @@ nav {
 }
 main {
   flex: 1 0 auto;
-  min-height: calc(100vh - 50px);
+  /* min-height: calc(100vh - 50px); */
   padding-top: 50px;
 }
 .uk-card, .uk-tile {
@@ -162,7 +162,24 @@ img.pill {
   transform: rotate(-400deg);
 }
 footer {
-  margin-top: 5vh;
+  background: var(--neutral);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+  padding: 20px 5vw 0;
+}
+footer .footer-info p {
+  font-size: 2.2vh;
+  text-align: center;
+}
+footer .footer-info p a {
+  color: var(--main);
+  text-decoration: none;
+}
+footer .footer-info p a:hover {
+  color: var(--cold);
 }
 .back-to-top {
   background: var(--main);
